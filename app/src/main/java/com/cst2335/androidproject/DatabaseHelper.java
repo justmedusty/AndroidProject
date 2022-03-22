@@ -20,18 +20,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public DatabaseHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+        super(context, DATABASE_NAME, null, VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        
+        sqLiteDatabase.execSQL(
+                " CREATE TABLE " + TABLE_NAME + " (" +
+                        KEY_ID + " INTEGER PRIMARY KEY, " +
+                        KEY_TITLE + " TEXT, " + KEY_INGREDIENTS + " TEXT, " + KEY_URL + " TEXT)"
+        );
+
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        onCreate(sqLiteDatabase);
 
     }
 }
