@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar appToolBar = findViewById(R.id.mainToolBar);
         setSupportActionBar(appToolBar);
+        appToolBar.showOverflowMenu();
     }
 
     @Override
@@ -32,20 +33,18 @@ public class MainActivity extends AppCompatActivity {
 
         String toastText = "";
 
-//        switch (item.getItemId()) {
-//            case R.id.item_1:
-//                toastText = "You clicked on Item 1";
-//                break;
-//            case R.id.item_2:
-//                toastText = "You clicked on Item 2";
-//                break;
-//            case R.id.item_3:
-//                toastText = "You clicked on Item 3";
-//                break;
-//            case R.id.overflowItem_1:
-//                toastText = "You clicked on the overflow menu";
-//                break;
-//        }
+        switch (item.getItemId()) {
+            case R.id.menu_search:
+                toastText = "You clicked on search";
+                break;
+            case R.id.menu_favourites:
+                toastText = "You clicked on favourites";
+                break;
+            case R.id.menu_popular:
+                toastText = "You clicked on popular";
+                break;
+
+        }
         Toast toast = Toast.makeText(getApplicationContext(),
                 toastText,
                 Toast.LENGTH_LONG);

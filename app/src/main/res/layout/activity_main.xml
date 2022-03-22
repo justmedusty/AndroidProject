@@ -12,7 +12,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/darkGrey"
         android:minHeight="?attr/actionBarSize"
         app:theme="@style/MaterialAlertDialog.MaterialComponents.Title.Icon"
         tools:layout_editor_absoluteX="1dp"

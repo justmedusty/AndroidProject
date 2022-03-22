@@ -6,19 +6,19 @@
     <item android:id="@+id/menu_search"
         android:title="@string/menu_search"
         android:icon="@drawable/search"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:orderInCategory="1"
         />
 
     <item android:id="@+id/menu_favourites"
         android:title="@string/menu_favourites"
         android:icon="@drawable/favourites"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:orderInCategory="2" />
 
     <item android:id="@+id/menu_popular"
         android:title="@string/menu_popular"
         android:icon="@drawable/popular"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:orderInCategory="3" />
 </menu>
