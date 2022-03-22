@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+<!--    project color pallete-->
+    <color name="imperialRed">#E63946</color>
+    <color name="honeyDew">#F1FAEE</color>
+    <color name="powderBlue">#A8DADC</color>
+    <color name="celadonBlue">#457B9D</color>
+    <color name="prussianBlue">#1D3557</color>
 </resources>
