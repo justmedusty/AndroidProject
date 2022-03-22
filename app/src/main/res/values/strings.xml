@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">AndroidProject</string>
+    <string name="app_name">Recipe Finder</string>
+
+<!--    Strings for toolbar -->
+    <string name="menu_search">Search Recipes</string>
+    <string name="menu_favourites">Favourite Recipes</string>
+    <string name="menu_popular">Popular Recipes</string>
 </resources>
