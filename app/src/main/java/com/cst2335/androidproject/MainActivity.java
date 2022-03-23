@@ -3,10 +3,12 @@ package com.cst2335.androidproject;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.menu_search:
-                toastText = "You clicked on search";
+                Intent goToChat= new Intent(MainActivity.this, SearchActivity.class);
+                MainActivity.this.startActivity(goToChat);
                 break;
             case R.id.menu_favourites:
                 toastText = "You clicked on favourites";

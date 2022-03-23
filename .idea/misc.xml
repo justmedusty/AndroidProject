@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/paisl/AndroidStudioProjects/AndroidProject/app/src/main/res/layout/activity_main.xml" value="0.3651041666666667" />
-        <entry key="..\:/Users/paisl/AndroidStudioProjects/AndroidProject/app/src/main/res/layout/favourites_activity.xml" value="0.3651041666666667" />
-        <entry key="..\:/Users/paisl/AndroidStudioProjects/AndroidProject/app/src/main/res/layout/popular_activity.xml" value="0.3651041666666667" />
-        <entry key="..\:/Users/paisl/AndroidStudioProjects/AndroidProject/app/src/main/res/menu/tool_bar_menu.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/decen/AndroidStudioProjects/AndroidProject/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3828125" />
+        <entry key="..\:/Users/decen/AndroidStudioProjects/AndroidProject/app/src/main/res/layout/activity_main.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/decen/AndroidStudioProjects/AndroidProject/app/src/main/res/layout/favourites_activity.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/decen/AndroidStudioProjects/AndroidProject/app/src/main/res/layout/search_activity.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/decen/AndroidStudioProjects/AndroidProject/app/src/main/res/layout/search_activity_row" value="0.20520833333333333" />
+        <entry key="..\:/Users/decen/AndroidStudioProjects/AndroidProject/app/src/main/res/layout/search_activity_row.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/decen/AndroidStudioProjects/AndroidProject/app/src/main/res/menu/tool_bar_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

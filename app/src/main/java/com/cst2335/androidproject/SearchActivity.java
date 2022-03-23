@@ -1,14 +1,77 @@
 package com.cst2335.androidproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.ImageButton;
 
-public class SearchActivity extends AppCompatActivity {
+import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+public class SearchActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    RecyclerView recyclerView;
+    ListAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_activity);
+
+        Toolbar appToolBar = findViewById(R.id.mainToolBar);
+        setSupportActionBar(appToolBar);
+        appToolBar.showOverflowMenu();
+
+        ImageButton searchButton = findViewById(R.id.searchButton);
+        searchButton.setOnClickListener(view -> {
+        });
+
+        List<RecipeData> list = new ArrayList<>();
+        for(int i=0; i<=100; i++) {
+            list.add(new RecipeData("Title"+i, "Ingredient"+i, "url"+i));
+        }
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+        adapter = new ListAdapter(list, getApplication());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
+
+
     }
+
+    public void onBackPressed(){
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.tool_bar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return false;
+    }
+
+    /*public void APISearch(){
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.prepare("GET", "https://tasty.p.rapidapi.com/recipes/auto-complete?prefix=chicken%20soup")
+                .setHeader("X-RapidAPI-Host", "tasty.p.rapidapi.com")
+                .setHeader("X-RapidAPI-Key", "80beee46d0msh7e059b94b4743d4p1c199ajsn49a63a0f5b76")
+                .execute()
+                .toCompletableFuture()
+                .thenAccept(System.out::println)
+                .join();
+
+        client.close();
+    }*/
 }
