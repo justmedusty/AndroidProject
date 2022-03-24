@@ -1,5 +1,11 @@
 package com.cst2335.androidproject;
+/*
+File: BaseNavActivity.java
+Author: Chad Rocheleau
+Lab Section: 012
+Date: March 24 2022
 
+ */
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +26,8 @@ import com.google.android.material.navigation.NavigationView;
  *
  * <p>In classes that extend this BaseNavActivity a base template layout must be used. This
  * base layout is activity_base_nav.xml. To load activity specific layouts into the layout that
- * contains all toolbar and nav code a StubView has been supplied. </p>
+ * contains all toolbar and nav code a StubView has been supplied. Finally it is important
+ * that classes extending this make a call to setupNavigation() </p>
  *
  * <p>To load an activity specific layout into the activity_base_nav the following is necessary
  *         ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
@@ -33,8 +40,9 @@ import com.google.android.material.navigation.NavigationView;
 public class BaseNavActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     /**
-     * Simply calls on the setupNavigation method belonging to this class
-     * @param savedInstanceState
+     * Necessary override of onCreate. This class only exists to provide subclasses with
+     * toolbar and nav drawer functionality. and so nothing happens in the onCreate method.
+     * @param savedInstanceState Bundle passed to this activity.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +125,6 @@ public class BaseNavActivity extends AppCompatActivity implements NavigationView
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        //TODO For some reason going to search page works but the others don't???
         int id = item.getItemId();
 
         if (id == R.id.nav_drawer_search) {

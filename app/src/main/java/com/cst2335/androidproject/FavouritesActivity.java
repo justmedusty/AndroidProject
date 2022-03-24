@@ -1,9 +1,17 @@
 package com.cst2335.androidproject;
-
+/*
+File: BaseNavActivity.java
+Author: Chad Rocheleau
+Lab Section: 012
+Date: March 24 2022
+ */
 import android.os.Bundle;
 import android.view.ViewStub;
 import androidx.annotation.Nullable;
 
+/**
+ *
+ */
 public class FavouritesActivity extends BaseNavActivity {
 
     @Override
