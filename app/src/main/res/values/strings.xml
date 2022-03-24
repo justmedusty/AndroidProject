@@ -1,13 +1,17 @@
 <resources>
     <string name="app_name">Recipe Finder</string>
 
-<!--    Strings for toolbar -->
+    <!--    Strings for toolbar -->
     <string name="menu_search">Search Recipes</string>
     <string name="menu_favourites">Favourite Recipes</string>
     <string name="menu_popular">Popular Recipes</string>
 
-<!-- Strings for SearchActivity -->
+    <!-- Strings for SearchActivity -->
     <string name="favourite_button_description">Adds menu item to favourites list.</string>
     <string name="search_hint">Enter Recipe Name To Search</string>
     <string name="search_button_description">Searches API</string>
+
+<!--    Strings for nav drawer-->
+    <string name="open">open</string>
+    <string name="close">close</string>
 </resources>

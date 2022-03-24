@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.ViewStub;
 import android.widget.ImageButton;
 
 import com.google.android.material.navigation.NavigationView;
@@ -17,17 +18,19 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class SearchActivity extends BaseNavActivity {
     RecyclerView recyclerView;
     ListAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_activity);
+        setContentView(R.layout.activity_base_nav);
 
-        Toolbar appToolBar = findViewById(R.id.mainToolBar);
-        setSupportActionBar(appToolBar);
-        appToolBar.showOverflowMenu();
+        setupNavigation();
+        // get the ViewStub into which this activities layout will be loaded.
+        ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
+        stub.setLayoutResource(R.layout.search_activity);
+        stub.inflate();
 
         ImageButton searchButton = findViewById(R.id.searchButton);
         searchButton.setOnClickListener(view -> {
@@ -50,17 +53,11 @@ public class SearchActivity extends AppCompatActivity implements NavigationView.
         super.onBackPressed();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.tool_bar_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
-    }
+    //TODO Hey Lucas I commented this out cause I think it might break the new setup
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//        return false;
+//    }
 
     /*public void APISearch(){
         AsyncHttpClient client = new AsyncHttpClient();

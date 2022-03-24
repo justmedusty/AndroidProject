@@ -9,16 +9,6 @@
     android:orientation="vertical"
     android:background="@color/honeyDew">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/mainToolBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/powderBlue"
-        android:minHeight="?attr/actionBarSize"
-        app:theme="@style/MaterialAlertDialog.MaterialComponents.Title.Icon"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"
-        />
     <EditText
         android:layout_width="335dp"
         android:layout_height="wrap_content"

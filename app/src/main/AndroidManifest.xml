@@ -10,9 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidProject">
         <activity
+            android:name=".BaseNavActivity"
+            android:exported="false" />
+        <activity
             android:name=".SearchActivity"
             android:exported="false" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".FavouritesActivity"
+            android:exported="false"/>
+        <activity android:name=".PopularActivity"
+            android:exported="false"/>
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,59 +1,25 @@
 package com.cst2335.androidproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.Toast;
+import android.view.ViewStub;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * Application launch screen. Will contain title screen and a posting of the last recipe saved
+ * to favourites showing the details of that recipe to the user.
+ */
+public class MainActivity extends BaseNavActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_base_nav);//setting base layout
 
-        Toolbar appToolBar = findViewById(R.id.mainToolBar);
-        setSupportActionBar(appToolBar);
-        appToolBar.showOverflowMenu();
+        setupNavigation();
+        // get the ViewStub into which this activities layout will be loaded.
+        ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
+        stub.setLayoutResource(R.layout.activity_main);
+        stub.inflate();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.tool_bar_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        String toastText = "";
-
-        switch (item.getItemId()) {
-            case R.id.menu_search:
-                Intent goToChat= new Intent(MainActivity.this, SearchActivity.class);
-                MainActivity.this.startActivity(goToChat);
-                break;
-            case R.id.menu_favourites:
-                toastText = "You clicked on favourites";
-                break;
-            case R.id.menu_popular:
-                toastText = "You clicked on popular";
-                break;
-
-        }
-        Toast toast = Toast.makeText(getApplicationContext(),
-                toastText,
-                Toast.LENGTH_LONG);
-        toast.show();
-
-        return true;
-    }
 
 }

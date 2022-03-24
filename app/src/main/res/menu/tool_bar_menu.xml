@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- This is the menu used for the App wide Tool bar Items-->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
-
+<!--TODO decide if these belong here. They are already going to exist in the navigation drawer
+         Perhaps just a home button and help button would be good to have here. This is up for
+         discussion -->
+<!--    Menu Search Item-->
     <item android:id="@+id/menu_search"
         android:title="@string/menu_search"
         android:icon="@drawable/search"
         app:showAsAction="ifRoom"
         android:orderInCategory="1"
         />
-
+<!--    Menu Favourites Item-->
     <item android:id="@+id/menu_favourites"
         android:title="@string/menu_favourites"
         android:icon="@drawable/favourites"
         app:showAsAction="ifRoom"
         android:orderInCategory="2" />
-
+<!--    Menu Popular Item-->
     <item android:id="@+id/menu_popular"
         android:title="@string/menu_popular"
         android:icon="@drawable/popular"
