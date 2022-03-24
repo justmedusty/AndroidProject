@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
@@ -52,7 +53,7 @@ public class BaseNavActivity extends AppCompatActivity implements NavigationView
     /**
      * Initializes the toolbar and set the navigation drawer
      */
-    public void setupNavigation() {
+    public void setupNavigation(String author, String activityTitle, String version) {
         //*************** TOOLBAR AND NAV DRAWER *******
         Toolbar testToolBar = findViewById(R.id.testToolBar);
         setSupportActionBar(testToolBar);
@@ -70,6 +71,11 @@ public class BaseNavActivity extends AppCompatActivity implements NavigationView
         toggle.syncState();
 
         NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
+
+        ((TextView)navView.getHeaderView(0).findViewById(R.id.activity_title)).setText(activityTitle);
+        ((TextView)navView.getHeaderView(0).findViewById(R.id.author)).setText(author);
+        ((TextView)navView.getHeaderView(0).findViewById(R.id.version_number)).setText(version);
+
         navView.setNavigationItemSelectedListener(this);
         //********* END navigation drawer SETUP.
         //********** END TOOL BAR SETUP **************************************

@@ -19,7 +19,7 @@ public class FavouritesActivity extends BaseNavActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_nav);
 
-        setupNavigation();
+        setupNavigation("Dustyn Gibb", "Favourites Activity", "1.0");
         // get the ViewStub into which this activities layout will be loaded.
         ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.favourites_activity);

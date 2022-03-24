@@ -61,7 +61,7 @@ public class ListAdapter
 
     @Override
     public void onAttachedToRecyclerView(
-            @NotNull RecyclerView recyclerView) {
+            RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
 

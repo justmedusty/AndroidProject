@@ -14,7 +14,7 @@ public class MainActivity extends BaseNavActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_nav);//setting base layout
 
-        setupNavigation();
+        setupNavigation("Chad Rocheleau", "Main Activity", "1.0");
         // get the ViewStub into which this activities layout will be loaded.
         ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.activity_main);
