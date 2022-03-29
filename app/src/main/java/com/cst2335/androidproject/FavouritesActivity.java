@@ -11,8 +11,13 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cst2335.utilities.BaseNavActivity;
+import com.cst2335.utilities.ListAdapter;
+import com.cst2335.utilities.RecipeData;
+
 import java.util.ArrayList;
 import java.util.List;
+import com.cst2335.utilities.*;
 
 /**
  *

@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewStub;
 
+import com.cst2335.utilities.BaseNavActivity;
+
 /**
  * Application launch screen. Will contain title screen and a posting of the last recipe saved
  * to favourites showing the details of that recipe to the user.

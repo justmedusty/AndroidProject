@@ -1,4 +1,4 @@
-package com.cst2335.androidproject;
+package com.cst2335.utilities;
 
 import android.os.AsyncTask;
 import org.json.JSONArray;

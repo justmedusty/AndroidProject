@@ -1,4 +1,4 @@
-package com.cst2335.androidproject;
+package com.cst2335.utilities;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,9 +7,12 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cst2335.androidproject.FavouritesActivity;
+import com.cst2335.androidproject.R;
+import com.cst2335.androidproject.SearchActivity;
+
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
 import java.util.List;
 
 public class ListAdapter
