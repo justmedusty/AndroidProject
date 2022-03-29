@@ -16,7 +16,7 @@ public class ListAdapter
         extends RecyclerView.Adapter<ListViewHolder> {
 
     List<RecipeData> list;
-
+    View listRowView;
     Context context;
 
     public ListAdapter(List<RecipeData> list,
@@ -35,12 +35,19 @@ public class ListAdapter
         LayoutInflater inflater
                 = LayoutInflater.from(context);
 
-        // Inflate the layout
 
-        View listRowView
-                = inflater
-                .inflate(R.layout.search_activity_row,
-                        parent, false);
+        // Inflate the layout based on what activity is being used
+        if (context instanceof SearchActivity) {
+            listRowView = inflater
+                    .inflate(R.layout.search_activity_row, parent, false);
+        } else if (context instanceof FavouritesActivity) {
+            listRowView = inflater
+                    .inflate(R.layout.favourites_row, parent, false);
+        }
+//        View listRowView
+//                = inflater
+//                .inflate(R.layout.search_activity_row,
+//                        parent, false);
 
         return new ListViewHolder(listRowView);
     }

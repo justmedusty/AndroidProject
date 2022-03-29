@@ -16,4 +16,7 @@
     <!--    Strings for nav drawer-->
     <string name="open">open</string>
     <string name="close">close</string>
+
+    <!--    Strings for Favourites activity-->
+    <string name="favourites_title">Ton Recettes Favourite</string>
 </resources>
