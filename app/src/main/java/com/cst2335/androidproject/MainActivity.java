@@ -1,6 +1,7 @@
 package com.cst2335.androidproject;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ViewStub;
 
 /**
@@ -14,11 +15,15 @@ public class MainActivity extends BaseNavActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_nav);//setting base layout
 
+        // checking for phone or tablet to apply appropriate layout
+        boolean isPhone = findViewById(R.id.recipe_details_fragment) == null;
         setupNavigation("Chad Rocheleau", "Main Activity", "1.0");
         // get the ViewStub into which this activities layout will be loaded.
         ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.activity_main);
         stub.inflate();
+
+        Log.d("main", "" + isPhone);
     }
 
 
