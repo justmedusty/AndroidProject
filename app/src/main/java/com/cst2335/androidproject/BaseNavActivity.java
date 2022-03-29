@@ -104,22 +104,20 @@ public class BaseNavActivity extends AppCompatActivity implements NavigationView
         String toastText = "";
 
         switch (item.getItemId()) {
-            case R.id.menu_search:
-                Intent goToSearch= new Intent(getApplicationContext(), SearchActivity.class);
-                startActivity(goToSearch);
+            case R.id.menu_home:
+                Intent goToHome= new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(goToHome);
                 break;
-            case R.id.menu_favourites:
-                toastText = "You clicked on favourites";
-                break;
-            case R.id.menu_popular:
-                toastText = "You clicked on popular";
+            case R.id.menu_info:
+                toastText = "You clicked on info";
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        toastText,
+                        Toast.LENGTH_LONG);
+                toast.show();
                 break;
 
         }
-        Toast toast = Toast.makeText(getApplicationContext(),
-                toastText,
-                Toast.LENGTH_LONG);
-        toast.show();
+
         return true;
     }
 
