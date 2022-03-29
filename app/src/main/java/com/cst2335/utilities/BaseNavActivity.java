@@ -1,4 +1,4 @@
-package com.cst2335.androidproject;
+package com.cst2335.utilities;
 /*
 File: BaseNavActivity.java
 Author: Chad Rocheleau
@@ -19,6 +19,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.cst2335.androidproject.FavouritesActivity;
+import com.cst2335.androidproject.MainActivity;
+import com.cst2335.androidproject.PopularActivity;
+import com.cst2335.androidproject.R;
+import com.cst2335.androidproject.SearchActivity;
 import com.google.android.material.navigation.NavigationView;
 
 /**
