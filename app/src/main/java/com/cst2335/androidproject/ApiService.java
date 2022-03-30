@@ -1,6 +1,7 @@
 package com.cst2335.androidproject;
 
 import android.os.AsyncTask;
+import com.cst2335.androidproject.RecipeData;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,38 +21,12 @@ public class ApiService {
     public static final String popularUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=popular&app_id=77b3cee9&app_key=1f638fb97d020f33df4bec25ae109145&random=true";
 
 
-    public String apiCall(@Nullable String searchTerm) throws IOException {
-
-        URL url;
-
-        if (searchTerm == null) {
-            url = new URL(popularUrl);
-        } else url = new URL(BaseSearchUrl + searchTerm + appIdApiKey);
-
-
-        HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
-
-
-        StringBuilder sb = new StringBuilder();
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-        String json;
-
-        while ((json = bufferedReader.readLine()) != null) {
-            //appending it to a string builder
-            sb.append(json).append("\n");
-        }
-
-        return sb.toString().trim();
-
-
-    }
-
-    public void loadIntoListView(String json) throws JSONException {
+    public RecipeData[] loadIntoListView(String json) throws JSONException {
         //creating a json array from the json string
         JSONArray jsonArray = new JSONArray(json);
 
         //creating a string array for listview
-        String[] data = new String[jsonArray.length()];
+        RecipeData[] recipeArray = new RecipeData[jsonArray.length()];
 
         //looping through all the elements in json array
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -59,12 +34,87 @@ public class ApiService {
             JSONObject obj = jsonArray.getJSONObject(i);
 
             //getting the name from the json object and putting it inside string array
-            data[i] = obj.getString("hits.recipe.images.THUMBNAIL.url");
-            data[i] = obj.getString("");
-            data[i] = obj.getString("");
-            data[i] = obj.getString("");
+            String title = obj.getString("_links.next.title");
+            String url = obj.getString("hits.url");
+            String ingredients = obj.getString("hits.ingredientLines");
+
+            recipeArray[i] = new RecipeData(title, ingredients, url);
 
         }
+
+        return recipeArray;
+
+
+    }
+
+    private void apiCall(@Nullable String searchTerm) {
+
+        class GetJSON extends AsyncTask<Void, Void, String> {
+            //this method will be called before execution
+            //you can display a progress bar or something
+            //so that user can understand that he should wait
+            //as network operation may take some time
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+
+            //this method will be called after execution
+            //so here we are displaying a toast with the json string
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                //Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+
+                try {
+                    loadIntoListView(s);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            protected String doInBackground(Void... voids) {
+                try {
+
+                    //creating a URL
+                    URL url;
+
+                    if (searchTerm == null) {
+                        url = new URL(popularUrl);
+                    } else url = new URL(BaseSearchUrl + searchTerm + appIdApiKey);
+
+                    //Opening the URL using HttpUrlConnection
+                    HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+
+                    //String builder object to read the string from the service
+                    StringBuilder sb = new StringBuilder();
+
+                    //Using buffered reader to read the string from service
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                    //A simple string to read values from each line
+                    String json;
+
+                    //reading until we dont find null
+                    while ((json = bufferedReader.readLine()) != null) {
+                        //appending it to a string builder
+                        sb.append(json + "\n");
+                    }
+
+                    //finally returning the read string
+                    return sb.toString().trim();
+                } catch (Exception e) {
+                    return null;
+                }
+            }
+
+        }
+        //creating async task object and executing it
+        final GetJSON getJSON = new GetJSON();
+        getJSON.execute();
 
 
     }
