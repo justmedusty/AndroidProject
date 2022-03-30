@@ -1,6 +1,8 @@
 package com.cst2335.utilities;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
@@ -14,9 +16,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static String KEY_INGREDIENTS = "ingredients";
     public static String KEY_URL = "url";
     public static String KEY_ID = "id";
-
-
-
 
 
     public DatabaseHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -41,5 +40,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(sqLiteDatabase);
 
+    }
+
+    public void insertIntoDatabase(String title, String ingredients, String url) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues cValues = new ContentValues();
+
+        cValues.put(KEY_TITLE, title);
+        cValues.put(KEY_INGREDIENTS, ingredients);
+        cValues.put(KEY_URL, url);
+
+        sqLiteDatabase.insert(TABLE_NAME, null, cValues);
+
+
+    }
+
+    public Cursor selectAll() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
+        return cursor;
     }
 }
