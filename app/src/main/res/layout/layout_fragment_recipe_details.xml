@@ -9,7 +9,10 @@
     android:layout_height="match_parent"
     tools:context=".RecipeDetailsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO layout_fragment_recipe_details.xml must be constructed with the fields that will
+            be necessary for displaying arguments passed in bundle. Need a field for
+             Recipe Title, ingredients, and url. May add floating action button for saving
+             recipe to favourites. -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
