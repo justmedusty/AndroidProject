@@ -12,4 +12,11 @@ public class RecipeData {
         this.ingredients = ingredients;
         this.url = url;
     }
+    public String getTitle(){
+        return title;
+    }
+    public String getIngredients(){
+        return ingredients;
+    }
+    public String getURL(){ return url; }
 }
