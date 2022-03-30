@@ -1,17 +1,13 @@
 package com.cst2335.utilities;
 
 import android.os.AsyncTask;
-import com.cst2335.androidproject.RecipeData;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import javax.annotation.Nullable;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ApiService {
