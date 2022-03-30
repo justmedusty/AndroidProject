@@ -47,7 +47,7 @@ public class ApiService {
             String ingredients = recipe.getString("ingredientLines");
 
 
-            recipeData.add(i, new RecipeData(title, ingredients, url));
+            recipeData.add(new RecipeData(title, ingredients, url));
 
 
         }
