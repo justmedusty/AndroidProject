@@ -1,5 +1,6 @@
 package com.cst2335.androidproject;
 
+import android.widget.EditText;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,7 +31,11 @@ public class SearchActivity extends BaseNavActivity {
         stub.inflate();
 
         ImageButton searchButton = findViewById(R.id.searchButton);
+        EditText editText = findViewById(R.id.searchActivityRowTitle);
         searchButton.setOnClickListener(view -> {
+            if (editText.getText() != null){
+                api.apiCall(editText.getText().toString(),adapter);
+            }
         });
 
         ArrayList<RecipeData> list = new ArrayList<>();
@@ -42,7 +47,8 @@ public class SearchActivity extends BaseNavActivity {
         adapter = new ListAdapter(list, getApplication(), getIntent().getBooleanExtra("isPhone", true));
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
-        api.apiCall(null, adapter);
+        //api.apiCall(null, adapter);
+
 
     }
 

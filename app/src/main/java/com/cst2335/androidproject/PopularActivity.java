@@ -3,6 +3,8 @@ package com.cst2335.androidproject;
 import android.os.Bundle;
 import android.view.ViewStub;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.cst2335.utilities.BaseNavActivity;
 import com.cst2335.utilities.ListAdapter;
 import com.cst2335.utilities.RecipeData;
@@ -14,6 +16,9 @@ import com.cst2335.utilities.ApiService;
 public class PopularActivity extends BaseNavActivity {
 
     ApiService apiService = new ApiService();
+    ListAdapter adapter;
+    RecyclerView recyclerView;
+
 
 
     @Override
@@ -26,10 +31,19 @@ public class PopularActivity extends BaseNavActivity {
         ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.popular_activity);
         stub.inflate();
-       //apiService.apiCall(null);
 
-       ArrayList<RecipeData> recipe = apiService.recipeData;
-       System.out.println(recipe.get(1));
+        recyclerView = (RecyclerView) findViewById(R.id.recycler);
+        ArrayList<RecipeData> list = new ArrayList<>();
+        for(int i=0; i<=100; i++) {
+            list.add(new RecipeData("Title"+i, "Ingredient"+i, "url"+i));
+        }
+
+        adapter = new ListAdapter(list , getApplication(), getIntent().getBooleanExtra("isPhone", true));
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(PopularActivity.this));
+       apiService.apiCall(null,adapter);
+
+
 
 
     }
