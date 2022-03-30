@@ -36,6 +36,8 @@ public class ListViewHolder
             titleView.setOnClickListener(this);
             favouriteButtonView.setOnClickListener(this);
     }
+
+
     @Override
     public void onClick(View view) {
         if (isPhone && view.equals(titleView)) {

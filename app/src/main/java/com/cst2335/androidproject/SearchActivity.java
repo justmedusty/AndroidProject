@@ -39,6 +39,7 @@ public class SearchActivity extends BaseNavActivity {
         });
 
         ArrayList<RecipeData> list = new ArrayList<>();
+      
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         adapter = new ListAdapter(list, getApplication(), getIntent().getBooleanExtra("isPhone", true));

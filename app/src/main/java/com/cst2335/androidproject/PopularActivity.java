@@ -33,7 +33,7 @@ public class PopularActivity extends BaseNavActivity {
         stub.setLayoutResource(R.layout.popular_activity);
         stub.inflate();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler);
+        recyclerView = findViewById(R.id.recycler);
         ArrayList<RecipeData> list = new ArrayList<>();
 
         adapter = new ListAdapter(list , getApplication(), getIntent().getBooleanExtra("isPhone", true));
@@ -41,6 +41,8 @@ public class PopularActivity extends BaseNavActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(PopularActivity.this));
        apiService.apiCall(null,adapter);
        Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
+
+
 
 
 
