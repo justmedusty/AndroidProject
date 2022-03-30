@@ -4,9 +4,6 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/decen/AndroidStudioProjects/AndroidProject/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3828125" />
-        <entry key="..\:/Users/decen/AndroidStudioProjects/AndroidProject/app/src/main/res/layout-components/favourites_row.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/decen/AndroidStudioProjects/AndroidProject/app/src/main/res/layout-components/nav_drawer_header.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/decen/AndroidStudioProjects/AndroidProject/app/src/main/res/layout-components/search_activity_row.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/decen/AndroidStudioProjects/AndroidProject/app/src/main/res/layout/activity_base_nav.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/decen/AndroidStudioProjects/AndroidProject/app/src/main/res/layout/activity_main.xml" value="0.28940217391304346" />
         <entry key="..\:/Users/decen/AndroidStudioProjects/AndroidProject/app/src/main/res/layout/favourites_activity.xml" value="0.28940217391304346" />
@@ -16,7 +13,10 @@
         <entry key="..\:/Users/decen/AndroidStudioProjects/AndroidProject/app/src/main/res/layout/search_activity_row.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/decen/AndroidStudioProjects/AndroidProject/app/src/main/res/menu/nav_drawer_menu.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/decen/AndroidStudioProjects/AndroidProject/app/src/main/res/menu/tool_bar_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/paisl/AndroidStudioProjects/AndroidProject/app/src/main/res/layout-sw720dp/activity_base_nav.xml" value="0.1" />
+        <entry key="..\:/Users/paisl/AndroidStudioProjects/AndroidProject/app/src/main/res/layout/activity_recipe_details_phone.xml" value="0.1" />
         <entry key="..\:/Users/paisl/AndroidStudioProjects/AndroidProject/app/src/main/res/layout/favourites_row.xml" value="0.1" />
+        <entry key="..\:/Users/paisl/AndroidStudioProjects/AndroidProject/app/src/main/res/layout/layout_fragment_recipe_details.xml" value="0.3015625" />
         <entry key="..\:/Users/paisl/AndroidStudioProjects/AndroidProject/app/src/main/res/layout/nav_drawer_header.xml" value="0.1" />
         <entry key="..\:/Users/paisl/AndroidStudioProjects/AndroidProject/app/src/main/res/layout/search_activity_row.xml" value="0.1" />
       </map>
