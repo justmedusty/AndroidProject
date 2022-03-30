@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:padding="9dp"
         android:textColor="@color/honeyDew"
-        android:textSize="22sp"
+        android:textSize="14sp"
         android:background="@color/celadonBlue"
         android:id="@+id/searchActivityRowTitle"/>
 

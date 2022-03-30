@@ -33,17 +33,16 @@ public class PopularActivity extends BaseNavActivity {
         stub.setLayoutResource(R.layout.popular_activity);
         stub.inflate();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler);
+        recyclerView = findViewById(R.id.recycler);
         ArrayList<RecipeData> list = new ArrayList<>();
-        for(int i=0; i<=100; i++) {
-            list.add(new RecipeData(""+i, ""+i, ""+i));
-        }
 
         adapter = new ListAdapter(list , getApplication(), getIntent().getBooleanExtra("isPhone", true));
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(PopularActivity.this));
        apiService.apiCall(null,adapter);
        Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
+
+
 
 
 

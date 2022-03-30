@@ -35,6 +35,8 @@ public class ListViewHolder
             this.context = context;
             itemView.setOnClickListener(this);
     }
+
+
     @Override
     public void onClick(View view) {
         if (isPhone) {
