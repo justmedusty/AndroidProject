@@ -67,6 +67,7 @@ public class ListViewHolder
             String url = adapter.list.get(getAdapterPosition()).getURL();
 
             helper = new DatabaseHelper(context.getApplicationContext(), DatabaseHelper.DATABASE_NAME, null, DatabaseHelper.VERSION);
+            favouriteButtonView.setImageResource(R.drawable.favourited);
 
             helper.insertIntoDatabase(title, ingredients, url);
 
