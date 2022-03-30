@@ -21,19 +21,23 @@ public class ListViewHolder
     View view;
     Context context;
     boolean isPhone;
+    DatabaseHelper helper;
 
-    ListViewHolder(View itemView, Context context)
-    {
+
+    ListViewHolder(View itemView, Context context) {
         super(itemView);
-            titleView
-                    = (TextView) itemView
-                    .findViewById(R.id.searchActivityRowTitle);
-            favouriteButtonView
-                    = (ImageButton) itemView
-                    .findViewById(R.id.searchActivityRowButton);
-            view = itemView;
-            this.context = context;
-            titleView.setOnClickListener(this);
+        titleView
+                = itemView
+                .findViewById(R.id.searchActivityRowTitle);
+        favouriteButtonView
+                = itemView
+                .findViewById(R.id.searchActivityRowButton);
+        view = itemView;
+        this.context = context;
+        titleView.setOnClickListener(this);
+        if (favouriteButtonView != null) {
+            favouriteButtonView.setOnClickListener(this);
+        }
     }
 
 
@@ -45,7 +49,7 @@ public class ListViewHolder
             goToFragment.putExtra("ingredients", adapter.list.get(getAdapterPosition()).getIngredients());
             goToFragment.putExtra("url", adapter.list.get(getAdapterPosition()).getURL());
             context.startActivity(goToFragment);
-        } else if (view.equals(titleView)){
+        } else if (view.equals(titleView)) {
             RecipeDetailsFragment detailsFragment = new RecipeDetailsFragment(
                     adapter.list.get(getLayoutPosition()).getTitle(),
                     adapter.list.get(getAdapterPosition()).getIngredients(),
@@ -57,7 +61,15 @@ public class ListViewHolder
                     .replace(R.id.recipe_details_fragment, detailsFragment)
                     .commit();
         } else {
-            //DATABASE STUFF
+
+            String title = adapter.list.get(getLayoutPosition()).getTitle();
+            String ingredients = adapter.list.get(getAdapterPosition()).getIngredients();
+            String url = adapter.list.get(getAdapterPosition()).getURL();
+
+            helper = new DatabaseHelper(context.getApplicationContext(), DatabaseHelper.DATABASE_NAME, null, DatabaseHelper.VERSION);
+
+            helper.insertIntoDatabase(title, ingredients, url);
+
 
         }
     }
