@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class ApiService {
-
+    ListAdapter adapter;
     public static final String BaseSearchUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=";
     public static final String appIdApiKey = "&app_id=77b3cee9&app_key=1f638fb97d020f33df4bec25ae109145";
     public static final String popularUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=popular&app_id=77b3cee9&app_key=1f638fb97d020f33df4bec25ae109145&random=true";
@@ -54,8 +54,8 @@ public class ApiService {
 
     }
 
-    public void apiCall(@Nullable String searchTerm) {
-
+    public void apiCall(@Nullable String searchTerm, ListAdapter adapter) {
+        this.adapter = adapter;
         class GetJSON extends AsyncTask<Void, Void, String> {
             //this method will be called before execution
             //you can display a progress bar or something
@@ -78,6 +78,9 @@ public class ApiService {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                adapter.setList(recipeData);
+                adapter.notifyDataSetChanged();
+
 
             }
 
@@ -127,8 +130,6 @@ public class ApiService {
         //creating async task object and executing it
         GetJSON getJSON = new GetJSON();
         getJSON.execute();
-
-
     }
 }
 

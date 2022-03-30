@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.ViewStub;
 import android.widget.ImageButton;
 
+import com.cst2335.utilities.ApiService;
 import com.cst2335.utilities.BaseNavActivity;
 import com.cst2335.utilities.ListAdapter;
 import com.cst2335.utilities.RecipeData;
@@ -17,6 +18,7 @@ import java.util.List;
 public class SearchActivity extends BaseNavActivity {
     RecyclerView recyclerView;
     ListAdapter adapter;
+    ApiService api = new ApiService();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +33,7 @@ public class SearchActivity extends BaseNavActivity {
         searchButton.setOnClickListener(view -> {
         });
 
-        List<RecipeData> list = new ArrayList<>();
+        ArrayList<RecipeData> list = new ArrayList<>();
         for(int i=0; i<=100; i++) {
             list.add(new RecipeData("Title"+i, "Ingredient"+i, "url"+i));
         }
@@ -40,7 +42,7 @@ public class SearchActivity extends BaseNavActivity {
         adapter = new ListAdapter(list, getApplication(), getIntent().getBooleanExtra("isPhone", true));
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
-
+        api.apiCall(null, adapter);
 
     }
 

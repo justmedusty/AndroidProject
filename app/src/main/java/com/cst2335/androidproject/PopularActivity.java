@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.ViewStub;
 import androidx.annotation.Nullable;
 import com.cst2335.utilities.BaseNavActivity;
+import com.cst2335.utilities.ListAdapter;
 import com.cst2335.utilities.RecipeData;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class PopularActivity extends BaseNavActivity {
         ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.popular_activity);
         stub.inflate();
-       apiService.apiCall(null);
+       //apiService.apiCall(null);
 
        ArrayList<RecipeData> recipe = apiService.recipeData;
        System.out.println(recipe.get(1));

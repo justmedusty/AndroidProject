@@ -13,20 +13,24 @@ import com.cst2335.androidproject.SearchActivity;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListAdapter
         extends RecyclerView.Adapter<ListViewHolder> {
 
-    List<RecipeData> list;
+    ArrayList<RecipeData> list;
     View listRowView;
     Context context;
     boolean isPhone;
-    public ListAdapter(List<RecipeData> list,
+    public ListAdapter(ArrayList<RecipeData> list,
                        Context context, boolean isPhone) {
         this.list = list;
         this.context = context;
         this.isPhone = isPhone;
+    }
+    public void setList(ArrayList<RecipeData> list){
+        this.list = list;
     }
 
     @Override

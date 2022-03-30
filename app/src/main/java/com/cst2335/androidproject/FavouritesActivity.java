@@ -40,7 +40,7 @@ public class FavouritesActivity extends BaseNavActivity {
 
         // TODO replace this with the code necessary to load the list with actual recipe data
         //      from the database.
-        List<RecipeData> list = new ArrayList<>();
+        ArrayList<RecipeData> list = new ArrayList<>();
         for(int i=0; i<=100; i++) {
             list.add(new RecipeData("Title"+i, "Ingredient"+i, "url"+i));
         }
