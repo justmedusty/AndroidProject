@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This is the layout that is inflated by the RecipeDetailsFragment
+        and used to display recipe details for selected recipes
+        from the list of recipes whether they be favourites,
+        searched, or popular -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RecipeDetailsFragment">
+
+    <!-- TODO layout_fragment_recipe_details.xml must be constructed with the fields that will
+            be necessary for displaying arguments passed in bundle. Need a field for
+             Recipe Title, ingredients, and url. May add floating action button for saving
+             recipe to favourites. -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />
+
+</FrameLayout>

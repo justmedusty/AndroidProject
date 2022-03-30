@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.ViewStub;
 import androidx.annotation.Nullable;
 
+import com.cst2335.utilities.BaseNavActivity;
+
 
 public class PopularActivity extends BaseNavActivity {
     @Override

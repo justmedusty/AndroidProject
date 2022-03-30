@@ -10,16 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidProject">
         <activity
-            android:name=".BaseNavActivity"
+            android:name=".RecipeDetailsPhone"
+            android:exported="false" />
+        <activity
+            android:name="com.cst2335.utilities.BaseNavActivity"
             android:exported="false" />
         <activity
             android:name=".SearchActivity"
             android:exported="false" />
-        <activity android:name=".FavouritesActivity"
-            android:exported="false"/>
-        <activity android:name=".PopularActivity"
-            android:exported="false"/>
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".FavouritesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PopularActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

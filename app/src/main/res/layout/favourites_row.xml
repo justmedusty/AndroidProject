@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,16 +11,16 @@
         android:padding="9dp"
         android:textColor="@color/honeyDew"
         android:textSize="22sp"
-        android:background="@color/celadonBlue"
+        android:background="@color/darkGrey"
         android:id="@+id/searchActivityRowTitle"/>
 
     <ImageButton
         android:id="@+id/searchActivityRowButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:backgroundTint="@color/honeyDew"
+        android:backgroundTint="@color/imperialRed"
         android:contentDescription="@string/favourite_button_description"
-        android:src="@drawable/favourite"
+        android:src="@drawable/delete32"
         android:translationX="335dp"
         tools:ignore="ImageContrastCheck" />
 

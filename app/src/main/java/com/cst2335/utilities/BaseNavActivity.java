@@ -1,4 +1,4 @@
-package com.cst2335.androidproject;
+package com.cst2335.utilities;
 /*
 File: BaseNavActivity.java
 Author: Chad Rocheleau
@@ -19,6 +19,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.cst2335.androidproject.FavouritesActivity;
+import com.cst2335.androidproject.MainActivity;
+import com.cst2335.androidproject.PopularActivity;
+import com.cst2335.androidproject.R;
+import com.cst2335.androidproject.SearchActivity;
 import com.google.android.material.navigation.NavigationView;
 
 /**
@@ -104,22 +110,20 @@ public class BaseNavActivity extends AppCompatActivity implements NavigationView
         String toastText = "";
 
         switch (item.getItemId()) {
-            case R.id.menu_search:
-                Intent goToSearch= new Intent(getApplicationContext(), SearchActivity.class);
-                startActivity(goToSearch);
+            case R.id.menu_home:
+                Intent goToHome= new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(goToHome);
                 break;
-            case R.id.menu_favourites:
-                toastText = "You clicked on favourites";
-                break;
-            case R.id.menu_popular:
-                toastText = "You clicked on popular";
+            case R.id.menu_info:
+                toastText = "You clicked on info";
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        toastText,
+                        Toast.LENGTH_LONG);
+                toast.show();
                 break;
 
         }
-        Toast toast = Toast.makeText(getApplicationContext(),
-                toastText,
-                Toast.LENGTH_LONG);
-        toast.show();
+
         return true;
     }
 
