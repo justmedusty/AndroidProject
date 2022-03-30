@@ -12,6 +12,7 @@ import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 public class ApiService {
 
@@ -24,9 +25,12 @@ public class ApiService {
 
     public void loadIntoListView(String json) throws JSONException {
         //creating a json array from the json string
+
+
         //JSONArray jsonArray = new JSONArray(json);
         JSONObject jsonObject = new JSONObject(json);
         JSONArray jsonArray = jsonObject.getJSONArray("hits");
+        System.out.println(jsonArray);
 
 
 
@@ -37,13 +41,15 @@ public class ApiService {
         for (int i = 0; i < jsonArray.length(); i++) {
             //getting json object from json array
             JSONObject obj = jsonArray.getJSONObject(i);
+            JSONObject recipe = obj.getJSONObject("recipe");
 
             //getting the name from the json object and putting it inside string array
-            String title = obj.getString("recipe.label");
-            String url = obj.getString("recipe.url");
+            String title = recipe.getString("label");
+            String url = obj.getString("url");
             String ingredients = obj.getString("ingredientLines");
-
+            
             recipeData[i] = new RecipeData(title, ingredients, url);
+
 
         }
 
@@ -86,7 +92,6 @@ public class ApiService {
                     if (searchTerm == null) {
                         url = new URL(popularUrl);
                     } else url = new URL(BaseSearchUrl + searchTerm + appIdApiKey);
-                    System.out.println(url.toString());
 
                     //Opening the URL using HttpUrlConnection
                    HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
@@ -96,7 +101,7 @@ public class ApiService {
                     StringBuilder sb = new StringBuilder();
 
                     //Using buffered reader to read the string from service
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8));
 
                     //A simple string to read values from each line
                     String json;
