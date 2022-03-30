@@ -3,15 +3,11 @@ package com.cst2335.androidproject;
 import android.os.Bundle;
 import android.view.ViewStub;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import com.cst2335.utilities.BaseNavActivity;
-import com.cst2335.utilities.ListAdapter;
 import com.cst2335.utilities.RecipeData;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
 import com.cst2335.utilities.ApiService;
 
 public class PopularActivity extends BaseNavActivity {
@@ -31,8 +27,8 @@ public class PopularActivity extends BaseNavActivity {
         stub.inflate();
        apiService.apiCall(null);
 
-       List<RecipeData> recipe = apiService.recipeData;
-       System.out.println(recipe);
+       ArrayList<RecipeData> recipe = apiService.recipeData;
+       System.out.println(recipe.get(1));
 
 
     }

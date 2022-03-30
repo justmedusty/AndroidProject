@@ -1,11 +1,9 @@
 package com.cst2335.utilities;
 
-import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONStringer;
 
 import javax.annotation.Nullable;
 import javax.net.ssl.HttpsURLConnection;
@@ -21,7 +19,7 @@ public class ApiService {
     public static final String appIdApiKey = "&app_id=77b3cee9&app_key=1f638fb97d020f33df4bec25ae109145";
     public static final String popularUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=popular&app_id=77b3cee9&app_key=1f638fb97d020f33df4bec25ae109145&random=true";
 
-    public ArrayList<RecipeData> recipeData = new ArrayList();
+    public ArrayList<RecipeData> recipeData = new ArrayList<>();
 
 
     public void loadIntoListView(String json) throws JSONException {
@@ -31,7 +29,6 @@ public class ApiService {
         //JSONArray jsonArray = new JSONArray(json);
         JSONObject jsonObject = new JSONObject(json);
         JSONArray jsonArray = jsonObject.getJSONArray("hits");
-        System.out.println(jsonArray);
 
 
 
@@ -48,10 +45,9 @@ public class ApiService {
             String title = recipe.getString("label");
             String url = recipe.getString("url");
             String ingredients = recipe.getString("ingredientLines");
-            System.out.println(ingredients);
 
 
-            recipeData.set(i, new RecipeData(title, ingredients, url));
+            recipeData.add(i, new RecipeData(title, ingredients, url));
 
 
         }
