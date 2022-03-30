@@ -35,9 +35,6 @@ public class PopularActivity extends BaseNavActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
         ArrayList<RecipeData> list = new ArrayList<>();
-        for(int i=0; i<=100; i++) {
-            list.add(new RecipeData(""+i, ""+i, ""+i));
-        }
 
         adapter = new ListAdapter(list , getApplication(), getIntent().getBooleanExtra("isPhone", true));
         recyclerView.setAdapter(adapter);

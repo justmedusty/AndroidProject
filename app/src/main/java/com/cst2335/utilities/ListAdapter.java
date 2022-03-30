@@ -31,6 +31,7 @@ public class ListAdapter
         this.isPhone = isPhone;
     }
     public void setList(ArrayList<RecipeData> list){
+        this.list = new ArrayList<RecipeData>();
         this.list = list;
     }
 

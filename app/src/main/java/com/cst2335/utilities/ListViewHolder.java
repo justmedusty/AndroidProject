@@ -33,17 +33,18 @@ public class ListViewHolder
                     .findViewById(R.id.searchActivityRowButton);
             view = itemView;
             this.context = context;
-            itemView.setOnClickListener(this);
+            titleView.setOnClickListener(this);
+            favouriteButtonView.setOnClickListener(this);
     }
     @Override
     public void onClick(View view) {
-        if (isPhone) {
+        if (isPhone && view.equals(titleView)) {
             Intent goToFragment = new Intent(context, RecipeDetailsPhone.class);
             goToFragment.putExtra("title", adapter.list.get(getAdapterPosition()).getTitle());
             goToFragment.putExtra("ingredients", adapter.list.get(getAdapterPosition()).getIngredients());
             goToFragment.putExtra("URL", adapter.list.get(getAdapterPosition()).getURL());
             context.startActivity(goToFragment);
-        } else {
+        } else if (view.equals(titleView)){
             RecipeDetailsFragment detailsFragment = new RecipeDetailsFragment(
                     adapter.list.get(getLayoutPosition()).getTitle(),
                     adapter.list.get(getAdapterPosition()).getIngredients(),
@@ -54,6 +55,9 @@ public class ListViewHolder
                     .beginTransaction()
                     .replace(R.id.recipe_details_fragment, detailsFragment)
                     .commit();
+        } else {
+            //DATABASE STUFF
+
         }
     }
 }
