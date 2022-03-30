@@ -17,6 +17,7 @@ public class PopularActivity extends BaseNavActivity {
 
     ApiService apiService = new ApiService();
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,15 +28,7 @@ public class PopularActivity extends BaseNavActivity {
         ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.popular_activity);
         stub.inflate();
-        List<RecipeData> list = new ArrayList<>();
-        for(int i=0; i<=100; i++) {
-            list.add(new RecipeData("Title"+i, "Ingredient"+i, "url"+i));
-        }
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-
-        ListAdapter adapter = new ListAdapter(list, getApplication());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(PopularActivity.this));
+       apiService.apiCall(null);
 
     }
 }

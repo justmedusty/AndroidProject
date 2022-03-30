@@ -1,5 +1,6 @@
 package com.cst2335.utilities;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,13 +17,15 @@ public class ApiService {
     public static final String appIdApiKey = "&app_id=77b3cee9&app_key=1f638fb97d020f33df4bec25ae109145";
     public static final String popularUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=popular&app_id=77b3cee9&app_key=1f638fb97d020f33df4bec25ae109145&random=true";
 
+    public RecipeData[] recipeData;
 
-    public static void loadIntoListView(String json,ListAdapter listAdapter) throws JSONException {
+
+    public void loadIntoListView(String json) throws JSONException {
         //creating a json array from the json string
         JSONArray jsonArray = new JSONArray(json);
 
         //creating a string array for listview
-        RecipeData[] recipeArray = new RecipeData[jsonArray.length()];
+        recipeData = new RecipeData[jsonArray.length()];
 
         //looping through all the elements in json array
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -34,14 +37,13 @@ public class ApiService {
             String url = obj.getString("hits.url");
             String ingredients = obj.getString("hits.ingredientLines");
 
-            recipeArray[i] = new RecipeData(title, ingredients, url);
+            recipeData[i] = new RecipeData(title, ingredients, url);
 
         }
 
-
     }
 
-    public void apiCall(@Nullable String searchTerm,ListAdapter listAdapter) {
+    public void apiCall(@Nullable String searchTerm) {
 
         class GetJSON extends AsyncTask<Void, Void, String> {
             //this method will be called before execution
@@ -59,10 +61,9 @@ public class ApiService {
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                //Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
 
                 try {
-                    loadIntoListView(s,listAdapter);
+                    loadIntoListView(s);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -79,9 +80,11 @@ public class ApiService {
                     if (searchTerm == null) {
                         url = new URL(popularUrl);
                     } else url = new URL(BaseSearchUrl + searchTerm + appIdApiKey);
+                    System.out.println(url.toString());
 
                     //Opening the URL using HttpUrlConnection
                     HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+
 
                     //String builder object to read the string from the service
                     StringBuilder sb = new StringBuilder();
@@ -99,15 +102,19 @@ public class ApiService {
                     }
 
                     //finally returning the read string
+
                     return sb.toString().trim();
+
                 } catch (Exception e) {
+                    e.printStackTrace();
                     return null;
+
                 }
             }
 
         }
         //creating async task object and executing it
-        final GetJSON getJSON = new GetJSON();
+        GetJSON getJSON = new GetJSON();
         getJSON.execute();
 
 
