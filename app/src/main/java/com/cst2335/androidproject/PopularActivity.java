@@ -10,6 +10,7 @@ import com.cst2335.utilities.ListAdapter;
 import com.cst2335.utilities.RecipeData;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.cst2335.utilities.ApiService;
 
@@ -35,13 +36,14 @@ public class PopularActivity extends BaseNavActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
         ArrayList<RecipeData> list = new ArrayList<>();
         for(int i=0; i<=100; i++) {
-            list.add(new RecipeData("Title"+i, "Ingredient"+i, "url"+i));
+            list.add(new RecipeData(""+i, ""+i, ""+i));
         }
 
         adapter = new ListAdapter(list , getApplication(), getIntent().getBooleanExtra("isPhone", true));
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(PopularActivity.this));
        apiService.apiCall(null,adapter);
+       Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
 
 
 

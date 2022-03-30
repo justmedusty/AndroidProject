@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cst2335.androidproject.FavouritesActivity;
+import com.cst2335.androidproject.PopularActivity;
 import com.cst2335.androidproject.R;
 import com.cst2335.androidproject.SearchActivity;
 
@@ -45,7 +46,7 @@ public class ListAdapter
 
 
         // Inflate the layout based on what activity is being used
-        if (context instanceof SearchActivity) {
+        if (context instanceof SearchActivity || context instanceof PopularActivity) {
             listRowView = inflater
                     .inflate(R.layout.search_activity_row, parent, false);
         } else if (context instanceof FavouritesActivity) {

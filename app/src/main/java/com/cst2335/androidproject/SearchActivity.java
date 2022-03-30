@@ -40,7 +40,7 @@ public class SearchActivity extends BaseNavActivity {
 
         ArrayList<RecipeData> list = new ArrayList<>();
         for(int i=0; i<=100; i++) {
-            list.add(new RecipeData("Title"+i, "Ingredient"+i, "url"+i));
+            list.add(new RecipeData("", "", ""));
         }
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
