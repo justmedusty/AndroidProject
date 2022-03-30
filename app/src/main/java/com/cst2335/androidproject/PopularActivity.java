@@ -10,6 +10,7 @@ import com.cst2335.utilities.ListAdapter;
 import com.cst2335.utilities.RecipeData;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.cst2335.utilities.ApiService;
 
@@ -29,6 +30,10 @@ public class PopularActivity extends BaseNavActivity {
         stub.setLayoutResource(R.layout.popular_activity);
         stub.inflate();
        apiService.apiCall(null);
+
+       List<RecipeData> recipe = apiService.recipeData;
+       System.out.println(recipe);
+
 
     }
 }
