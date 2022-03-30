@@ -45,9 +45,10 @@ public class ApiService {
 
             //getting the name from the json object and putting it inside string array
             String title = recipe.getString("label");
-            String url = obj.getString("url");
-            String ingredients = obj.getString("ingredientLines");
+            String url = recipe.getString("url");
+            String ingredients = recipe.getString("ingredientLines");
             
+
             recipeData[i] = new RecipeData(title, ingredients, url);
 
 
