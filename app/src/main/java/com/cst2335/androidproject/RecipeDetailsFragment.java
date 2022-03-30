@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,10 +78,15 @@ public class RecipeDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.layout_fragment_recipe_details, container, false);
-        //TODO implement setting the fields of the fragment layout with arguments as passed in bundle
-        //TODO layout_fragment_recipe_details.xml must be constructed with the fields that will
-        //      be necessary for displaying arguments passed in bundle.
+        View fragmentDetails = inflater.inflate(R.layout.layout_fragment_recipe_details, container, false);
+       TextView fragTitle = fragmentDetails.findViewById(R.id.recipe_title);
+       TextView fragIngredients = fragmentDetails.findViewById(R.id.recipe_ingredients);
+       TextView fragUrl = fragmentDetails.findViewById(R.id.recipe_url);
+
+       fragTitle.setText(title);
+       fragIngredients.setText(ingredients);
+       fragUrl.setText(url);
+        return fragmentDetails;
     }
 
     @Override

@@ -25,10 +25,10 @@ public class RecipeDetailsPhone extends BaseNavActivity {
         stub.inflate();
 
         //TODO implement the following commented code once fragment is built properly
-        //Bundle args = getIntent().getExtras();
+        Bundle args = getIntent().getExtras();
         FragmentManager fm = getSupportFragmentManager();
         RecipeDetailsFragment recipeDetails = new RecipeDetailsFragment();
-        //recipeDetails.setArguments(args);
+        recipeDetails.setArguments(args);
 
         fm.beginTransaction()
                 .replace(R.id.recipe_details_fragment, recipeDetails)

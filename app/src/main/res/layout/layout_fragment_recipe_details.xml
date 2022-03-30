@@ -3,10 +3,11 @@
         and used to display recipe details for selected recipes
         from the list of recipes whether they be favourites,
         searched, or popular -->
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".RecipeDetailsFragment">
 
     <!-- TODO layout_fragment_recipe_details.xml must be constructed with the fields that will
@@ -14,8 +15,19 @@
              Recipe Title, ingredients, and url. May add floating action button for saving
              recipe to favourites. -->
     <TextView
+        android:id="@+id/recipe_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_blank_fragment" />
+    <TextView
+        android:id="@+id/recipe_ingredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_blank_fragment" />
+    <TextView
+        android:id="@+id/recipe_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+</LinearLayout>
