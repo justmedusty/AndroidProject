@@ -21,7 +21,6 @@ public class SearchActivity extends BaseNavActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_nav);
-
         setupNavigation("Lucas Ross", "Search Activity", "1.0");
         // get the ViewStub into which this activities layout will be loaded.
         ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
@@ -38,7 +37,7 @@ public class SearchActivity extends BaseNavActivity {
         }
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
-        adapter = new ListAdapter(list, getApplication());
+        adapter = new ListAdapter(list, getApplication(), getIntent().getBooleanExtra("isPhone", true));
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
 

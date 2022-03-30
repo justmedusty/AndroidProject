@@ -31,7 +31,7 @@ public class RecipeDetailsPhone extends BaseNavActivity {
         //recipeDetails.setArguments(args);
 
         fm.beginTransaction()
-                .replace(R.id.recipe_details_phone, recipeDetails)
+                .replace(R.id.recipe_details_fragment, recipeDetails)
                 .commit();
 
     }

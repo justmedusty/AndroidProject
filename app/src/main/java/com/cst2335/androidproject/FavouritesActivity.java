@@ -46,7 +46,7 @@ public class FavouritesActivity extends BaseNavActivity {
         }
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
-        adapter = new ListAdapter(list, getApplication());
+        adapter = new ListAdapter(list, getApplication(), true);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(FavouritesActivity.this));
 

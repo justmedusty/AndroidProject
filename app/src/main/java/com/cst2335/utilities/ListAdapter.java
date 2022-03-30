@@ -21,11 +21,12 @@ public class ListAdapter
     List<RecipeData> list;
     View listRowView;
     Context context;
-
+    boolean isPhone;
     public ListAdapter(List<RecipeData> list,
-                       Context context) {
+                       Context context, boolean isPhone) {
         this.list = list;
         this.context = context;
+        this.isPhone = isPhone;
     }
 
     @Override
@@ -52,7 +53,7 @@ public class ListAdapter
 //                .inflate(R.layout.search_activity_row,
 //                        parent, false);
 
-        return new ListViewHolder(listRowView);
+        return new ListViewHolder(listRowView, context);
     }
 
     @Override
@@ -62,6 +63,8 @@ public class ListAdapter
         final int index = viewHolder.getAdapterPosition();
         viewHolder.titleView
                 .setText(list.get(position).title);
+        viewHolder.adapter=this;
+        viewHolder.isPhone=isPhone;
     }
 
     @Override

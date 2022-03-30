@@ -19,8 +19,6 @@ public class MainActivity extends BaseNavActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_nav);//setting base layout
 
-        boolean isPhone = findViewById(R.id.recipe_details_fragment) == null;// know if on phone or not
-
         FragmentManager fm = getSupportFragmentManager(); // get fragment manager
 
         //****************** set up tool bar and nav drawer and load this activities layout into stub
@@ -31,13 +29,13 @@ public class MainActivity extends BaseNavActivity {
         stub.inflate();
 
         // *********** if on tablet load the fragment.
-        if (!isPhone) {
+        if (!getIntent().getBooleanExtra("isPhone", true)) {
             RecipeDetailsFragment recipeDetails = new RecipeDetailsFragment();
             fm.beginTransaction()
                     .replace(R.id.recipe_details_fragment, recipeDetails)
                     .commit();
         }
-        Log.d("main", "" + isPhone);
+        //Log.d("main", "" + isPhone);
     }
 
 
