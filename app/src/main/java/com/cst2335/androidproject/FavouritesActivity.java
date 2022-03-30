@@ -65,7 +65,7 @@ public class FavouritesActivity extends BaseNavActivity {
                     @SuppressLint("Range") String ingredients = cursor.getString(cursor.getColumnIndex(DatabaseHelper.KEY_INGREDIENTS));
                     @SuppressLint("Range") String url = cursor.getString(cursor.getColumnIndex(DatabaseHelper.KEY_URL));
 
-                    list.add(new RecipeData(ingredients,title,url));
+                    list.add(new RecipeData(title,ingredients,url));
 
                 }while (cursor.moveToNext());
 
@@ -74,7 +74,7 @@ public class FavouritesActivity extends BaseNavActivity {
 
         }
         adapter.setList(list);
-        recyclerView.getAdapter().notifyDataSetChanged();
+        Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
 
 
 

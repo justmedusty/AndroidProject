@@ -11,7 +11,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static String DATABASE_NAME = "Database";
     public static String TABLE_NAME = "RecipeTable";
-    public static int VERSION = 1;
+    public static int VERSION = 2;
     public static String KEY_TITLE = "title";
     public static String KEY_INGREDIENTS = "ingredients";
     public static String KEY_URL = "url";
