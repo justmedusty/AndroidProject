@@ -34,7 +34,6 @@ public class ListViewHolder
             view = itemView;
             this.context = context;
             titleView.setOnClickListener(this);
-            favouriteButtonView.setOnClickListener(this);
     }
 
 
