@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -84,7 +85,7 @@ public class RecipeDetailsFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NotNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //TODO should any fragment specific button behavior be needed it
         //      can be implemented here.
