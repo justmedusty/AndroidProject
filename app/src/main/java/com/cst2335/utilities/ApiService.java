@@ -17,7 +17,7 @@ public class ApiService {
     public static final String popularUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=popular&app_id=77b3cee9&app_key=1f638fb97d020f33df4bec25ae109145&random=true";
 
 
-    public RecipeData[] loadIntoListView(String json) throws JSONException {
+    public static void loadIntoListView(String json,ListAdapter listAdapter) throws JSONException {
         //creating a json array from the json string
         JSONArray jsonArray = new JSONArray(json);
 
@@ -38,12 +38,10 @@ public class ApiService {
 
         }
 
-        return recipeArray;
-
 
     }
 
-    private void apiCall(@Nullable String searchTerm) {
+    public void apiCall(@Nullable String searchTerm,ListAdapter listAdapter) {
 
         class GetJSON extends AsyncTask<Void, Void, String> {
             //this method will be called before execution
@@ -64,7 +62,7 @@ public class ApiService {
                 //Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
 
                 try {
-                    loadIntoListView(s);
+                    loadIntoListView(s,listAdapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -97,7 +95,7 @@ public class ApiService {
                     //reading until we dont find null
                     while ((json = bufferedReader.readLine()) != null) {
                         //appending it to a string builder
-                        sb.append(json + "\n");
+                        sb.append(json).append("\n");
                     }
 
                     //finally returning the read string
