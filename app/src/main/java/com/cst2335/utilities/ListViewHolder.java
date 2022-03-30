@@ -44,7 +44,7 @@ public class ListViewHolder
             Intent goToFragment = new Intent(context, RecipeDetailsPhone.class);
             goToFragment.putExtra("title", adapter.list.get(getAdapterPosition()).getTitle());
             goToFragment.putExtra("ingredients", adapter.list.get(getAdapterPosition()).getIngredients());
-            goToFragment.putExtra("URL", adapter.list.get(getAdapterPosition()).getURL());
+            goToFragment.putExtra("url", adapter.list.get(getAdapterPosition()).getURL());
             context.startActivity(goToFragment);
         } else if (view.equals(titleView)){
             RecipeDetailsFragment detailsFragment = new RecipeDetailsFragment(
