@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONStringer;
+
 import javax.annotation.Nullable;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
@@ -22,7 +24,11 @@ public class ApiService {
 
     public void loadIntoListView(String json) throws JSONException {
         //creating a json array from the json string
-        JSONArray jsonArray = new JSONArray(json);
+        //JSONArray jsonArray = new JSONArray(json);
+        JSONObject jsonObject = new JSONObject(json);
+        JSONArray jsonArray = jsonObject.getJSONArray("hits");
+
+
 
         //creating a string array for listview
         recipeData = new RecipeData[jsonArray.length()];
@@ -33,9 +39,9 @@ public class ApiService {
             JSONObject obj = jsonArray.getJSONObject(i);
 
             //getting the name from the json object and putting it inside string array
-            String title = obj.getString("_links.next.title");
-            String url = obj.getString("hits.url");
-            String ingredients = obj.getString("hits.ingredientLines");
+            String title = obj.getString("recipe.label");
+            String url = obj.getString("recipe.url");
+            String ingredients = obj.getString("ingredientLines");
 
             recipeData[i] = new RecipeData(title, ingredients, url);
 
@@ -83,7 +89,7 @@ public class ApiService {
                     System.out.println(url.toString());
 
                     //Opening the URL using HttpUrlConnection
-                    HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+                   HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 
 
                     //String builder object to read the string from the service
@@ -104,6 +110,7 @@ public class ApiService {
                     //finally returning the read string
 
                     return sb.toString().trim();
+
 
                 } catch (Exception e) {
                     e.printStackTrace();
