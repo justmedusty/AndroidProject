@@ -58,6 +58,8 @@ public class FavouritesActivity extends BaseNavActivity {
         databaseHelper = new DatabaseHelper(getApplicationContext(),null,null,DatabaseHelper.VERSION);
         Cursor cursor = databaseHelper.selectAll();
         recyclerView.setAdapter(adapter);
+
+
         if(cursor != null){
             if (cursor.moveToFirst()){
                 do {
@@ -68,11 +70,9 @@ public class FavouritesActivity extends BaseNavActivity {
                     list.add(new RecipeData(title,ingredients,url));
 
                 }while (cursor.moveToNext());
-
-
             }
-
         }
+
         adapter.setList(list);
         Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
 

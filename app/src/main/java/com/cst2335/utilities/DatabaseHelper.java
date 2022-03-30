@@ -11,7 +11,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static String DATABASE_NAME = "Database";
     public static String TABLE_NAME = "RecipeTable";
-    public static int VERSION = 2;
+    public static int VERSION = 3;
     public static String KEY_TITLE = "title";
     public static String KEY_INGREDIENTS = "ingredients";
     public static String KEY_URL = "url";
@@ -28,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(
                 " CREATE TABLE " + TABLE_NAME + " (" +
                         KEY_ID + " INTEGER PRIMARY KEY, " +
-                        KEY_TITLE + " TEXT, " + KEY_INGREDIENTS + " TEXT, " + KEY_URL + " TEXT)"
+                        KEY_TITLE + " TEXT UNIQUE, " + KEY_INGREDIENTS + " TEXT UNIQUE, " + KEY_URL + " TEXT UNIQUE)"
         );
 
 
