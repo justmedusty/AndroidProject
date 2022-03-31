@@ -1,5 +1,7 @@
 package com.cst2335.androidproject;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -8,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.facebook.stetho.common.StringUtil;
@@ -87,7 +90,7 @@ public class RecipeDetailsFragment extends Fragment {
         View fragmentDetails = inflater.inflate(R.layout.layout_fragment_recipe_details, container, false);
         TextView fragTitle = fragmentDetails.findViewById(R.id.recipe_title);
         TextView fragIngredients = fragmentDetails.findViewById(R.id.recipe_ingredients);
-        TextView fragUrl = fragmentDetails.findViewById(R.id.recipe_url);
+
 
         ingredients = ingredients.replaceAll(Pattern.quote("\""), " ");
         ingredients = ingredients.replaceAll(Pattern.quote("["), "");
@@ -95,7 +98,6 @@ public class RecipeDetailsFragment extends Fragment {
 
         fragTitle.setText(title);
         fragIngredients.setText(ingredients);
-        fragUrl.setText(url);
         return fragmentDetails;
     }
 
@@ -104,5 +106,11 @@ public class RecipeDetailsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //TODO should any fragment specific button behavior be needed it
         //      can be implemented here.
+        Button goToWeb = view.findViewById(R.id.recipe_url);
+        goToWeb.setOnClickListener( click -> {
+            Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        });
     }
 }

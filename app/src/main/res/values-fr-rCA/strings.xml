@@ -19,4 +19,8 @@
 
     <!--    Strings for Favourites activity-->
     <string name="favourites_title">Ton Recettes Favourite</string>
+
+    <string name="popular_recipes">Recettes Populaire</string>
+
+    <string name="goTo_btn">Va au site Web</string>
 </resources>

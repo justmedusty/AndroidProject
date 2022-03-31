@@ -18,7 +18,6 @@
         android:id="@+id/recipe_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-black"
@@ -27,16 +26,18 @@
         android:id="@+id/recipe_ingredients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-black"/>
-    <TextView
+
+    <Button
         android:id="@+id/recipe_url"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment"
-        android:layout_gravity="center"
-        android:fontFamily="sans-serif-black"/>
+        android:backgroundTint="@android:color/darker_gray"
+        android:textColor="#4E342E"
+        android:text="@string/goTo_btn"
+        />
+
 
 </LinearLayout>
