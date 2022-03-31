@@ -135,7 +135,7 @@ public class BaseNavActivity extends AppCompatActivity implements NavigationView
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        ListViewHolder.setIsPhone(findViewById(R.id.recipe_details_fragment) == null);
+
         int id = item.getItemId();
         //boolean isPhone = findViewById(R.id.recipe_details_fragment) == null;
         if (id == R.id.nav_drawer_search) {

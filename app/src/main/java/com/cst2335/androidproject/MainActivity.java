@@ -7,6 +7,7 @@ import android.view.ViewStub;
 import androidx.fragment.app.FragmentManager;
 
 import com.cst2335.utilities.BaseNavActivity;
+import com.cst2335.utilities.ListViewHolder;
 
 /**
  * Application launch screen. Will contain title screen and a posting of the last recipe saved
@@ -19,6 +20,7 @@ public class MainActivity extends BaseNavActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_nav);//setting base layout
 
+        ListViewHolder.setIsPhone(findViewById(R.id.recipe_details_fragment) == null);
         FragmentManager fm = getSupportFragmentManager(); // get fragment manager
 
         //****************** set up tool bar and nav drawer and load this activities layout into stub

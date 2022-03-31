@@ -22,7 +22,7 @@ public class ListViewHolder
     Context context;
     static boolean isPhone = false;
     DatabaseHelper helper;
-    static void setIsPhone(boolean isPhoneParam) {
+    public static void setIsPhone(boolean isPhoneParam) {
         isPhone = isPhoneParam;
     }
 
@@ -42,10 +42,10 @@ public class ListViewHolder
         }
     }
 
-
+//&& view.equals(titleView)
     @Override
     public void onClick(View view) {
-        if (isPhone && view.equals(titleView)) {
+        if (isPhone ) {
             Intent goToFragment = new Intent(context.getApplicationContext(), RecipeDetailsPhone.class);
             goToFragment.putExtra("title", adapter.list.get(getAdapterPosition()).getTitle());
             goToFragment.putExtra("ingredients", adapter.list.get(getAdapterPosition()).getIngredients());
