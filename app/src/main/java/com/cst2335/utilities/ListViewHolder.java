@@ -68,6 +68,8 @@ public class ListViewHolder
 
             helper = new DatabaseHelper(context.getApplicationContext(), DatabaseHelper.DATABASE_NAME, null, DatabaseHelper.VERSION);
             this.favouriteButtonView.setImageResource(R.drawable.favourited);
+            adapter.list.get(getLayoutPosition()).isFavourited = true;
+            adapter.notifyDataSetChanged();
             // TODO fix the favourite button changing image for 2 on the list when only one is clicked
 
             helper.insertIntoDatabase(title, ingredients, url);

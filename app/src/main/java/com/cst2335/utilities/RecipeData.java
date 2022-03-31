@@ -4,6 +4,7 @@ public class RecipeData {
     String title;
     String ingredients;
     String url;
+    boolean isFavourited;
 
     public RecipeData(String title,
                       String ingredients,
@@ -11,12 +12,27 @@ public class RecipeData {
         this.title = title;
         this.ingredients = ingredients;
         this.url = url;
+        this.isFavourited = false;
     }
-    public String getTitle(){
+
+    public RecipeData(String title,
+                      String ingredients,
+                      String url, boolean isFavourited) {
+        this.title = title;
+        this.ingredients = ingredients;
+        this.url = url;
+        this.isFavourited = isFavourited;
+    }
+
+    public String getTitle() {
         return title;
     }
-    public String getIngredients(){
+
+    public String getIngredients() {
         return ingredients;
     }
-    public String getURL(){ return url; }
+
+    public String getURL() {
+        return url;
+    }
 }

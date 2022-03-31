@@ -69,6 +69,13 @@ public class ListAdapter
         final int index = viewHolder.getAdapterPosition();
         viewHolder.titleView
                 .setText(list.get(position).title);
+        if (list.get(position).isFavourited && viewHolder.favouriteButtonView != null){
+            viewHolder.favouriteButtonView
+                    .setImageResource(R.drawable.favourited);
+        } else if (viewHolder.favouriteButtonView != null){
+            viewHolder.favouriteButtonView
+                    .setImageResource(R.drawable.favourite);
+        }
         viewHolder.adapter=this;
         viewHolder.isPhone=isPhone;
     }

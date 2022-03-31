@@ -1,6 +1,8 @@
 package com.cst2335.androidproject;
 
 import androidx.fragment.app.FragmentManager;
+
+import android.content.Context;
 import android.os.Bundle;
 import android.view.ViewStub;
 import com.cst2335.utilities.BaseNavActivity;
@@ -33,6 +35,6 @@ public class RecipeDetailsPhone extends BaseNavActivity {
         fm.beginTransaction()
                 .replace(R.id.recipe_details_fragment, recipeDetails)
                 .commit();
-
     }
+
 }
