@@ -20,9 +20,11 @@ public class ListViewHolder
     ImageButton favouriteButtonView;
     View view;
     Context context;
-    boolean isPhone;
+    static boolean isPhone = false;
     DatabaseHelper helper;
-
+    static void setIsPhone(boolean isPhoneParam) {
+        isPhone = isPhoneParam;
+    }
 
     ListViewHolder(View itemView, Context context) {
         super(itemView);

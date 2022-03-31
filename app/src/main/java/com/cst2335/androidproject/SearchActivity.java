@@ -42,7 +42,7 @@ public class SearchActivity extends BaseNavActivity {
       
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
-        adapter = new ListAdapter(list, getApplication(), getIntent().getBooleanExtra("isPhone", true));
+        adapter = new ListAdapter(list, getApplication());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
         //api.apiCall(null, adapter);

@@ -52,7 +52,7 @@ public class FavouritesActivity extends BaseNavActivity {
 
 
 
-        adapter = new ListAdapter(list, getApplication(), getIntent().getBooleanExtra("isPhone", true));
+        adapter = new ListAdapter(list, getApplication());
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(FavouritesActivity.this));
         databaseHelper = new DatabaseHelper(getApplicationContext(),null,null,DatabaseHelper.VERSION);

@@ -23,12 +23,10 @@ public class ListAdapter
     ArrayList<RecipeData> list;
     View listRowView;
     Context context;
-    boolean isPhone;
     public ListAdapter(ArrayList<RecipeData> list,
-                       Context context, boolean isPhone) {
+                       Context context) {
         this.list = list;
         this.context = context;
-        this.isPhone = isPhone;
     }
     public void setList(ArrayList<RecipeData> list){
         this.list = new ArrayList<RecipeData>();
@@ -77,7 +75,6 @@ public class ListAdapter
                     .setImageResource(R.drawable.favourite);
         }
         viewHolder.adapter=this;
-        viewHolder.isPhone=isPhone;
     }
 
     @Override
