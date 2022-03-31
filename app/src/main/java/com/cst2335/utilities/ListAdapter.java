@@ -23,10 +23,12 @@ public class ListAdapter
     ArrayList<RecipeData> list;
     View listRowView;
     Context context;
+    DatabaseHelper helper;
     public ListAdapter(ArrayList<RecipeData> list,
                        Context context) {
         this.list = list;
         this.context = context;
+        helper = new DatabaseHelper(context, DatabaseHelper.DATABASE_NAME, null, DatabaseHelper.VERSION);
     }
     public void setList(ArrayList<RecipeData> list){
         this.list = new ArrayList<RecipeData>();
@@ -56,7 +58,11 @@ public class ListAdapter
 //                = inflater
 //                .inflate(R.layout.search_activity_row,
 //                        parent, false);
-
+        for(RecipeData recipe : list){
+            if(helper.checkForRecord(recipe.url)){
+                recipe.isFavourited = true;
+            }
+        }
         return new ListViewHolder(listRowView, context);
     }
 

@@ -1,10 +1,12 @@
 package com.cst2335.utilities;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -55,8 +57,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public void removeFromDatabase(String url) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE " + KEY_URL + " = " + "\"" + url + "\"");
+    }
+
     public Cursor selectAll() {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
+        return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+    }
+
+    public boolean checkForRecord(String url) {
+        Cursor cursor = selectAll();
+        boolean isMatch = false;
+        if(cursor != null){
+            if (cursor.moveToFirst()){
+                do {
+                    @SuppressLint("Range") String urlToCheck = cursor.getString(cursor.getColumnIndex(KEY_URL));
+                    if(urlToCheck.equals(url)){
+                        isMatch = true;
+                    }
+
+                }while (cursor.moveToNext() && isMatch == false);
+            }
+        }
+        return isMatch;
     }
 }

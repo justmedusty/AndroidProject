@@ -72,12 +72,15 @@ public class ListViewHolder
 
             if(adapter.list.get(getLayoutPosition()).isFavourited) {
                 adapter.list.get(getLayoutPosition()).isFavourited = false;
+                helper.removeFromDatabase(url);
                 adapter.notifyDataSetChanged();
+
             } else {
                 adapter.list.get(getLayoutPosition()).isFavourited = true;
                 adapter.notifyDataSetChanged();
+                helper.insertIntoDatabase(title, ingredients, url);
             }
-            helper.insertIntoDatabase(title, ingredients, url);
+
 
 
         }
