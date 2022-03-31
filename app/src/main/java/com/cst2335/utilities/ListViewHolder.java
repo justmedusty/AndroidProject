@@ -43,8 +43,8 @@ public class ListViewHolder
 
     @Override
     public void onClick(View view) {
-        if (isPhone && view.equals(titleView)) {
-            Intent goToFragment = new Intent(context, RecipeDetailsPhone.class);
+        if (isPhone) {
+            Intent goToFragment = new Intent(context.getApplicationContext(), RecipeDetailsPhone.class);
             goToFragment.putExtra("title", adapter.list.get(getAdapterPosition()).getTitle());
             goToFragment.putExtra("ingredients", adapter.list.get(getAdapterPosition()).getIngredients());
             goToFragment.putExtra("url", adapter.list.get(getAdapterPosition()).getURL());

@@ -136,18 +136,18 @@ public class BaseNavActivity extends AppCompatActivity implements NavigationView
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
-        boolean isPhone = findViewById(R.id.recipe_details_fragment) == null;
+       // boolean isPhone = findViewById(R.id.recipe_details_fragment) == null;
         if (id == R.id.nav_drawer_search) {
            Intent goToSearch = new Intent(getApplicationContext(), SearchActivity.class );
-           goToSearch.putExtra("isPhone", isPhone);
+          // goToSearch.putExtra("isPhone", isPhone);
            startActivity(goToSearch);
         } else if ( id == R.id.nav_drawer_popular) {
             Intent goToPopular = new Intent(getApplicationContext(), PopularActivity.class );
-            goToPopular.putExtra("isPhone", isPhone);
+           // goToPopular.putExtra("isPhone", isPhone);
             startActivity(goToPopular);
         } else if ( id == R.id.nav_drawer_favourites) {
             Intent goToFavs = new Intent(getApplicationContext(), FavouritesActivity.class );
-            goToFavs.putExtra("isPhone", isPhone);
+            //goToFavs.putExtra("isPhone", isPhone);
             startActivity(goToFavs);
         }
 
