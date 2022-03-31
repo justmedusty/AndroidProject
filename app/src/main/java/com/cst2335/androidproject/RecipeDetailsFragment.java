@@ -39,12 +39,6 @@ public class RecipeDetailsFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public RecipeDetailsFragment(String title, String ingredients, String url) {
-        this.title = title;
-        this.ingredients = ingredients;
-        this.url = url;
-    }
-
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.

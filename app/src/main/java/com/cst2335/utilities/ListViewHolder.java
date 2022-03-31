@@ -50,7 +50,7 @@ public class ListViewHolder
             goToFragment.putExtra("url", adapter.list.get(getAdapterPosition()).getURL());
             context.startActivity(goToFragment);
         } else if (view.equals(titleView)) {
-            RecipeDetailsFragment detailsFragment = new RecipeDetailsFragment(
+            RecipeDetailsFragment detailsFragment = RecipeDetailsFragment.newInstance(
                     adapter.list.get(getLayoutPosition()).getTitle(),
                     adapter.list.get(getAdapterPosition()).getIngredients(),
                     adapter.list.get(getAdapterPosition()).getURL());
