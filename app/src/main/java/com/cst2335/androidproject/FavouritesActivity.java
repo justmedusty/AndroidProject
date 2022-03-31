@@ -70,6 +70,7 @@ public class FavouritesActivity extends BaseNavActivity {
                     list.add(new RecipeData(title,ingredients,url));
 
                 }while (cursor.moveToNext());
+                cursor.close();
             }
         }
 
