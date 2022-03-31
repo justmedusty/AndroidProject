@@ -9,6 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import kotlin.text.Regex;
+import org.json.JSONObject;
+
+import java.util.Arrays;
+import java.util.regex.Pattern;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,18 +37,20 @@ public class RecipeDetailsFragment extends Fragment {
     public RecipeDetailsFragment() {
         // Required empty public constructor
     }
+
     public RecipeDetailsFragment(String title, String ingredients, String url) {
         this.title = title;
         this.ingredients = ingredients;
         this.url = url;
     }
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param title the recipe title.
+     * @param title       the recipe title.
      * @param ingredients the list of ingredients for the recipe.
-     * @param url the url to the recipe as obtained from api call.
+     * @param url         the url to the recipe as obtained from api call.
      * @return A new instance of fragment RecipeDetailsFragment.
      */
     // TODO: Rename and change types and number of parameters
@@ -52,6 +60,8 @@ public class RecipeDetailsFragment extends Fragment {
 
         RecipeDetailsFragment fragment = new RecipeDetailsFragment();
         Bundle args = new Bundle();
+
+
         // putting arguments into args Bundle for unpacking
         args.putString(ARG_RECIPE_TITLE, fragment.title);
         args.putString(ARG_RECIPE_INGREDIENTS, fragment.ingredients);
@@ -62,6 +72,7 @@ public class RecipeDetailsFragment extends Fragment {
 
     /**
      * When This fragment is created get arguments if any and
+     *
      * @param savedInstanceState
      */
     @Override
@@ -79,13 +90,17 @@ public class RecipeDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View fragmentDetails = inflater.inflate(R.layout.layout_fragment_recipe_details, container, false);
-       TextView fragTitle = fragmentDetails.findViewById(R.id.recipe_title);
-       TextView fragIngredients = fragmentDetails.findViewById(R.id.recipe_ingredients);
-       TextView fragUrl = fragmentDetails.findViewById(R.id.recipe_url);
+        TextView fragTitle = fragmentDetails.findViewById(R.id.recipe_title);
+        TextView fragIngredients = fragmentDetails.findViewById(R.id.recipe_ingredients);
+        TextView fragUrl = fragmentDetails.findViewById(R.id.recipe_url);
 
-       fragTitle.setText(title);
-       fragIngredients.setText(ingredients);
-       fragUrl.setText(url);
+        ingredients = ingredients.replaceAll(Pattern.quote("\""), " ");
+        ingredients = ingredients.replaceAll(Pattern.quote("["), "");
+        ingredients = ingredients.replaceAll(Pattern.quote("]"), "");
+
+        fragTitle.setText(title);
+        fragIngredients.setText(ingredients);
+        fragUrl.setText(url);
         return fragmentDetails;
     }
 
