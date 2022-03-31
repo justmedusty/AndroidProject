@@ -78,7 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         isMatch = true;
                     }
 
-                }while (cursor.moveToNext() && isMatch == false);
+                }while (cursor.moveToNext() && !isMatch);
             }
         }
         return isMatch;

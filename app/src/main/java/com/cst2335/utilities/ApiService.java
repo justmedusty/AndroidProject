@@ -128,6 +128,7 @@ public class ApiService {
 
         }
         //creating async task object and executing it
+        recipeData.clear();
         GetJSON getJSON = new GetJSON();
         getJSON.execute();
     }
