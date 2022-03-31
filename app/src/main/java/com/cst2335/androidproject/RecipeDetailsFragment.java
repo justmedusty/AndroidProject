@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.facebook.stetho.common.StringUtil;
 import kotlin.text.Regex;
 import org.json.JSONObject;
 
