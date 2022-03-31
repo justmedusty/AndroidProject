@@ -61,9 +61,9 @@ public class RecipeDetailsFragment extends Fragment {
 
 
         // putting arguments into args Bundle for unpacking
-        args.putString(ARG_RECIPE_TITLE, fragment.title);
-        args.putString(ARG_RECIPE_INGREDIENTS, fragment.ingredients);
-        args.putString(ARG_RECIPE_URL, fragment.url);
+        args.putString(ARG_RECIPE_TITLE, title);
+        args.putString(ARG_RECIPE_INGREDIENTS, ingredients);
+        args.putString(ARG_RECIPE_URL, url);
         fragment.setArguments(args);
         return fragment;
     }
@@ -71,7 +71,8 @@ public class RecipeDetailsFragment extends Fragment {
     /**
      * When This fragment is created get arguments if any and
      *
-     * @param savedInstanceState
+     * @param savedInstanceState Bundle containing any arguments that need
+     *                           to be used by the fragment
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {

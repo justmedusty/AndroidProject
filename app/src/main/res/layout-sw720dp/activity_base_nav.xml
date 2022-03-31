@@ -42,7 +42,7 @@ ViewStub into which activity specific layouts can be programmatically added.-->
            >
                 <ViewStub
                     android:id="@+id/layout_stub"
-                    android:layout_width="300dp"
+                    android:layout_width="380dp"
                     android:layout_height="match_parent"
                     />
 
