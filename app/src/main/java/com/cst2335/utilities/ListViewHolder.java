@@ -43,7 +43,7 @@ public class ListViewHolder
 
     @Override
     public void onClick(View view) {
-        if (isPhone) {
+        if (isPhone && view.equals(titleView)) {
             Intent goToFragment = new Intent(context.getApplicationContext(), RecipeDetailsPhone.class);
             goToFragment.putExtra("title", adapter.list.get(getAdapterPosition()).getTitle());
             goToFragment.putExtra("ingredients", adapter.list.get(getAdapterPosition()).getIngredients());
@@ -60,14 +60,13 @@ public class ListViewHolder
                     .beginTransaction()
                     .replace(R.id.recipe_details_fragment, detailsFragment)
                     .commit();
-        } else {
+        } else if (view.equals(favouriteButtonView)){
 
             String title = adapter.list.get(getLayoutPosition()).getTitle();
             String ingredients = adapter.list.get(getAdapterPosition()).getIngredients();
             String url = adapter.list.get(getAdapterPosition()).getURL();
 
             helper = new DatabaseHelper(context.getApplicationContext(), DatabaseHelper.DATABASE_NAME, null, DatabaseHelper.VERSION);
-            this.favouriteButtonView.setImageResource(R.drawable.favourited);
             adapter.list.get(getLayoutPosition()).isFavourited = true;
             adapter.notifyDataSetChanged();
             // TODO fix the favourite button changing image for 2 on the list when only one is clicked
