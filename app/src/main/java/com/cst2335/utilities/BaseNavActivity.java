@@ -66,7 +66,7 @@ public class BaseNavActivity extends AppCompatActivity implements NavigationView
         //*************** TOOLBAR AND NAV DRAWER *******
         Toolbar testToolBar = findViewById(R.id.testToolBar);
         setSupportActionBar(testToolBar);
-        testToolBar.showOverflowMenu();
+
 
         // if there is action bar remove the title
         if (getSupportActionBar() != null) {
