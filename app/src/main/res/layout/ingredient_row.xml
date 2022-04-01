@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/honeyDew"
         android:textSize="14sp"
-        android:background="@color/celadonBlue"
+        android:background="@color/cardview_dark_background"
         android:id="@+id/ingredient"/>
 
 </FrameLayout>

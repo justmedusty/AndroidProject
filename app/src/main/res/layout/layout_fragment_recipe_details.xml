@@ -7,6 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="15dp"
     android:orientation="vertical"
     tools:context=".RecipeDetailsFragment">
 
@@ -18,8 +19,9 @@
         android:id="@+id/recipe_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:textColor="@color/imperialRed"
         android:layout_marginBottom="10dp"
-        android:layout_gravity="center"
         android:fontFamily="sans-serif-black"
     />
 
@@ -28,8 +30,9 @@
         android:id="@+id/recipe_ingredients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:textColor="@color/cardview_dark_background"
         android:layout_marginBottom="10dp"
-        android:layout_gravity="center"
         android:text="@string/ingredients"
         android:fontFamily="sans-serif-black"/>
 
@@ -44,8 +47,8 @@
         android:id="@+id/recipe_url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/darker_gray"
-        android:textColor="#4E342E"
+        android:backgroundTint="@color/imperialRed"
+        android:textColor="@color/honeyDew"
         android:text="@string/goTo_btn"
         />
 
