@@ -5,12 +5,17 @@ Author: Chad Rocheleau
 Lab Section: 012
 Date: March 24 2022
  */
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.ViewStub;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -61,21 +66,21 @@ public class FavouritesActivity extends BaseNavActivity {
         adapter = new ListAdapter(list, getApplication());
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(FavouritesActivity.this));
-        databaseHelper = new DatabaseHelper(getApplicationContext(),null,null,DatabaseHelper.VERSION);
+        databaseHelper = new DatabaseHelper(getApplicationContext(), null, null, DatabaseHelper.VERSION);
         Cursor cursor = databaseHelper.selectAll();
         recyclerView.setAdapter(adapter);
 
 
-        if(cursor != null){
-            if (cursor.moveToFirst()){
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
                 do {
                     @SuppressLint("Range") String title = cursor.getString(cursor.getColumnIndex(DatabaseHelper.KEY_TITLE));
                     @SuppressLint("Range") String ingredients = cursor.getString(cursor.getColumnIndex(DatabaseHelper.KEY_INGREDIENTS));
                     @SuppressLint("Range") String url = cursor.getString(cursor.getColumnIndex(DatabaseHelper.KEY_URL));
 
-                    list.add(new RecipeData(title,ingredients,url));
+                    list.add(new RecipeData(title, ingredients, url));
 
-                }while (cursor.moveToNext());
+                } while (cursor.moveToNext());
                 cursor.close();
             }
         }
@@ -83,7 +88,24 @@ public class FavouritesActivity extends BaseNavActivity {
         adapter.setList(list);
         Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
     }
-    public void onBackPressed(){
+
+    public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_home) {
+            Intent goToHome = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(goToHome);
+
+        } else {
+            Toast.makeText(getApplicationContext(),
+                    "This is the favourites page, you can view any recipes you have previously favourited here.",
+                    Toast.LENGTH_LONG)
+            .show();
+        }
+
+        return true;
     }
 }

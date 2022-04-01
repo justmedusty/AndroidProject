@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/favourites_activity_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FavouritesActivity"
+    android:background="@color/honeyDew"
     android:orientation="vertical"
-    android:background="@color/honeyDew">
+    tools:context=".FavouritesActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/imperialRed"
-        android:textColor="@color/honeyDew"
-        android:textAlignment="center"
         android:padding="15dp"
-        android:text="@string/favourites_title"/>
+        android:text="@string/favourites_title"
+        android:textAlignment="center"
+        android:textColor="@color/honeyDew" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:nestedScrollingEnabled="false"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:overScrollMode="never"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false"
+        android:overScrollMode="never" />
 
 </LinearLayout>

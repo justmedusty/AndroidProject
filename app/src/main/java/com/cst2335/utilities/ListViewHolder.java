@@ -1,17 +1,22 @@
 package com.cst2335.utilities;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cst2335.androidproject.FavouritesActivity;
 import com.cst2335.androidproject.R;
 import com.cst2335.androidproject.RecipeDetailsFragment;
 import com.cst2335.androidproject.RecipeDetailsPhone;
+import com.google.android.material.snackbar.Snackbar;
 
 public class ListViewHolder
         extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -22,6 +27,7 @@ public class ListViewHolder
     Context context;
     static boolean isPhone = false;
     DatabaseHelper helper;
+
     public static void setIsPhone(boolean isPhoneParam) {
         isPhone = isPhoneParam;
     }
@@ -42,7 +48,7 @@ public class ListViewHolder
         }
     }
 
-//&& view.equals(titleView)
+    //&& view.equals(titleView)
     @Override
     public void onClick(View view) {
         if (isPhone && view.equals(titleView)) {
@@ -62,7 +68,7 @@ public class ListViewHolder
                     .beginTransaction()
                     .replace(R.id.recipe_details_fragment, detailsFragment)
                     .commit();
-        } else if (view.equals(favouriteButtonView)){
+        } else if (view.equals(favouriteButtonView)) {
 
             String title = adapter.list.get(getLayoutPosition()).getTitle();
             String ingredients = adapter.list.get(getAdapterPosition()).getIngredients();
@@ -70,19 +76,74 @@ public class ListViewHolder
 
             helper = new DatabaseHelper(context.getApplicationContext(), DatabaseHelper.DATABASE_NAME, null, DatabaseHelper.VERSION);
 
-            if(adapter.list.get(getLayoutPosition()).isFavourited) {
-                adapter.list.get(getLayoutPosition()).isFavourited = false;
-                helper.removeFromDatabase(url);
-                adapter.notifyDataSetChanged();
+            if (adapter.list.get(getLayoutPosition()).isFavourited) {
+                showConfirmAlertDialog(url);
 
             } else {
                 adapter.list.get(getLayoutPosition()).isFavourited = true;
                 adapter.notifyDataSetChanged();
                 helper.insertIntoDatabase(title, ingredients, url);
+                snackBarMaker(url);
             }
 
 
+        }
+    }
 
+    public void showConfirmAlertDialog(String url) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Bookmark Removal.");
+        builder.setMessage("Do you want to remove this recipe from your favourites?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                adapter.list.get(getLayoutPosition()).isFavourited = false;
+                helper.removeFromDatabase(url);
+                adapter.notifyDataSetChanged();
+                if(context instanceof FavouritesActivity) {
+                    adapter.removeItem(getLayoutPosition());
+                }
+                toastMaker("Bookmark removed.", context);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+                toastMaker("Bookmark not removed.", context);
+            }
+        });
+        builder.create();
+        builder.show();
+    }
+
+    public void toastMaker(String message, Context context) {
+        Toast toast = Toast.makeText(context,
+                message,
+                Toast.LENGTH_LONG);
+        toast.show();
+    }
+
+    public void snackBarMaker(String url) {
+        Snackbar.make(favouriteButtonView, "Recipe has been added to favourites", Snackbar.LENGTH_SHORT)
+                .setAction("Undo", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        adapter.list.get(getLayoutPosition()).isFavourited = false;
+                        helper.removeFromDatabase(url);
+                        adapter.notifyDataSetChanged();
+                    }
+                })
+                .show();
+
+        class SnackbarUndoListener implements View.OnClickListener {
+
+            @Override
+            public void onClick(View v) {
+                adapter.list.get(getLayoutPosition()).isFavourited = false;
+                helper.removeFromDatabase(url);
+                adapter.notifyDataSetChanged();
+            }
         }
     }
 }

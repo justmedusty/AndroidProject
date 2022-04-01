@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/search_activity_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchActivity"
+    android:background="@color/honeyDew"
     android:orientation="vertical"
-    android:background="@color/honeyDew">
+    tools:context=".SearchActivity">
 
     <EditText
+        android:id="@+id/searchActivityRowTitle"
         android:layout_width="335dp"
         android:layout_height="wrap_content"
         android:autofillHints="recipe"
         android:hint="@string/search_hint"
         android:inputType="text"
-        android:textSize="22sp"
-        android:id="@+id/searchActivityRowTitle"/>
+        android:textSize="22sp" />
 
     <ImageButton
         android:id="@+id/searchButton"
@@ -26,14 +26,14 @@
         android:contentDescription="@string/search_button_description"
         android:src="@drawable/search"
         android:translationX="335dp"
-        tools:ignore="ImageContrastCheck"/>
+        tools:ignore="ImageContrastCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:nestedScrollingEnabled="false"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:overScrollMode="never"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false"
+        android:overScrollMode="never" />
 
 
 </LinearLayout>
