@@ -7,10 +7,14 @@ Date: March 24 2022
  */
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.ViewStub;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -83,6 +87,8 @@ public class FavouritesActivity extends BaseNavActivity {
         adapter.setList(list);
         Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
     }
+
+
     public void onBackPressed(){
         super.onBackPressed();
     }
