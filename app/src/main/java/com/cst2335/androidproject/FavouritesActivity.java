@@ -7,7 +7,9 @@ Date: March 24 2022
  */
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -106,12 +108,18 @@ public class FavouritesActivity extends BaseNavActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-            Toast.makeText(getApplicationContext(),
-                    "This is the favourites page, you can view any recipes you have previously favourited here.",
-                    Toast.LENGTH_LONG)
-            .show();
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage(("To use the favourites activity you can click on a favourited item to view the details." +
+                "Clicking on the bookmark button will prompt for confirmation that you want to delete an item from favourites. " +
+                "Use the navigation drawer to navigate to other activities." ))
+                .setCancelable(false)
+                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
 
-
-        return true;
+                    }
+                });
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+        return false;
     }
 }

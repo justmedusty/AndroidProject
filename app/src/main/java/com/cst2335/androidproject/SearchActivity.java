@@ -1,5 +1,7 @@
 package com.cst2335.androidproject;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -62,13 +64,20 @@ public class SearchActivity extends BaseNavActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-            Toast.makeText(getApplicationContext(),
-                    "This is the search page, please enter key words or recipe titles into the search field" +
-                            "to find a lit of recipes matching your search terms.",
-                    Toast.LENGTH_LONG)
-                    .show();
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage(("To use the Search activity you must enter search terms in the text field provided. " +
+                "Submitting the search terms will produce a list of recipes that match the search terms. " +
+                "Once a list is produced you can click on an item in the list to view details of that list item." +
+                " Clicking on the bookmark or favourite button will prompt whether you want to add that item to favourites or not. " +
+                " Use the nav drawer to navigate to other activities"))
+                .setCancelable(false)
+                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
 
-
-        return true;
+                    }
+                });
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+        return false;
     }
 }
