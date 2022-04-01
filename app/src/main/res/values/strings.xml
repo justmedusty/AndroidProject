@@ -23,4 +23,5 @@
 
     <string name="popular_recipes">Popular Recipes</string>
     <string name="goTo_btn">Go To Website</string>
+    <string name="ingredients">Ingredients</string>
 </resources>

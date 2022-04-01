@@ -18,10 +18,13 @@ import com.cst2335.androidproject.RecipeDetailsFragment;
 import com.cst2335.androidproject.RecipeDetailsPhone;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.w3c.dom.Text;
+
 public class ListViewHolder
         extends RecyclerView.ViewHolder implements View.OnClickListener {
     ListAdapter adapter;
     TextView titleView;
+    TextView ingredientView;
     ImageButton favouriteButtonView;
     View view;
     Context context;
@@ -34,21 +37,25 @@ public class ListViewHolder
 
     ListViewHolder(View itemView, Context context) {
         super(itemView);
-        titleView
-                = itemView
-                .findViewById(R.id.searchActivityRowTitle);
-        favouriteButtonView
-                = itemView
-                .findViewById(R.id.searchActivityRowButton);
+        if (itemView.findViewById(R.id.recipe_row_layout) != null) {
+            titleView
+                    = itemView
+                    .findViewById(R.id.searchActivityRowTitle);
+            favouriteButtonView
+                    = itemView
+                    .findViewById(R.id.searchActivityRowButton);
+
+            titleView.setOnClickListener(this);
+            if (favouriteButtonView != null) {
+                favouriteButtonView.setOnClickListener(this);
+            }
+        } else {
+            ingredientView = itemView.findViewById(R.id.ingredient);
+        }
         view = itemView;
         this.context = context;
-        titleView.setOnClickListener(this);
-        if (favouriteButtonView != null) {
-            favouriteButtonView.setOnClickListener(this);
-        }
     }
 
-    //&& view.equals(titleView)
     @Override
     public void onClick(View view) {
         if (isPhone && view.equals(titleView)) {

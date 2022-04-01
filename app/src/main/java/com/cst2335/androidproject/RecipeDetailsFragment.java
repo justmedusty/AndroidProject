@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.cst2335.utilities.ListAdapter;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 /**
@@ -33,6 +40,9 @@ public class RecipeDetailsFragment extends Fragment {
     private String ingredients;
     private String url;
 
+    RecyclerView recyclerView;
+    ListAdapter adapter;
+    String[]  ingredientArray;
 
     public RecipeDetailsFragment() {
         // Required empty public constructor
@@ -78,6 +88,8 @@ public class RecipeDetailsFragment extends Fragment {
             ingredients = getArguments().getString(ARG_RECIPE_INGREDIENTS);
             url = getArguments().getString(ARG_RECIPE_URL);
         }
+
+
     }
 
     @Override
@@ -87,22 +99,25 @@ public class RecipeDetailsFragment extends Fragment {
         View fragmentDetails = inflater.inflate(R.layout.layout_fragment_recipe_details, container, false);
         TextView fragTitle = fragmentDetails.findViewById(R.id.recipe_title);
 
-        TextView fragIngredients = fragmentDetails.findViewById(R.id.recipe_ingredients);
+        //TextView fragIngredients = fragmentDetails.findViewById(R.id.recipe_ingredients);
 
 
         ingredients = ingredients.replaceAll(Pattern.quote("\""), " ");
         ingredients = ingredients.replaceAll(Pattern.quote("["), "");
         ingredients = ingredients.replaceAll(Pattern.quote("]"), "");
         ingredients = ingredients.replaceAll(Pattern.quote("\\"), " ");
-        String[] ingredientList = ingredients.split(",");
+        ingredientArray = ingredients.split(",");
+
 
         fragTitle.setText(title);
-        fragIngredients.setText(ingredients);
+        //fragIngredients.setText(ingredients);
 
         // log individual ingredients to show I can put them in a list
-        for (String ingredient : ingredientList) {
-           Log.d("ingredient", ingredient);
-        }
+//        for (String ingredient : ingredientList) {
+//           Log.d("ingredient", ingredient);
+//        }
+
+
         return fragmentDetails;
     }
 
@@ -118,5 +133,10 @@ public class RecipeDetailsFragment extends Fragment {
             startActivity(intent);
         });
 
+        recyclerView = view.findViewById(R.id.recyclerView);
+
+        adapter = new ListAdapter(getContext(), ingredientArray);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }
