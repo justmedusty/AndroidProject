@@ -1,5 +1,6 @@
 package com.cst2335.androidproject;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -52,10 +53,8 @@ public class PopularActivity extends BaseNavActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-            Toast.makeText(getApplicationContext(),
-                    "This is the popular page, you can view a list of the top recipes.",
-                    Toast.LENGTH_LONG)
-                    .show();
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("")
 
 
         return true;
