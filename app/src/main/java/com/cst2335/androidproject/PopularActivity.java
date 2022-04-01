@@ -1,6 +1,7 @@
 package com.cst2335.androidproject;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -34,7 +35,7 @@ public class PopularActivity extends BaseNavActivity {
 
         setupNavigation("Dustyn Gibb", "Popular Activity", "1.0");
         // get the ViewStub into which this activities layout will be loaded.
-        ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
+        ViewStub stub = findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.popular_activity);
         stub.inflate();
 
@@ -50,13 +51,19 @@ public class PopularActivity extends BaseNavActivity {
 
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//
-//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-//        alertDialogBuilder.setMessage("")
-//
-//
-//        return true;
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("This page loads popular recipes , you may refresh to see more as well as click the bookmark icon on the right to both favourite and unfavourite recipes. You may click the recipe to see the details as well.")
+                .setCancelable(false)
+                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+        return false;
+    }
 }

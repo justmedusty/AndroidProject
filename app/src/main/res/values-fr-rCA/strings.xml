@@ -11,7 +11,7 @@
     <!-- Strings for SearchActivity -->
     <string name="favourite_button_description">Ajoute un élément de menu à la liste des favoris.</string>
     <string name="search_hint">Entrez le nom de la recette à rechercher</string>
-    <string name="search_button_description">Searches API</string>
+    <string name="search_button_description">API Recherches</string>
 
     <!--    Strings for nav drawer-->
     <string name="open">ouvrir</string>
