@@ -112,16 +112,6 @@ public class BaseNavActivity extends AppCompatActivity implements NavigationView
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_home) {
-            Intent goToHome = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(goToHome);
-
-        } else {
-            Toast.makeText(getApplicationContext(),
-                    "This is the popular page, you can view a list of the top recipes.",
-                    Toast.LENGTH_LONG)
-                    .show();
-        }
 
         return true;
     }

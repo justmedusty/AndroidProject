@@ -108,15 +108,7 @@ public class RecipeDetailsFragment extends Fragment {
         ingredients = ingredients.replaceAll(Pattern.quote("\\"), " ");
         ingredientArray = ingredients.split(",");
 
-
         fragTitle.setText(title);
-        //fragIngredients.setText(ingredients);
-
-        // log individual ingredients to show I can put them in a list
-//        for (String ingredient : ingredientList) {
-//           Log.d("ingredient", ingredient);
-//        }
-
 
         return fragmentDetails;
     }

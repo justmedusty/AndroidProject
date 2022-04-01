@@ -61,17 +61,13 @@ public class SearchActivity extends BaseNavActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_home) {
-            Intent goToHome = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(goToHome);
 
-        } else {
             Toast.makeText(getApplicationContext(),
                     "This is the search page, please enter key words or recipe titles into the search field" +
                             "to find a lit of recipes matching your search terms.",
                     Toast.LENGTH_LONG)
                     .show();
-        }
+
 
         return true;
     }

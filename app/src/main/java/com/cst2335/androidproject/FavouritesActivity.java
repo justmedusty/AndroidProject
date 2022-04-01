@@ -105,16 +105,12 @@ public class FavouritesActivity extends BaseNavActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_home) {
-            Intent goToHome = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(goToHome);
 
-        } else {
             Toast.makeText(getApplicationContext(),
                     "This is the favourites page, you can view any recipes you have previously favourited here.",
                     Toast.LENGTH_LONG)
             .show();
-        }
+
 
         return true;
     }
