@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.cst2335.utilities.DatabaseHelper;
 import com.cst2335.utilities.ListAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -130,7 +132,17 @@ public class RecipeDetailsFragment extends Fragment {
             startActivity(intent);
         });
 
+
         FloatingActionButton favourite = view.findViewById(R.id.favouriteActionButton);
+        DatabaseHelper helper = new DatabaseHelper(getContext(),
+                DatabaseHelper.DATABASE_NAME,
+                null,
+                DatabaseHelper.VERSION);
+        if (helper.checkForRecord(url)) {
+            favourite.setImageResource(R.drawable.favourited);
+        } else {
+            favourite.setImageResource(R.drawable.favourite);
+        }
         favourite.setOnClickListener( click -> {
 
         });
