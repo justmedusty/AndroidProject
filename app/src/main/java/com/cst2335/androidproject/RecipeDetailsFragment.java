@@ -125,6 +125,8 @@ public class RecipeDetailsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        boolean isFavourite;
+
         Button goToWeb = view.findViewById(R.id.recipe_url);
         goToWeb.setOnClickListener( click -> {
             Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
@@ -132,17 +134,23 @@ public class RecipeDetailsFragment extends Fragment {
             startActivity(intent);
         });
 
-
+        // get the floating action button and database helper
         FloatingActionButton favourite = view.findViewById(R.id.favouriteActionButton);
         DatabaseHelper helper = new DatabaseHelper(getContext(),
                 DatabaseHelper.DATABASE_NAME,
                 null,
                 DatabaseHelper.VERSION);
+
+        // set the image of the floating action button to reflect whether or not the recipe is favourite
         if (helper.checkForRecord(url)) {
             favourite.setImageResource(R.drawable.favourited);
+            isFavourite = true;
         } else {
             favourite.setImageResource(R.drawable.favourite);
+            isFavourite = false;
         }
+
+        // deal with onclick of favourite floating action button.
         favourite.setOnClickListener( click -> {
 
         });
