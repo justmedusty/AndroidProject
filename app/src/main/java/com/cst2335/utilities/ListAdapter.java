@@ -31,7 +31,7 @@ public class ListAdapter
         helper = new DatabaseHelper(context, DatabaseHelper.DATABASE_NAME, null, DatabaseHelper.VERSION);
     }
     public void setList(ArrayList<RecipeData> list){
-        this.list = new ArrayList<RecipeData>();
+        this.list = new ArrayList<>();
         this.list = list;
     }
 
@@ -47,7 +47,7 @@ public class ListAdapter
 
 
         // Inflate the layout based on what activity is being used
-        if (context instanceof SearchActivity || context instanceof PopularActivity) {
+        if (context instanceof SearchActivity || context instanceof PopularActivity || context instanceof FavouritesActivity) {
             listRowView = inflater
                     .inflate(R.layout.search_activity_row, parent, false);
         } else if (context instanceof FavouritesActivity) {
@@ -92,6 +92,11 @@ public class ListAdapter
     public void onAttachedToRecyclerView(
             RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
+    }
+
+    public void removeItem(int position){
+        list.remove(position);
+        notifyItemRemoved(position);
     }
 
 
