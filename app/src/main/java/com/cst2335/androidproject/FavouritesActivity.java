@@ -34,6 +34,8 @@ public class FavouritesActivity extends BaseNavActivity {
     ListAdapter adapter;
     Context context;
     DatabaseHelper databaseHelper;
+    ArrayList<RecipeData> list = new ArrayList<>();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,16 +43,20 @@ public class FavouritesActivity extends BaseNavActivity {
 
         // initialize toolbar and navigation drawer with custom header info for nav drawer
         setupNavigation("Chad Rocheleau", "Favourites Activity", "1.0");
+
         // get the ViewStub into which this activities layout will be loaded.
         ViewStub stub = findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.favourites_activity);
         stub.inflate();
 
+        initRecyclerList();
 
+    } // end onCreate()
 
-        ArrayList<RecipeData> list = new ArrayList<>();
-
-
+    /**
+     *
+     */
+    public void initRecyclerList() {
 
         adapter = new ListAdapter(list, getApplication());
         recyclerView = findViewById(R.id.recyclerView);
@@ -76,13 +82,7 @@ public class FavouritesActivity extends BaseNavActivity {
 
         adapter.setList(list);
         Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
-
-
-
-
     }
-
-
     public void onBackPressed(){
         super.onBackPressed();
     }

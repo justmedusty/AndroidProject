@@ -26,7 +26,7 @@ public class RecipeDetailsPhone extends BaseNavActivity {
         stub.setLayoutResource(R.layout.activity_recipe_details_phone);
         stub.inflate();
 
-        //TODO implement the following commented code once fragment is built properly
+
         Bundle args = getIntent().getExtras();
         FragmentManager fm = getSupportFragmentManager();
         RecipeDetailsFragment recipeDetails = new RecipeDetailsFragment();

@@ -1,23 +1,18 @@
 package com.cst2335.androidproject;
 
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
-import com.facebook.stetho.common.StringUtil;
-import kotlin.text.Regex;
-import org.json.JSONObject;
-
-import java.util.Arrays;
 import java.util.regex.Pattern;
 
 /**
@@ -37,6 +32,7 @@ public class RecipeDetailsFragment extends Fragment {
     private String title;
     private String ingredients;
     private String url;
+
 
     public RecipeDetailsFragment() {
         // Required empty public constructor
@@ -90,15 +86,23 @@ public class RecipeDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         View fragmentDetails = inflater.inflate(R.layout.layout_fragment_recipe_details, container, false);
         TextView fragTitle = fragmentDetails.findViewById(R.id.recipe_title);
+
         TextView fragIngredients = fragmentDetails.findViewById(R.id.recipe_ingredients);
 
 
         ingredients = ingredients.replaceAll(Pattern.quote("\""), " ");
         ingredients = ingredients.replaceAll(Pattern.quote("["), "");
         ingredients = ingredients.replaceAll(Pattern.quote("]"), "");
+        ingredients = ingredients.replaceAll(Pattern.quote("\\"), " ");
+        String[] ingredientList = ingredients.split(",");
 
         fragTitle.setText(title);
         fragIngredients.setText(ingredients);
+
+        // log individual ingredients to show I can put them in a list
+        for (String ingredient : ingredientList) {
+           Log.d("ingredient", ingredient);
+        }
         return fragmentDetails;
     }
 
@@ -113,5 +117,6 @@ public class RecipeDetailsFragment extends Fragment {
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
         });
+
     }
 }

@@ -22,6 +22,8 @@
         android:layout_gravity="center"
         android:fontFamily="sans-serif-black"
     />
+
+<!--    TODO try to implement recycler list for ingredients instead of textView-->
     <TextView
         android:id="@+id/recipe_ingredients"
         android:layout_width="wrap_content"
@@ -29,6 +31,13 @@
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-black"/>
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:nestedScrollingEnabled="false"-->
+<!--        android:id="@+id/recyclerView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:overScrollMode="never"-->
+<!--        android:layout_height="wrap_content"/>-->
 
     <Button
         android:id="@+id/recipe_url"
