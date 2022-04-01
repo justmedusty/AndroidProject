@@ -21,16 +21,14 @@
         <activity
             android:name=".SearchActivity"
             android:exported="false" />
-        <activity
-            android:name=".FavouritesActivity"
-            android:exported="false" />
+        
         <activity
             android:name=".PopularActivity"
             android:exported="false">
 
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".FavouritesActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
