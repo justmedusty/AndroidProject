@@ -17,6 +17,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -55,6 +56,15 @@ public class FavouritesActivity extends BaseNavActivity {
         stub.inflate();
 
         initRecyclerList();
+        ListViewHolder.setIsPhone(findViewById(R.id.recipe_details_fragment) == null);
+        FragmentManager fm = getSupportFragmentManager(); // get fragment manager
+
+        if (!getIntent().getBooleanExtra("isPhone", true)) {
+            RecipeDetailsFragment recipeDetails = new RecipeDetailsFragment();
+            fm.beginTransaction()
+                    .replace(R.id.recipe_details_fragment, recipeDetails)
+                    .commit();
+        }
 
     } // end onCreate()
 
