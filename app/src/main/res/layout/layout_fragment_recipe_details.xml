@@ -4,6 +4,7 @@
         from the list of recipes whether they be favourites,
         searched, or popular -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -51,6 +52,16 @@
         android:textColor="@color/honeyDew"
         android:text="@string/goTo_btn"
         />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/favouriteActionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/imperialRed"
+        android:layout_marginTop="15dp"
+        android:clickable="true"
+        android:contentDescription="@string/menu_favourites"
+        android:src="@drawable/favourite" />
 
 
 </LinearLayout>

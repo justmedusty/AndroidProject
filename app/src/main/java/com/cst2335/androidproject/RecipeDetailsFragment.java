@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.cst2335.utilities.ListAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -113,11 +114,15 @@ public class RecipeDetailsFragment extends Fragment {
         return fragmentDetails;
     }
 
+    /**
+     * Any implementation of items in the fragment take place here. Button behavior and such.
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //TODO should any fragment specific button behavior be needed it
-        //      can be implemented here.
+
         Button goToWeb = view.findViewById(R.id.recipe_url);
         goToWeb.setOnClickListener( click -> {
             Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
@@ -125,8 +130,12 @@ public class RecipeDetailsFragment extends Fragment {
             startActivity(intent);
         });
 
-        recyclerView = view.findViewById(R.id.recyclerView);
+        FloatingActionButton favourite = view.findViewById(R.id.favouriteActionButton);
+        favourite.setOnClickListener( click -> {
 
+        });
+        // populate the recycler view in fragment with ingredients list
+        recyclerView = view.findViewById(R.id.recyclerView);
         adapter = new ListAdapter(getContext(), ingredientArray);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
