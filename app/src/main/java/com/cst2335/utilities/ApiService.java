@@ -1,6 +1,8 @@
 package com.cst2335.utilities;
 
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.ProgressBar;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,9 +56,9 @@ public class ApiService {
 
     }
 
-    public void apiCall(@Nullable String searchTerm, ListAdapter adapter) {
+    public void apiCall(@Nullable String searchTerm, ListAdapter adapter, ProgressBar progressBar) {
         this.adapter = adapter;
-        class GetJSON extends AsyncTask<Void, Void, String> {
+        class GetJSON extends AsyncTask<Void, Integer, String> {
             //this method will be called before execution
             //you can display a progress bar or something
             //so that user can understand that he should wait
@@ -64,6 +66,7 @@ public class ApiService {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
+                progressBar.setVisibility((View.VISIBLE));
             }
 
 
@@ -80,6 +83,10 @@ public class ApiService {
                 }
                 adapter.setList(recipeData);
                 adapter.notifyDataSetChanged();
+                if (progressBar != null){
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
+
 
 
             }
@@ -126,6 +133,15 @@ public class ApiService {
                 }
             }
 
+            @Override
+            protected void onProgressUpdate(Integer... values) {
+                super.onProgressUpdate(values);
+                if(progressBar != null){
+                    progressBar.setVisibility((View.VISIBLE));
+                }
+
+
+            }
         }
         //creating async task object and executing it
         recipeData.clear();

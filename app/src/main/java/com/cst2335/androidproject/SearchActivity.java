@@ -4,8 +4,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 
+import android.widget.ProgressBar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +28,7 @@ public class SearchActivity extends BaseNavActivity {
     RecyclerView recyclerView;
     ListAdapter adapter;
     ApiService api = new ApiService();
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +40,12 @@ public class SearchActivity extends BaseNavActivity {
         stub.setLayoutResource(R.layout.search_activity);
         stub.inflate();
 
+        progressBar = findViewById(R.id.progressBar2);
         ImageButton searchButton = findViewById(R.id.searchButton);
         EditText editText = findViewById(R.id.searchActivityRowTitle);
         searchButton.setOnClickListener(view -> {
             if (editText.getText() != null) {
-                api.apiCall(editText.getText().toString(), adapter);
+                api.apiCall(editText.getText().toString(), adapter,progressBar);
             }
         });
 
