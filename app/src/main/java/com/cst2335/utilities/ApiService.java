@@ -138,7 +138,6 @@ public class ApiService {
                 super.onProgressUpdate(values);
                 if(progressBar != null){
                     progressBar.setVisibility((View.VISIBLE));
-                    progressBar.setProgress(values[0]);
                 }
 
 
