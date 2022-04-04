@@ -39,6 +39,8 @@ public class FavouritesActivity extends BaseNavActivity {
     DatabaseHelper databaseHelper;
     ArrayList<RecipeData> list = new ArrayList<>();
 
+
+
     /**
      * Overrides onCreate to build activity specific behavior and load activity specific
      * layouts.
@@ -91,7 +93,6 @@ public class FavouritesActivity extends BaseNavActivity {
         databaseHelper = new DatabaseHelper(getApplicationContext(), null, null, DatabaseHelper.VERSION);
         Cursor cursor = databaseHelper.selectAll();
         recyclerView.setAdapter(adapter);
-
 
         if (cursor != null) {
             if (cursor.moveToFirst()) {
