@@ -15,15 +15,30 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+/**
+ * The class for accessing the api and parsing the json data , loading the data into RecipeData Objects
+ */
 public class ApiService {
+    /**
+     * The Adapter.
+     */
     ListAdapter adapter;
     private static final String BaseSearchUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=";
     private static final String appIdApiKey = "&app_id=77b3cee9&app_key=1f638fb97d020f33df4bec25ae109145";
     private static final String popularUrl = "https://api.edamam.com/api/recipes/v2?type=public&q=popular&app_id=77b3cee9&app_key=1f638fb97d020f33df4bec25ae109145&random=true";
 
+    /**
+     * The Recipe data list storing all of the recipes from this particular api call
+     */
     public ArrayList<RecipeData> recipeData = new ArrayList<>();
 
 
+    /**
+     * Parses the json and loads it into the listview via the adapter passed in the API method
+     *
+     * @param json the json
+     * @throws JSONException the json exception
+     */
     public void loadIntoListView(String json) throws JSONException {
         //creating a json array from the json string
 
@@ -56,6 +71,13 @@ public class ApiService {
 
     }
 
+    /**
+     * Api call.
+     *
+     * @param searchTerm  the search term
+     * @param adapter     the adapter for updating the listview
+     * @param progressBar the progress bar
+     */
     public void apiCall(@Nullable String searchTerm, ListAdapter adapter, ProgressBar progressBar) {
         this.adapter = adapter;
         class GetJSON extends AsyncTask<Void, Integer, String> {

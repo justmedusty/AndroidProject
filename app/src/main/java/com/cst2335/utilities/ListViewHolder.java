@@ -20,21 +20,59 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.w3c.dom.Text;
 
+/**
+ * The type List view holder.
+ */
 public class ListViewHolder
         extends RecyclerView.ViewHolder implements View.OnClickListener {
+    /**
+     * The Adapter.
+     */
     ListAdapter adapter;
+    /**
+     * The Title view.
+     */
     TextView titleView;
+    /**
+     * The Ingredient view.
+     */
     TextView ingredientView;
+    /**
+     * The Favourite button view.
+     */
     ImageButton favouriteButtonView;
+    /**
+     * The View.
+     */
     View view;
+    /**
+     * The Context.
+     */
     Context context;
+    /**
+     * The Is phone.
+     */
     static boolean isPhone = false;
+    /**
+     * The Helper.
+     */
     DatabaseHelper helper;
 
+    /**
+     * Sets is phone.
+     *
+     * @param isPhoneParam the is phone param
+     */
     public static void setIsPhone(boolean isPhoneParam) {
         isPhone = isPhoneParam;
     }
 
+    /**
+     * Instantiates a new List view holder.
+     *
+     * @param itemView the item view
+     * @param context  the context
+     */
     ListViewHolder(View itemView, Context context) {
         super(itemView);
         if (itemView.findViewById(R.id.recipe_row_layout) != null) {
@@ -97,6 +135,11 @@ public class ListViewHolder
         }
     }
 
+    /**
+     * Show confirm alert dialog.
+     *
+     * @param url the url
+     */
     public void showConfirmAlertDialog(String url) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Bookmark Removal.");
@@ -124,6 +167,12 @@ public class ListViewHolder
         builder.show();
     }
 
+    /**
+     * Toast maker.
+     *
+     * @param message the message
+     * @param context the context
+     */
     public void toastMaker(String message, Context context) {
         Toast toast = Toast.makeText(context,
                 message,
@@ -131,6 +180,11 @@ public class ListViewHolder
         toast.show();
     }
 
+    /**
+     * Snack bar maker.
+     *
+     * @param url the url
+     */
     public void snackBarMaker(String url) {
         Snackbar.make(favouriteButtonView, "Recipe has been added to favourites", Snackbar.LENGTH_SHORT)
                 .setAction("Undo", new View.OnClickListener() {

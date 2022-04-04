@@ -22,11 +22,26 @@ import java.util.Objects;
 
 import com.cst2335.utilities.ApiService;
 
+/**
+ * The type Popular activity.
+ */
 public class PopularActivity extends BaseNavActivity {
 
+    /**
+     * The Api service.
+     */
     ApiService apiService = new ApiService();
+    /**
+     * The Adapter.
+     */
     ListAdapter adapter;
+    /**
+     * The Recycler view.
+     */
     RecyclerView recyclerView;
+    /**
+     * The Progress bar.
+     */
     ProgressBar progressBar;
 
 

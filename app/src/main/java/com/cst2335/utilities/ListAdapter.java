@@ -13,18 +13,38 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
+/**
+ * The type List adapter.
+ */
 public class ListAdapter
         extends RecyclerView.Adapter<ListViewHolder> {
 
+    /**
+     * The List.
+     */
     ArrayList<RecipeData> list;
+    /**
+     * The Ingredient list.
+     */
     String[] ingredientList;
+    /**
+     * The List row view.
+     */
     View listRowView;
+    /**
+     * The Context.
+     */
     Context context;
+    /**
+     * The Helper.
+     */
     DatabaseHelper helper;
 
     /**
-     *  @param list
-     * @param context
+     * Instantiates a new List adapter.
+     *
+     * @param list    the list
+     * @param context the context
      */
     public ListAdapter(ArrayList<RecipeData> list,
                        Context context) {
@@ -34,7 +54,10 @@ public class ListAdapter
     }
 
     /**
+     * Instantiates a new List adapter.
      *
+     * @param context the context
+     * @param list    the list
      */
     public ListAdapter(Context context ,
                        String[] list) {
@@ -42,9 +65,11 @@ public class ListAdapter
         this.context = context;
         helper = new DatabaseHelper(context, DatabaseHelper.DATABASE_NAME, null, DatabaseHelper.VERSION);
     }
+
     /**
+     * Set list.
      *
-     * @param list
+     * @param list the list
      */
     public void setList(ArrayList<RecipeData> list){
         this.list = new ArrayList<>();
@@ -116,6 +141,11 @@ public class ListAdapter
         super.onAttachedToRecyclerView(recyclerView);
     }
 
+    /**
+     * Remove item.
+     *
+     * @param position the position
+     */
     public void removeItem(int position){
         list.remove(position);
         notifyItemRemoved(position);

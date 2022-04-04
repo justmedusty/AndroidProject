@@ -24,10 +24,25 @@ import com.cst2335.utilities.RecipeData;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Search activity.
+ */
 public class SearchActivity extends BaseNavActivity {
+    /**
+     * The Recycler view.
+     */
     RecyclerView recyclerView;
+    /**
+     * The Adapter.
+     */
     ListAdapter adapter;
+    /**
+     * The Api.
+     */
     ApiService api = new ApiService();
+    /**
+     * The Progress bar.
+     */
     ProgressBar progressBar;
 
     @Override
