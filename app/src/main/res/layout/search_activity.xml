@@ -31,16 +31,17 @@
             android:autofillHints="recipe"
             android:hint="@string/search_hint"
             android:inputType="text"
-            android:textSize="22sp" />
+            android:textSize="14sp" />
 
         <ImageButton
             android:id="@+id/searchButton"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/honeyDew"
+            android:translationY="-5dp"
+            android:backgroundTint="@color/celadonBlue"
             android:contentDescription="@string/search_button_description"
-            android:src="@drawable/search"
+            android:src="@drawable/searchv2"
             tools:ignore="ImageContrastCheck" />
     </LinearLayout>
 

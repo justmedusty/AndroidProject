@@ -61,8 +61,7 @@ public class FavouritesActivity extends BaseNavActivity {
         ListViewHolder.setIsPhone(findViewById(R.id.recipe_details_fragment) == null);
         FragmentManager fm = getSupportFragmentManager(); // get fragment manager
 
-        if (findViewById(R.id.recipe_details_fragment) != null &&
-                findViewById(R.id.recipe_details_layout ) != null) {
+        if (findViewById(R.id.recipe_details_fragment) != null ) {
             SplashFragment splash = new SplashFragment();
             fm.beginTransaction()
                     .replace(R.id.recipe_details_fragment, splash)

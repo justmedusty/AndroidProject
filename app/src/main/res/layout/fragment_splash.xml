@@ -4,7 +4,8 @@
     android:id="@+id/splash_fragment"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/toolBarGrey"
     tools:context=".SplashFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -22,8 +23,10 @@
         android:layout_height="wrap_content"
         android:text="@string/splash_title"
         android:gravity="center"
+        android:layout_centerVertical="true"
+        android:background="@color/imperialRed"
         android:textSize="25dp"
-        android:textColor="@color/imperialRed"/>
+        android:textColor="@color/honeyDew"/>
 
 
 </RelativeLayout>
