@@ -9,8 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * A simple {@link Fragment} subclass.
- * create an instance of this fragment.
+ * A very simple fragment containing the layout to be used as a placeholder in the fragment space
+ * used to display recipe details. If no details are being displayed then this will be used as
+ * a splash screen for the application
  */
 public class SplashFragment extends Fragment {
 
@@ -28,6 +29,13 @@ public class SplashFragment extends Fragment {
         }
     }
 
+    /**
+     * inflates the layout to be used by this fragment.
+     * @param inflater the inflater used to inflate the fragment layout
+     * @param container the container in which to inflate this fragment layout
+     * @param savedInstanceState any Bundle information if used by this fragment.
+     * @return the View containing the inflated layout for this fragment.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

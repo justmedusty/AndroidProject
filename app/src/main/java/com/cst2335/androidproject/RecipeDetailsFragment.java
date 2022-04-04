@@ -26,9 +26,9 @@ import java.util.Arrays;
 import java.util.regex.Pattern;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link RecipeDetailsFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * This fragment subclass of Fragment is responsible for presenting a single selected Recipe's details
+ * the Title, ingredients list, and a button to visit original recipe site and a floating action
+ * button is provided for favouriting or unfavouriting the recipe being viewed in detail.
  */
 public class RecipeDetailsFragment extends Fragment {
 
@@ -78,7 +78,8 @@ public class RecipeDetailsFragment extends Fragment {
     }
 
     /**
-     * When This fragment is created get arguments if any and
+     * When This fragment is created get arguments if any and save them as instance members of
+     * this fragment class.
      *
      * @param savedInstanceState Bundle containing any arguments that need
      *                           to be used by the fragment
@@ -91,10 +92,15 @@ public class RecipeDetailsFragment extends Fragment {
             ingredients = getArguments().getString(ARG_RECIPE_INGREDIENTS);
             url = getArguments().getString(ARG_RECIPE_URL);
         }
-
-
     }
 
+    /**
+     * All fragment creation business is taken care of here.
+     * @param inflater the inflater used to inflate this fragment layout
+     * @param container the container in which this fragment will be inflated
+     * @param savedInstanceState Bundle of data to be used by this fragment
+     * @return the fragment view as inflated in the container / FrameLayout
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -117,9 +123,11 @@ public class RecipeDetailsFragment extends Fragment {
     }
 
     /**
-     * Any implementation of items in the fragment take place here. Button behavior and such.
-     * @param view
-     * @param savedInstanceState
+     * Any implementation of items in the fragment take place here. Button behavior and populating
+     * the ingredients list view that needs populating within this fragment with a list of the
+     * ingredients belonging to the recipe being featured in this details fragment.
+     * @param view The fragment view that has been created and inflated
+     * @param savedInstanceState Bundle of saved information used by this fragment.
      */
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

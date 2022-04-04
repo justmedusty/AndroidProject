@@ -10,31 +10,26 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.ViewStub;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.cst2335.utilities.BaseNavActivity;
 import com.cst2335.utilities.ListAdapter;
 import com.cst2335.utilities.RecipeData;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import com.cst2335.utilities.*;
 
 /**
- *
+ * This activity loads a list of saved recipes that have been bookmarked as favourites. It loads
+ * the saved recipes from a database. It is the main activity of the application and is launched
+ * on startup.
  */
 public class FavouritesActivity extends BaseNavActivity {
 
@@ -44,6 +39,11 @@ public class FavouritesActivity extends BaseNavActivity {
     DatabaseHelper databaseHelper;
     ArrayList<RecipeData> list = new ArrayList<>();
 
+    /**
+     * Overrides onCreate to build activity specific behavior and load activity specific
+     * layouts.
+     * @param savedInstanceState Bundle passed to this activity.
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +79,9 @@ public class FavouritesActivity extends BaseNavActivity {
     } // end onCreate()
 
     /**
-     *
+     * Contains all list creation code to be called in onCreate. Simply removes and isolates the
+     * code related to populating the recycler list view in this activity. Loads the Recipes from
+     * the database of saved or favourited recipes.
      */
     public void initRecyclerList() {
 
@@ -113,6 +115,12 @@ public class FavouritesActivity extends BaseNavActivity {
         super.onBackPressed();
     }
 
+    /**
+     * Overrides onOptionsItemSelected to provide custom functionality of the info button in the
+     * toolbar for this activity.
+     * @param item the item selected in the toolbar
+     * @return boolean value expected .
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

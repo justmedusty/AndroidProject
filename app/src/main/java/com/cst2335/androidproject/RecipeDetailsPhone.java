@@ -19,17 +19,23 @@ import com.cst2335.utilities.BaseNavActivity;
  */
 public class RecipeDetailsPhone extends BaseNavActivity {
 
+    /**
+     * The onCreate method for this activity containing main actions to be taken when using this
+     * activity.
+     * @param savedInstanceState Bundle passed to this activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_nav);
 
+        // include tool bar and nav drawer, as well as inflate this activitie's layout
         setupNavigation("Chad Rocheleau", "Recipe Details", "1.0");
         ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.activity_recipe_details_phone);
         stub.inflate();
 
-
+        // use the recipe details fragment to display recipe details on a phone
         Bundle args = getIntent().getExtras();
         FragmentManager fm = getSupportFragmentManager();
         RecipeDetailsFragment recipeDetails = new RecipeDetailsFragment();
@@ -40,6 +46,12 @@ public class RecipeDetailsPhone extends BaseNavActivity {
                 .commit();
     }
 
+    /**
+     * Overrides onOptionsItemSelected to provide custom functionality for the info button in the
+     * toolbar when using this activity
+     * @param item the item selected in the toolbar
+     * @return boolean value
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
