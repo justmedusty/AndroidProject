@@ -45,6 +45,7 @@ public class RecipeDetailsFragment extends Fragment {
 
     RecyclerView recyclerView;
     ListAdapter adapter;
+    static ListAdapter recipeListAdapter;
     String[]  ingredientArray;
 
     public RecipeDetailsFragment() {
@@ -63,7 +64,8 @@ public class RecipeDetailsFragment extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static RecipeDetailsFragment newInstance(String title,
                                                     String ingredients,
-                                                    String url) {
+                                                    String url,
+                                                    ListAdapter recipeListAdapter) {
 
         RecipeDetailsFragment fragment = new RecipeDetailsFragment();
         Bundle args = new Bundle();
@@ -73,7 +75,9 @@ public class RecipeDetailsFragment extends Fragment {
         args.putString(ARG_RECIPE_TITLE, title);
         args.putString(ARG_RECIPE_INGREDIENTS, ingredients);
         args.putString(ARG_RECIPE_URL, url);
+
         fragment.setArguments(args);
+        RecipeDetailsFragment.recipeListAdapter = recipeListAdapter;
         return fragment;
     }
 
@@ -144,7 +148,7 @@ public class RecipeDetailsFragment extends Fragment {
 
         // get the floating action button and database helper
         FloatingActionButton favourite = view.findViewById(R.id.favouriteActionButton);
-        DatabaseHelper helper = new DatabaseHelper(getContext(),
+        final DatabaseHelper helper = new DatabaseHelper(getContext(),
                 DatabaseHelper.DATABASE_NAME,
                 null,
                 DatabaseHelper.VERSION);
@@ -152,14 +156,26 @@ public class RecipeDetailsFragment extends Fragment {
         // set the image of the floating action button to reflect whether or not the recipe is favourite
         if (helper.checkForRecord(url)) {
             favourite.setImageResource(R.drawable.favourited);
-            isFavourite = true;
         } else {
             favourite.setImageResource(R.drawable.favourite);
-            isFavourite = false;
         }
 
         // deal with onclick of favourite floating action button.
-        favourite.setOnClickListener( click -> {
+        favourite.setOnClickListener( new View.OnClickListener()  {
+            @Override
+            public void onClick(View v) {
+                if (helper.checkForRecord(url)) {
+                    helper.removeFromDatabase(url);
+                    favourite.setImageResource(R.drawable.favourite);
+
+
+                } else {
+                    helper.insertIntoDatabase(title, ingredients, url);
+                    favourite.setImageResource(R.drawable.favourited);
+
+                }
+
+            }
 
         });
         // populate the recycler view in fragment with ingredients list

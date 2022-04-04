@@ -106,7 +106,8 @@ public class ListViewHolder
             RecipeDetailsFragment detailsFragment = RecipeDetailsFragment.newInstance(
                     adapter.list.get(getLayoutPosition()).getTitle(),
                     adapter.list.get(getAdapterPosition()).getIngredients(),
-                    adapter.list.get(getAdapterPosition()).getURL());
+                    adapter.list.get(getAdapterPosition()).getURL(),
+                    adapter);
             AppCompatActivity activity = (AppCompatActivity) context;
 
             int ft = activity.getSupportFragmentManager()
