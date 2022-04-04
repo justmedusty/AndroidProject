@@ -61,6 +61,14 @@ public class FavouritesActivity extends BaseNavActivity {
         ListViewHolder.setIsPhone(findViewById(R.id.recipe_details_fragment) == null);
         FragmentManager fm = getSupportFragmentManager(); // get fragment manager
 
+        if (findViewById(R.id.recipe_details_fragment) != null &&
+                findViewById(R.id.recipe_details_layout ) != null) {
+            SplashFragment splash = new SplashFragment();
+            fm.beginTransaction()
+                    .replace(R.id.recipe_details_fragment, splash)
+                    .commit();
+        }
+
         if (!getIntent().getBooleanExtra("isPhone", true)) {
             RecipeDetailsFragment recipeDetails = new RecipeDetailsFragment();
             fm.beginTransaction()
@@ -68,12 +76,7 @@ public class FavouritesActivity extends BaseNavActivity {
                     .commit();
         }
 
-        if (findViewById(R.id.recipe_details_fragment) != null) {
-            SplashFragment splash = new SplashFragment();
-            fm.beginTransaction()
-                    .add(R.id.recipe_details_fragment, splash)
-                    .commit();
-        }
+
     } // end onCreate()
 
     /**
