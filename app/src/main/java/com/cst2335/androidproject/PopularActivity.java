@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.ViewStub;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -26,12 +27,14 @@ public class PopularActivity extends BaseNavActivity {
     ApiService apiService = new ApiService();
     ListAdapter adapter;
     RecyclerView recyclerView;
+    ProgressBar progressBar;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_nav);
+        progressBar = findViewById(R.id.progressBar);
 
         setupNavigation("Dustyn Gibb", "Popular Activity", "1.0");
         // get the ViewStub into which this activities layout will be loaded.
@@ -45,7 +48,8 @@ public class PopularActivity extends BaseNavActivity {
         adapter = new ListAdapter(list, getApplication());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(PopularActivity.this));
-        apiService.apiCall(null, adapter);
+        progressBar = this.findViewById(R.id.progressBar);
+        apiService.apiCall(null, adapter,progressBar);
         Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
 
 
