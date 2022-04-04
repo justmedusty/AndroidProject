@@ -2,8 +2,11 @@ package com.cst2335.androidproject;
 
 import androidx.fragment.app.FragmentManager;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.ViewStub;
 import com.cst2335.utilities.BaseNavActivity;
 
@@ -37,4 +40,23 @@ public class RecipeDetailsPhone extends BaseNavActivity {
                 .commit();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage(("This is the recipe details activity. It presents the " +
+                    "details of the selected recipe. You may navigate to the website using the " +
+                "go to website button. Using the navigation drawer you can navigate to other " +
+                "activities. The recipe may be favourited or unvafourited using the bookmark icon " +
+                "at the bottom of the page."))
+                .setCancelable(false)
+                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+        return false;
+    }
 }

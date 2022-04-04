@@ -8,7 +8,8 @@ ViewStub into which activity specific layouts can be programmatically added.-->
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/splash_img1">
 <!--    Tool bar to be used app wide for all activities -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/testToolBar"

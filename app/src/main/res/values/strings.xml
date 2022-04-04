@@ -10,6 +10,7 @@
     <string name="favourite_button_description">Adds menu item to favourites list.</string>
     <string name="search_hint">Enter Recipe Name To Search</string>
     <string name="search_button_description">Searches API</string>
+    <string name="search_title">Search Recipes</string>
 
     <!--    Strings for nav drawer-->
     <string name="open">open</string>
@@ -19,9 +20,12 @@
     <string name="favourites_title">Your Favourite Recipes</string>
     <!-- TODO: Remove or change this placeholder text -->
 
-<!--    fragment strings -->
+    <!--    fragment strings -->
 
     <string name="popular_recipes">Popular Recipes</string>
     <string name="goTo_btn">Go To Website</string>
     <string name="ingredients">Ingredients</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="splash_image">this is a splash image</string>
+    <string name="splash_title">Recipe Finder</string>
 </resources>

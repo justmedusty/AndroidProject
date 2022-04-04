@@ -66,6 +66,11 @@ public class FavouritesActivity extends BaseNavActivity {
             fm.beginTransaction()
                     .replace(R.id.recipe_details_fragment, recipeDetails)
                     .commit();
+        } else {
+            SplashFragment splash = new SplashFragment();
+            fm.beginTransaction()
+                    .add(R.id.recipe_details_fragment, splash)
+                    .commit();
         }
 
     } // end onCreate()

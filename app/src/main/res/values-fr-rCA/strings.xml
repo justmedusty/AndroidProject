@@ -12,6 +12,7 @@
     <string name="favourite_button_description">Ajoute un élément de menu à la liste des favoris.</string>
     <string name="search_hint">Entrez le nom de la recette à rechercher</string>
     <string name="search_button_description">API Recherches</string>
+    <string name="search_title">Cherche Recettes</string>
 
     <!--    Strings for nav drawer-->
     <string name="open">ouvrir</string>
@@ -24,4 +25,7 @@
 
     <string name="goTo_btn">Va au site Web</string>
     <string name="ingredients">Ingredients</string>
+
+    <string name="splash_image">c\'est une image splash</string>
+    <string name="splash_title">Recettes Cherche</string>
 </resources>
