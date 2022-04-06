@@ -2,9 +2,7 @@ package com.cst2335.utilities;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -18,8 +16,6 @@ import com.cst2335.androidproject.R;
 import com.cst2335.androidproject.RecipeDetailsFragment;
 import com.cst2335.androidproject.RecipeDetailsPhone;
 import com.google.android.material.snackbar.Snackbar;
-
-import org.w3c.dom.Text;
 
 /**
  * ListViewHolder class represents each row object in the recycler view,
@@ -150,7 +146,7 @@ public class ListViewHolder
         builder.setTitle("Bookmark Removal.");
         builder.setMessage("Do you want to remove this recipe from your favourites?");
         builder.setPositiveButton("Yes", (dialogInterface, i) -> {
-            adapter.list.get(getLayoutPosition()).isFavourited = false;
+            adapter.getRecipeList().get(getLayoutPosition()).isFavourited = false;
             helper.removeFromDatabase(url);
             adapter.notifyDataSetChanged();
             if (context instanceof FavouritesActivity) {
@@ -188,7 +184,7 @@ public class ListViewHolder
     private void snackBarMaker(String url) {
         Snackbar.make(favouriteButtonView, "Recipe has been added to favourites", Snackbar.LENGTH_SHORT)
                 .setAction("Undo", view -> {
-                    adapter.list.get(getLayoutPosition()).isFavourited = false;
+                    adapter.getRecipeList().get(getLayoutPosition()).isFavourited = false;
                     helper.removeFromDatabase(url);
                     adapter.notifyDataSetChanged();
                 })
@@ -204,15 +200,15 @@ public class ListViewHolder
         public void onClick(View view) {
             if (isPhone) {
                 Intent goToFragment = new Intent(context.getApplicationContext(), RecipeDetailsPhone.class);
-                goToFragment.putExtra("title", adapter.list.get(getAdapterPosition()).getTitle());
-                goToFragment.putExtra("ingredients", adapter.list.get(getAdapterPosition()).getIngredients());
-                goToFragment.putExtra("url", adapter.list.get(getAdapterPosition()).getURL());
+                goToFragment.putExtra("title", adapter.getRecipeList().get(getAdapterPosition()).getTitle());
+                goToFragment.putExtra("ingredients", adapter.getRecipeList().get(getAdapterPosition()).getIngredients());
+                goToFragment.putExtra("url", adapter.getRecipeList().get(getAdapterPosition()).getURL());
                 context.startActivity(goToFragment);
             } else {
                 RecipeDetailsFragment detailsFragment = RecipeDetailsFragment.newInstance(
-                        adapter.list.get(getLayoutPosition()).getTitle(),
-                        adapter.list.get(getAdapterPosition()).getIngredients(),
-                        adapter.list.get(getAdapterPosition()).getURL(),
+                        adapter.getRecipeList().get(getLayoutPosition()).getTitle(),
+                        adapter.getRecipeList().get(getAdapterPosition()).getIngredients(),
+                        adapter.getRecipeList().get(getAdapterPosition()).getURL(),
                         adapter);
                 AppCompatActivity activity = (AppCompatActivity) context;
                 int ft = activity.getSupportFragmentManager()
@@ -230,17 +226,17 @@ public class ListViewHolder
     private final View.OnClickListener favouriteButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            String title = adapter.list.get(getLayoutPosition()).getTitle();
-            String ingredients = adapter.list.get(getAdapterPosition()).getIngredients();
-            String url = adapter.list.get(getAdapterPosition()).getURL();
+            String title = adapter.getRecipeList().get(getLayoutPosition()).getTitle();
+            String ingredients = adapter.getRecipeList().get(getAdapterPosition()).getIngredients();
+            String url = adapter.getRecipeList().get(getAdapterPosition()).getURL();
 
             helper = new DatabaseHelper(context.getApplicationContext(), DatabaseHelper.DATABASE_NAME, null, DatabaseHelper.VERSION);
 
-            if (adapter.list.get(getLayoutPosition()).isFavourited) {
+            if (adapter.getRecipeList().get(getLayoutPosition()).isFavourited) {
                 showConfirmAlertDialog(url);
 
             } else {
-                adapter.list.get(getLayoutPosition()).isFavourited = true;
+                adapter.getRecipeList().get(getLayoutPosition()).isFavourited = true;
                 adapter.notifyDataSetChanged();
                 helper.insertIntoDatabase(title, ingredients, url);
                 snackBarMaker(url);

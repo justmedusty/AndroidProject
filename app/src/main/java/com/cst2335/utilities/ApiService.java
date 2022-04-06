@@ -103,7 +103,7 @@ public class ApiService {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                adapter.setList(recipeData);
+                adapter.setRecipeList(recipeData);
                 adapter.notifyDataSetChanged();
                 if (progressBar != null){
                     progressBar.setVisibility(View.INVISIBLE);

@@ -108,7 +108,7 @@ public class FavouritesActivity extends BaseNavActivity {
             }
         }
 
-        adapter.setList(list);
+        adapter.setRecipeList(list);
         Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
     }
 
