@@ -11,10 +11,6 @@
 <!--    project color pallete-->
     <color name="imperialRed">#E63946</color>
     <color name="honeyDew">#F1FAEE</color>
-    <color name="powderBlue">#A8DADC</color>
     <color name="celadonBlue">#457B9D</color>
-    <color name="prussianBlue">#1D3557</color>
-    <color name="lightGrey">#a8a8a8</color>
-    <color name="darkGrey">#939393</color>
     <color name="toolBarGrey">#d3d3d3</color>
 </resources>
