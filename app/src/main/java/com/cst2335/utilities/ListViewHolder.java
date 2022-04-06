@@ -90,6 +90,9 @@ public class ListViewHolder
         isPhone = isPhoneParam;
     }
 
+    public static boolean getIsPhone() {
+        return isPhone;
+    }
     /**
      * Returns a reference to the view responsible for storing ingredients,
      * used by the adapter to bind data to the view.
@@ -209,8 +212,9 @@ public class ListViewHolder
                 RecipeDetailsFragment detailsFragment = RecipeDetailsFragment.newInstance(
                         adapter.getRecipeList().get(getLayoutPosition()).getTitle(),
                         adapter.getRecipeList().get(getAdapterPosition()).getIngredients(),
-                        adapter.getRecipeList().get(getAdapterPosition()).getURL(),
-                        getAdapterPosition());
+                        adapter.getRecipeList().get(getAdapterPosition()).getURL());
+                detailsFragment.setPosition(getAdapterPosition());
+                detailsFragment.setRecipeListAdapter(adapter);
                 AppCompatActivity activity = (AppCompatActivity) context;
                 int ft = activity.getSupportFragmentManager()
                         .beginTransaction()

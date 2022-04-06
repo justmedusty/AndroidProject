@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.cst2335.utilities.DatabaseHelper;
 import com.cst2335.utilities.ListAdapter;
+import com.cst2335.utilities.ListViewHolder;
 import com.cst2335.utilities.RecipeData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -41,7 +42,7 @@ public class RecipeDetailsFragment extends Fragment {
     private static final String ARG_RECIPE_TITLE = "title";
     private static final String ARG_RECIPE_INGREDIENTS = "ingredients";
     private static final String ARG_RECIPE_URL = "url";
-    private static final String ARG_LIST_POSITION = "position";
+
 
     // the values of fragment parameters to be used in setting fields of fragment layout.
     private String title;
@@ -49,9 +50,14 @@ public class RecipeDetailsFragment extends Fragment {
     private String url;
     private int position;
 
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+
     RecyclerView recyclerView;
     ListAdapter adapter;
-    ListAdapter recipeListAdapter;
+    private ListAdapter recipeListAdapter;
     String[]  ingredientArray;
 
     public RecipeDetailsFragment() {
@@ -73,8 +79,7 @@ public class RecipeDetailsFragment extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static RecipeDetailsFragment newInstance(String title,
                                                     String ingredients,
-                                                    String url,
-                                                    int position) {
+                                                    String url) {
 
         RecipeDetailsFragment fragment = new RecipeDetailsFragment();
         Bundle args = new Bundle();
@@ -84,7 +89,7 @@ public class RecipeDetailsFragment extends Fragment {
         args.putString(ARG_RECIPE_TITLE, title);
         args.putString(ARG_RECIPE_INGREDIENTS, ingredients);
         args.putString(ARG_RECIPE_URL, url);
-        args.putInt(ARG_LIST_POSITION, position);
+
 
         fragment.setArguments(args);
         return fragment;
@@ -104,7 +109,7 @@ public class RecipeDetailsFragment extends Fragment {
             title = getArguments().getString(ARG_RECIPE_TITLE);
             ingredients = getArguments().getString(ARG_RECIPE_INGREDIENTS);
             url = getArguments().getString(ARG_RECIPE_URL);
-            position = getArguments().getInt(ARG_LIST_POSITION);
+
         }
     }
 
@@ -177,7 +182,13 @@ public class RecipeDetailsFragment extends Fragment {
                 if (helper.checkForRecord(url)) {
                     helper.removeFromDatabase(url);
                     favourite.setImageResource(R.drawable.favourite);
-
+                    if(!ListViewHolder.getIsPhone()) {
+                        recipeListAdapter.removeItem(position);
+                        //todo delete the fragment details
+                        getParentFragmentManager().beginTransaction()
+                                .remove(RecipeDetailsFragment.this)
+                                .commitNowAllowingStateLoss();
+                    }
                 } else {
                     helper.insertIntoDatabase(title, ingredients, url);
                     favourite.setImageResource(R.drawable.favourited);

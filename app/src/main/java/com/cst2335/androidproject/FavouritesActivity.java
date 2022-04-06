@@ -46,6 +46,10 @@ public class FavouritesActivity extends BaseNavActivity {
     /**
      *
      */
+    RecipeDetailsFragment recipeDetails;
+    /**
+     *
+     */
     private DatabaseHelper databaseHelper;
 
     /**
@@ -74,6 +78,7 @@ public class FavouritesActivity extends BaseNavActivity {
         stub.inflate();
 
         initRecyclerList();
+
         ListViewHolder.setIsPhone(findViewById(R.id.recipe_details_fragment) == null);
         FragmentManager fm = getSupportFragmentManager(); // get fragment manager
 
@@ -83,16 +88,6 @@ public class FavouritesActivity extends BaseNavActivity {
                     .replace(R.id.recipe_details_fragment, splash)
                     .commit();
         }
-
-        if (!getIntent().getBooleanExtra("isPhone", true)) {
-            RecipeDetailsFragment recipeDetails = new RecipeDetailsFragment();
-            recipeDetails.setRecipeListAdapter(adapter);
-            fm.beginTransaction()
-                    .replace(R.id.recipe_details_fragment, recipeDetails)
-                    .commit();
-        }
-
-
 
     } // end onCreate()
 
