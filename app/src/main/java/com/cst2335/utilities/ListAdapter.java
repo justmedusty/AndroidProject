@@ -59,7 +59,7 @@ public class ListAdapter
      * @param context the context
      * @param list    the list
      */
-    public ListAdapter(Context context ,
+    public ListAdapter(Context context,
                        String[] list) {
         this.ingredientList = list;
         this.context = context;
@@ -71,7 +71,7 @@ public class ListAdapter
      *
      * @param list the list
      */
-    public void setList(ArrayList<RecipeData> list){
+    public void setList(ArrayList<RecipeData> list) {
         this.list = new ArrayList<>();
         this.list = list;
     }
@@ -89,8 +89,8 @@ public class ListAdapter
         if (list != null) {
             listRowView = inflater
                     .inflate(R.layout.recipe_row, parent, false);
-            for(RecipeData recipe : list){
-                if(helper.checkForRecord(recipe.url)){
+            for (RecipeData recipe : list) {
+                if (helper.checkForRecord(recipe.url)) {
                     recipe.isFavourited = true;
                 }
             }
@@ -106,19 +106,8 @@ public class ListAdapter
     public void
     onBindViewHolder(final ListViewHolder viewHolder,
                      final int position) {
-        final int index = viewHolder.getAdapterPosition();
         if (list != null) { // this is a list of recipe data objects
-            viewHolder.getTitleView()
-                    .setText(list.get(position).title);
-            viewHolder.setTitleOnClick();
-            if (list.get(position).isFavourited && viewHolder.getFavouriteButtonView() != null){
-                viewHolder.getFavouriteButtonView()
-                        .setImageResource(R.drawable.favourited);
-            } else if (viewHolder.getFavouriteButtonView() != null){
-                viewHolder.getFavouriteButtonView()
-                        .setImageResource(R.drawable.favourite);
-            }
-            viewHolder.setFavouriteButtonListener();
+            buildActivityLVH(viewHolder, position);
         } else { // this is a list of ingredients
             viewHolder.getIngredientView()
                     .setText(ingredientList[position]);
@@ -132,7 +121,7 @@ public class ListAdapter
 
         if (list != null) {
             return list.size();
-        }else {
+        } else {
             return ingredientList.length;
         }
     }
@@ -148,10 +137,22 @@ public class ListAdapter
      *
      * @param position the position
      */
-    public void removeItem(int position){
+    public void removeItem(int position) {
         list.remove(position);
         notifyItemRemoved(position);
     }
 
-
+    private void buildActivityLVH(ListViewHolder viewHolder, int position) {
+        viewHolder.getTitleView()
+                .setText(list.get(position).title);
+        viewHolder.setTitleOnClick();
+        if (list.get(position).isFavourited) {
+            viewHolder.getFavouriteButtonView()
+                    .setImageResource(R.drawable.favourited);
+        } else {
+            viewHolder.getFavouriteButtonView()
+                    .setImageResource(R.drawable.favourite);
+        }
+        viewHolder.setFavouriteButtonListener();
+    }
 }

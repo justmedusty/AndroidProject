@@ -3,11 +3,13 @@ package com.cst2335.androidproject;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
 import android.widget.ProgressBar;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -60,7 +62,15 @@ public class SearchActivity extends BaseNavActivity {
         EditText editText = findViewById(R.id.searchActivityRowTitle);
         searchButton.setOnClickListener(view -> {
             if (editText.getText() != null) {
-                api.apiCall(editText.getText().toString(), adapter,progressBar);
+                api.apiCall(editText.getText().toString(), adapter, progressBar);
+            }
+        });
+        editText.setOnKeyListener((view, keyCode, keyEvent) -> {
+            if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER) && editText.getText() != null) {
+                api.apiCall(editText.getText().toString(), adapter, progressBar);
+                return true;
+            } else {
+                return false;
             }
         });
 
