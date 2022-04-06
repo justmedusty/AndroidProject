@@ -8,7 +8,6 @@ Date: March 24 2022
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -25,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import com.cst2335.utilities.*;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * This activity loads a list of saved recipes that have been bookmarked as favourites. It loads
@@ -33,11 +33,25 @@ import com.cst2335.utilities.*;
  */
 public class FavouritesActivity extends BaseNavActivity {
 
-    RecyclerView recyclerView;
-    ListAdapter adapter;
-    Context context;
-    DatabaseHelper databaseHelper;
-    ArrayList<RecipeData> list = new ArrayList<>();
+    /**
+     *
+     */
+    private RecyclerView recyclerView;
+
+    /**
+     *
+     */
+    private ListAdapter adapter = null;
+
+    /**
+     *
+     */
+    private DatabaseHelper databaseHelper;
+
+    /**
+     *
+     */
+    private ArrayList<RecipeData> list = new ArrayList<>();
 
 
 
@@ -72,10 +86,12 @@ public class FavouritesActivity extends BaseNavActivity {
 
         if (!getIntent().getBooleanExtra("isPhone", true)) {
             RecipeDetailsFragment recipeDetails = new RecipeDetailsFragment();
+            recipeDetails.setRecipeListAdapter(adapter);
             fm.beginTransaction()
                     .replace(R.id.recipe_details_fragment, recipeDetails)
                     .commit();
         }
+
 
 
     } // end onCreate()
@@ -90,10 +106,20 @@ public class FavouritesActivity extends BaseNavActivity {
         adapter = new ListAdapter(list, getApplication());
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(FavouritesActivity.this));
+
+        recyclerView.setAdapter(adapter);
+        refreshListDataUpdate(adapter);
+
+    }
+
+    /**
+     *
+     * @param adapter
+     */
+    public void refreshListDataUpdate(ListAdapter adapter) {
         databaseHelper = new DatabaseHelper(getApplicationContext(), null, null, DatabaseHelper.VERSION);
         Cursor cursor = databaseHelper.selectAll();
-        recyclerView.setAdapter(adapter);
-
+        list.clear();
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 do {
@@ -101,19 +127,26 @@ public class FavouritesActivity extends BaseNavActivity {
                     @SuppressLint("Range") String ingredients = cursor.getString(cursor.getColumnIndex(DatabaseHelper.KEY_INGREDIENTS));
                     @SuppressLint("Range") String url = cursor.getString(cursor.getColumnIndex(DatabaseHelper.KEY_URL));
 
-                    list.add(new RecipeData(title, ingredients, url));
+                    list.add(new RecipeData(title, ingredients, url, true));
 
                 } while (cursor.moveToNext());
                 cursor.close();
             }
         }
-
         adapter.setRecipeList(list);
         Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
     }
-
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    /**
+     * When back button is used then the list needs to be updated
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshListDataUpdate(adapter);
     }
 
     /**

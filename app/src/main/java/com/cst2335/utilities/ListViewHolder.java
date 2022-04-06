@@ -203,13 +203,14 @@ public class ListViewHolder
                 goToFragment.putExtra("title", adapter.getRecipeList().get(getAdapterPosition()).getTitle());
                 goToFragment.putExtra("ingredients", adapter.getRecipeList().get(getAdapterPosition()).getIngredients());
                 goToFragment.putExtra("url", adapter.getRecipeList().get(getAdapterPosition()).getURL());
+                goToFragment.putExtra("position", getAdapterPosition());
                 context.startActivity(goToFragment);
             } else {
                 RecipeDetailsFragment detailsFragment = RecipeDetailsFragment.newInstance(
                         adapter.getRecipeList().get(getLayoutPosition()).getTitle(),
                         adapter.getRecipeList().get(getAdapterPosition()).getIngredients(),
                         adapter.getRecipeList().get(getAdapterPosition()).getURL(),
-                        adapter);
+                        getAdapterPosition());
                 AppCompatActivity activity = (AppCompatActivity) context;
                 int ft = activity.getSupportFragmentManager()
                         .beginTransaction()

@@ -1,7 +1,9 @@
 package com.cst2335.androidproject;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
@@ -19,10 +21,12 @@ import android.widget.TextView;
 
 import com.cst2335.utilities.DatabaseHelper;
 import com.cst2335.utilities.ListAdapter;
+import com.cst2335.utilities.RecipeData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -37,21 +41,26 @@ public class RecipeDetailsFragment extends Fragment {
     private static final String ARG_RECIPE_TITLE = "title";
     private static final String ARG_RECIPE_INGREDIENTS = "ingredients";
     private static final String ARG_RECIPE_URL = "url";
+    private static final String ARG_LIST_POSITION = "position";
 
     // the values of fragment parameters to be used in setting fields of fragment layout.
     private String title;
     private String ingredients;
     private String url;
+    private int position;
 
     RecyclerView recyclerView;
     ListAdapter adapter;
-    static ListAdapter recipeListAdapter;
+    ListAdapter recipeListAdapter;
     String[]  ingredientArray;
 
     public RecipeDetailsFragment() {
         // Required empty public constructor
     }
 
+    public void setRecipeListAdapter(ListAdapter recipeListAdapter) {
+        this.recipeListAdapter = recipeListAdapter;
+    }
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -65,7 +74,7 @@ public class RecipeDetailsFragment extends Fragment {
     public static RecipeDetailsFragment newInstance(String title,
                                                     String ingredients,
                                                     String url,
-                                                    ListAdapter recipeListAdapter) {
+                                                    int position) {
 
         RecipeDetailsFragment fragment = new RecipeDetailsFragment();
         Bundle args = new Bundle();
@@ -75,9 +84,9 @@ public class RecipeDetailsFragment extends Fragment {
         args.putString(ARG_RECIPE_TITLE, title);
         args.putString(ARG_RECIPE_INGREDIENTS, ingredients);
         args.putString(ARG_RECIPE_URL, url);
+        args.putInt(ARG_LIST_POSITION, position);
 
         fragment.setArguments(args);
-        RecipeDetailsFragment.recipeListAdapter = recipeListAdapter;
         return fragment;
     }
 
@@ -95,6 +104,7 @@ public class RecipeDetailsFragment extends Fragment {
             title = getArguments().getString(ARG_RECIPE_TITLE);
             ingredients = getArguments().getString(ARG_RECIPE_INGREDIENTS);
             url = getArguments().getString(ARG_RECIPE_URL);
+            position = getArguments().getInt(ARG_LIST_POSITION);
         }
     }
 
@@ -167,7 +177,6 @@ public class RecipeDetailsFragment extends Fragment {
                 if (helper.checkForRecord(url)) {
                     helper.removeFromDatabase(url);
                     favourite.setImageResource(R.drawable.favourite);
-
 
                 } else {
                     helper.insertIntoDatabase(title, ingredients, url);
