@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -21,68 +22,53 @@ import com.google.android.material.snackbar.Snackbar;
 import org.w3c.dom.Text;
 
 /**
- * The type List view holder.
+ * ListViewHolder class represents each row object in the recycler view,
+ * used primarily to store functionality and listeners related to recyclerview rows.
  */
 public class ListViewHolder
         extends RecyclerView.ViewHolder {
-    public void setAdapter(ListAdapter adapter) {
-        this.adapter = adapter;
-    }
+
 
     /**
-     * The Adapter.
+     * Stores a reference to the adapter responsible for this ListViewHolder.
      */
     private ListAdapter adapter;
 
-    public TextView getIngredientView() {
-        return ingredientView;
-    }
-
-    public ImageButton getFavouriteButtonView() {
-        return favouriteButtonView;
-    }
 
     /**
-     * The Title view.
+     * TextView used to display each recipe title.
      */
     private TextView titleView;
     /**
-     * The Ingredient view.
+     * TextView only used for RecipeDetailsFragment to display one row of ingredients.
      */
     private TextView ingredientView;
     /**
-     * The Favourite button view.
+     * ImageButton used to display whether each recipe is favourited or not.
      */
     private ImageButton favouriteButtonView;
     /**
-     * The Context.
+     * Context of the activity that contains this ViewHolder.
      */
     private final Context context;
     /**
-     * The Is phone.
+     * Application-wide boolean value to represent whether application is being used on a phone or tablet.
+     * The value will be true if the device is a phone and false if the device is a tablet.
      */
     private static boolean isPhone = false;
     /**
-     * The Helper.
+     * Instance of DatabaseHelper object to allow ViewHolder to perform CRUD operations on the database.
      */
     private DatabaseHelper helper;
 
     /**
-     * Sets is phone.
+     * Instantiates a new ListViewHolder, setting the layout references for relevant View objects,
+     * as well as storing references for the responsible adapter and responsible activity's context.
      *
-     * @param isPhoneParam the is phone param
+     * @param itemView View reference representing relevant layout.
+     * @param context  Context of the activity containing this ViewHolder.
      */
-    public static void setIsPhone(boolean isPhoneParam) {
-        isPhone = isPhoneParam;
-    }
-
-    /**
-     * Instantiates a new List view holder.
-     *
-     * @param itemView the item view
-     * @param context  the context
-     */
-    ListViewHolder(View itemView, Context context) {
+    ListViewHolder(View itemView, Context context, ListAdapter adapter) {
         super(itemView);
         if (itemView.findViewById(R.id.recipe_row_layout) != null) {
             titleView
@@ -95,13 +81,69 @@ public class ListViewHolder
             ingredientView = itemView.findViewById(R.id.ingredient);
         }
         this.context = context;
-
+        this.adapter = adapter;
     }
 
     /**
-     * Show confirm alert dialog.
+     * Sets the value of the isPhone variable so ViewHolder knows whether the device is a phone or tablet.
      *
-     * @param url the url
+     * @param isPhoneParam boolean representing whether device is a phone or tablet, true for phone, false for tablet
+     */
+
+    public static void setIsPhone(boolean isPhoneParam) {
+        isPhone = isPhoneParam;
+    }
+
+    /**
+     * Returns a reference to the view responsible for storing ingredients,
+     * used by the adapter to bind data to the view.
+     *
+     * @return TextView used to display one ingredient row.
+     */
+    public TextView getIngredientView() {
+        return ingredientView;
+    }
+
+    /**
+     * Returns a reference to the view responsible for storing status of RecipeData object,
+     * used by adapter to update image resource depending on favourited status.
+     *
+     * @return ImageButton used to represent whether recipe is favourited or not.
+     */
+    public ImageButton getFavouriteButtonView() {
+        return favouriteButtonView;
+    }
+
+    /**
+     * Returns a reference to the view responsible for storing recipe titles,
+     * used by the adapter to bind data to the view.
+     *
+     * @return TextView used to display on recipe title.
+     */
+    public TextView getTitleView() {
+        return titleView;
+    }
+
+    /**
+     * Method called by adapter to set onClick function to the favourite button.
+     */
+    public void setFavouriteButtonListener() {
+        favouriteButtonView.setOnClickListener(favouriteButtonListener);
+    }
+
+    /**
+     * Method called by the adapter to set onClick function to the recipe title.
+     */
+    public void setTitleListener() {
+        titleView.setOnClickListener(titleListener);
+    }
+
+    /**
+     * Creates and shows an alert dialog confirming whether user wants to remove a recipe from their favourites,
+     * "Yes" will remove the recipe from the database, change the isFavourited boolean value, and notify the adapter
+     * to update the recyclerview, no will cancel the action and result in nothing.
+     *
+     * @param url String recipe URL used to locate recipe in database.
      */
     public void showConfirmAlertDialog(String url) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -125,12 +167,12 @@ public class ListViewHolder
     }
 
     /**
-     * Toast maker.
+     * Used by ListViewHolder to re-use boilerplate code for creating and showing Toasts.
      *
-     * @param message the message
-     * @param context the context
+     * @param message String to be output to user through Toast.
+     * @param context Context of activity responsible for this ViewHolder.
      */
-    public void toastMaker(String message, Context context) {
+    private void toastMaker(String message, Context context) {
         Toast toast = Toast.makeText(context,
                 message,
                 Toast.LENGTH_LONG);
@@ -138,11 +180,12 @@ public class ListViewHolder
     }
 
     /**
-     * Snack bar maker.
+     * Method used to create SnackBar informing user that recipe has been added to favourites,
+     * as well as allowing the user to undo the action, removing the recipe from the database.
      *
-     * @param url the url
+     * @param url String URL for relevant recipe, used to locate recipe in database.
      */
-    public void snackBarMaker(String url) {
+    private void snackBarMaker(String url) {
         Snackbar.make(favouriteButtonView, "Recipe has been added to favourites", Snackbar.LENGTH_SHORT)
                 .setAction("Undo", view -> {
                     adapter.list.get(getLayoutPosition()).isFavourited = false;
@@ -152,14 +195,10 @@ public class ListViewHolder
                 .show();
     }
 
-    public TextView getTitleView() {
-        return titleView;
-    }
-
-    public void setTitleOnClick() {
-        titleView.setOnClickListener(titleListener);
-    }
-
+    /**
+     * Listener responsible for click actions on recipe titles, either moving to entirely new activity for phones
+     * or creating fragment in current activity for tablets, as well as passing all relevant data to fragment.
+     */
     private final View.OnClickListener titleListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -184,10 +223,10 @@ public class ListViewHolder
         }
     };
 
-    public void setFavouriteButtonListener() {
-        favouriteButtonView.setOnClickListener(favouriteButtonListener);
-    }
-
+    /**
+     * Listener responsible for click actions on the favourite button, either adding or removing the recipe
+     * from the database and notifying the adapter to update the favourite button's image resource.
+     */
     private final View.OnClickListener favouriteButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {

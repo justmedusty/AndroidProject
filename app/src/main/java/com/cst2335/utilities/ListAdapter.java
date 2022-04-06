@@ -99,7 +99,7 @@ public class ListAdapter
                     .inflate(R.layout.ingredient_row, parent, false);
         }
 
-        return new ListViewHolder(listRowView, context);
+        return new ListViewHolder(listRowView, context, this);
     }
 
     @Override
@@ -112,8 +112,6 @@ public class ListAdapter
             viewHolder.getIngredientView()
                     .setText(ingredientList[position]);
         }
-
-        viewHolder.setAdapter(this);
     }
 
     @Override
@@ -145,7 +143,7 @@ public class ListAdapter
     private void buildActivityLVH(ListViewHolder viewHolder, int position) {
         viewHolder.getTitleView()
                 .setText(list.get(position).title);
-        viewHolder.setTitleOnClick();
+        viewHolder.setTitleListener();
         if (list.get(position).isFavourited) {
             viewHolder.getFavouriteButtonView()
                     .setImageResource(R.drawable.favourited);
