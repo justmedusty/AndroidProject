@@ -1,8 +1,10 @@
 package com.cst2335.androidproject;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,6 +51,8 @@ public class SearchActivity extends BaseNavActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences pref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_nav);
         setupNavigation("Lucas Ross", "Search Activity", "1.0");
@@ -57,33 +61,41 @@ public class SearchActivity extends BaseNavActivity {
         stub.setLayoutResource(R.layout.search_activity);
         stub.inflate();
 
+
+        ArrayList<RecipeData> list = new ArrayList<>();
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        adapter = new ListAdapter(list, getApplication());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
+
+
         progressBar = findViewById(R.id.progressBar2);
         ImageButton searchButton = findViewById(R.id.searchButton);
         EditText editText = findViewById(R.id.searchActivityRowTitle);
+        editText.setText(pref.getString("searchString", null));
+
         searchButton.setOnClickListener(view -> {
             if (editText.getText() != null) {
                 api.apiCall(editText.getText().toString(), adapter, progressBar);
+                editor.putString("searchString", editText.getText().toString())
+                        .apply();
             }
         });
         editText.setOnKeyListener((view, keyCode, keyEvent) -> {
             if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER) && editText.getText() != null) {
                 api.apiCall(editText.getText().toString(), adapter, progressBar);
+                editor.putString("searchString", editText.getText().toString())
+                        .apply();
                 return true;
             } else {
                 return false;
             }
         });
 
-        ArrayList<RecipeData> list = new ArrayList<>();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-
-        adapter = new ListAdapter(list, getApplication());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
-        //api.apiCall(null, adapter);
-
-
+        if (editText != null) {
+            api.apiCall(editText.getText().toString(), adapter, progressBar);
+        }
     }
 
     public void onBackPressed() {
