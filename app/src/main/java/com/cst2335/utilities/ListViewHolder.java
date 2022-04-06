@@ -24,39 +24,48 @@ import org.w3c.dom.Text;
  * The type List view holder.
  */
 public class ListViewHolder
-        extends RecyclerView.ViewHolder implements View.OnClickListener {
+        extends RecyclerView.ViewHolder {
+    public void setAdapter(ListAdapter adapter) {
+        this.adapter = adapter;
+    }
+
     /**
      * The Adapter.
      */
-    ListAdapter adapter;
+    private ListAdapter adapter;
+
+    public TextView getIngredientView() {
+        return ingredientView;
+    }
+
+    public ImageButton getFavouriteButtonView() {
+        return favouriteButtonView;
+    }
+
     /**
      * The Title view.
      */
-    TextView titleView;
+    private TextView titleView;
     /**
      * The Ingredient view.
      */
-    TextView ingredientView;
+    private TextView ingredientView;
     /**
      * The Favourite button view.
      */
-    ImageButton favouriteButtonView;
-    /**
-     * The View.
-     */
-    View view;
+    private ImageButton favouriteButtonView;
     /**
      * The Context.
      */
-    Context context;
+    private Context context;
     /**
      * The Is phone.
      */
-    static boolean isPhone = false;
+    private static boolean isPhone = false;
     /**
      * The Helper.
      */
-    DatabaseHelper helper;
+    private DatabaseHelper helper;
 
     /**
      * Sets is phone.
@@ -82,58 +91,11 @@ public class ListViewHolder
             favouriteButtonView
                     = itemView
                     .findViewById(R.id.searchActivityRowButton);
-
-            titleView.setOnClickListener(this);
-            if (favouriteButtonView != null) {
-                favouriteButtonView.setOnClickListener(this);
-            }
         } else {
             ingredientView = itemView.findViewById(R.id.ingredient);
         }
-        view = itemView;
         this.context = context;
-    }
 
-    @Override
-    public void onClick(View view) {
-        if (isPhone && view.equals(titleView)) {
-            Intent goToFragment = new Intent(context.getApplicationContext(), RecipeDetailsPhone.class);
-            goToFragment.putExtra("title", adapter.list.get(getAdapterPosition()).getTitle());
-            goToFragment.putExtra("ingredients", adapter.list.get(getAdapterPosition()).getIngredients());
-            goToFragment.putExtra("url", adapter.list.get(getAdapterPosition()).getURL());
-            context.startActivity(goToFragment);
-        } else if (view.equals(titleView)) {
-            RecipeDetailsFragment detailsFragment = RecipeDetailsFragment.newInstance(
-                    adapter.list.get(getLayoutPosition()).getTitle(),
-                    adapter.list.get(getAdapterPosition()).getIngredients(),
-                    adapter.list.get(getAdapterPosition()).getURL(),
-                    adapter);
-            AppCompatActivity activity = (AppCompatActivity) context;
-
-            int ft = activity.getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.recipe_details_fragment, detailsFragment)
-                    .commit();
-        } else if (view.equals(favouriteButtonView)) {
-
-            String title = adapter.list.get(getLayoutPosition()).getTitle();
-            String ingredients = adapter.list.get(getAdapterPosition()).getIngredients();
-            String url = adapter.list.get(getAdapterPosition()).getURL();
-
-            helper = new DatabaseHelper(context.getApplicationContext(), DatabaseHelper.DATABASE_NAME, null, DatabaseHelper.VERSION);
-
-            if (adapter.list.get(getLayoutPosition()).isFavourited) {
-                showConfirmAlertDialog(url);
-
-            } else {
-                adapter.list.get(getLayoutPosition()).isFavourited = true;
-                adapter.notifyDataSetChanged();
-                helper.insertIntoDatabase(title, ingredients, url);
-                snackBarMaker(url);
-            }
-
-
-        }
     }
 
     /**
@@ -151,7 +113,7 @@ public class ListViewHolder
                 adapter.list.get(getLayoutPosition()).isFavourited = false;
                 helper.removeFromDatabase(url);
                 adapter.notifyDataSetChanged();
-                if(context instanceof FavouritesActivity) {
+                if (context instanceof FavouritesActivity) {
                     adapter.removeItem(getLayoutPosition());
                 }
                 toastMaker("Bookmark removed.", context);
@@ -197,15 +159,62 @@ public class ListViewHolder
                     }
                 })
                 .show();
+    }
 
-        class SnackbarUndoListener implements View.OnClickListener {
+    public TextView getTitleView() {
+        return titleView;
+    }
 
-            @Override
-            public void onClick(View v) {
-                adapter.list.get(getLayoutPosition()).isFavourited = false;
-                helper.removeFromDatabase(url);
-                adapter.notifyDataSetChanged();
+    public void setTitleOnClick() {
+        titleView.setOnClickListener(titleListener);
+    }
+
+    private View.OnClickListener titleListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if (isPhone) {
+                Intent goToFragment = new Intent(context.getApplicationContext(), RecipeDetailsPhone.class);
+                goToFragment.putExtra("title", adapter.list.get(getAdapterPosition()).getTitle());
+                goToFragment.putExtra("ingredients", adapter.list.get(getAdapterPosition()).getIngredients());
+                goToFragment.putExtra("url", adapter.list.get(getAdapterPosition()).getURL());
+                context.startActivity(goToFragment);
+            } else {
+                RecipeDetailsFragment detailsFragment = RecipeDetailsFragment.newInstance(
+                        adapter.list.get(getLayoutPosition()).getTitle(),
+                        adapter.list.get(getAdapterPosition()).getIngredients(),
+                        adapter.list.get(getAdapterPosition()).getURL(),
+                        adapter);
+                AppCompatActivity activity = (AppCompatActivity) context;
+                int ft = activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.recipe_details_fragment, detailsFragment)
+                        .commit();
             }
         }
+    };
+
+    public void setFavouriteButtonListener() {
+        favouriteButtonView.setOnClickListener(favouriteButtonListener);
     }
+
+    private View.OnClickListener favouriteButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            String title = adapter.list.get(getLayoutPosition()).getTitle();
+            String ingredients = adapter.list.get(getAdapterPosition()).getIngredients();
+            String url = adapter.list.get(getAdapterPosition()).getURL();
+
+            helper = new DatabaseHelper(context.getApplicationContext(), DatabaseHelper.DATABASE_NAME, null, DatabaseHelper.VERSION);
+
+            if (adapter.list.get(getLayoutPosition()).isFavourited) {
+                showConfirmAlertDialog(url);
+
+            } else {
+                adapter.list.get(getLayoutPosition()).isFavourited = true;
+                adapter.notifyDataSetChanged();
+                helper.insertIntoDatabase(title, ingredients, url);
+                snackBarMaker(url);
+            }
+        }
+    };
 }

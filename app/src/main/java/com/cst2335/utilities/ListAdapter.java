@@ -108,21 +108,23 @@ public class ListAdapter
                      final int position) {
         final int index = viewHolder.getAdapterPosition();
         if (list != null) { // this is a list of recipe data objects
-            viewHolder.titleView
+            viewHolder.getTitleView()
                     .setText(list.get(position).title);
-            if (list.get(position).isFavourited && viewHolder.favouriteButtonView != null){
-                viewHolder.favouriteButtonView
+            viewHolder.setTitleOnClick();
+            if (list.get(position).isFavourited && viewHolder.getFavouriteButtonView() != null){
+                viewHolder.getFavouriteButtonView()
                         .setImageResource(R.drawable.favourited);
-            } else if (viewHolder.favouriteButtonView != null){
-                viewHolder.favouriteButtonView
+            } else if (viewHolder.getFavouriteButtonView() != null){
+                viewHolder.getFavouriteButtonView()
                         .setImageResource(R.drawable.favourite);
             }
+            viewHolder.setFavouriteButtonListener();
         } else { // this is a list of ingredients
-            viewHolder.ingredientView
+            viewHolder.getIngredientView()
                     .setText(ingredientList[position]);
         }
 
-        viewHolder.adapter=this;
+        viewHolder.setAdapter(this);
     }
 
     @Override
