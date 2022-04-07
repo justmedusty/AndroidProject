@@ -7,12 +7,9 @@ Date: March 24 2022
 
  */
 
-
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -152,7 +149,9 @@ public class RecipeDetailsFragment extends Fragment {
                 favourite.setImageResource(R.drawable.favourite);
 
                 if(!ListViewHolder.getIsPhone()) { // on tablet so need to remove fragment when unfavourited.
-                    recipeListAdapter.removeItem(position);
+                   if (this.getActivity().findViewById(R.id.favourites_activity_layout) != null) {
+                       recipeListAdapter.removeItem(position);
+                   }
                     getParentFragmentManager().beginTransaction()
                             .remove(RecipeDetailsFragment.this)
                             .commitNowAllowingStateLoss();
