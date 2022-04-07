@@ -146,16 +146,18 @@ public class RecipeDetailsFragment extends Fragment {
 
         // deal with onclick of favourite floating action button.
         favourite.setOnClickListener(v -> {
-            if (helper.checkForRecord(url)) {
+            if (helper.checkForRecord(url)) { // is favourited so now remove it
                 helper.removeFromDatabase(url);
                 favourite.setImageResource(R.drawable.favourite);
-                if(!ListViewHolder.getIsPhone()) {
+
+                if(!ListViewHolder.getIsPhone()) { // on tablet so need to remove fragment when unfavourited.
                     recipeListAdapter.removeItem(position);
                     getParentFragmentManager().beginTransaction()
                             .remove(RecipeDetailsFragment.this)
                             .commitNowAllowingStateLoss();
                 }
-            } else {
+
+            } else { // is favourited so insert into database
                 helper.insertIntoDatabase(title, ingredients, url);
                 favourite.setImageResource(R.drawable.favourited);
 

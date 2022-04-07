@@ -8,6 +8,7 @@ Date: March 24 2022
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -44,7 +45,7 @@ public class FavouritesActivity extends BaseNavActivity {
     /**
      * The list of recipe data objects to be used in populating the recycler view of recipes.
      */
-    private ArrayList<RecipeData> list = new ArrayList<>();
+    private final ArrayList<RecipeData> list = new ArrayList<>();
 
 
 

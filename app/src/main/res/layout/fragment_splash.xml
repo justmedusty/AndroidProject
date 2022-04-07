@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- This is the layout used by the SplashFragment containing the application
+        splash page image. It is used as a placeholder when on tablet for the
+        fragment container on the favourites activity page. -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/splash_fragment"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,7 +10,6 @@
     android:background="@color/toolBarGrey"
     tools:context=".SplashFragment">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <ImageView
         android:id="@+id/imageView"
@@ -28,7 +29,7 @@
         android:padding="10dp"
         android:textStyle="bold"
 
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:textColor="@color/honeyDew"/>
 
 

@@ -16,18 +16,21 @@ import android.view.ViewGroup;
 public class SplashFragment extends Fragment {
 
 
+    /**
+     * required empty public constructor
+     */
     public SplashFragment() {
         // Required empty public constructor
     }
 
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
-    }
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        if (getArguments() != null) {
+//            // no arguments passed to this fragment
+//        }
+//    }
 
     /**
      * inflates the layout to be used by this fragment.

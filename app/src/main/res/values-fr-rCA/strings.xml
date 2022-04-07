@@ -56,5 +56,8 @@
         d\'autres et cliquer sur l\'icone de signet a droite pour acceder aux recettes favorites et defavorisees.
         sur la droite pour voir vos recettes favorites et defavorisees. Vous pouvez cliquer sur la recette pour en voir les details.</string>
 
+    <!-- RecipeDetailsPhone Strings -->
+    <string name="recipe_details_title">Details de la recette</string>
+
 
 </resources>

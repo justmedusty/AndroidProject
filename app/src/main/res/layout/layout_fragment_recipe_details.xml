@@ -13,32 +13,29 @@
     android:padding="15dp"
     android:orientation="vertical"
     tools:context=".RecipeDetailsFragment">
-
-    <!-- TODO layout_fragment_recipe_details.xml must be constructed with the fields that will
-            be necessary for displaying arguments passed in bundle. Need a field for
-             Recipe Title, ingredients, and url. May add floating action button for saving
-             recipe to favourites. -->
+<!--    The Recipe Title displayed on the Recipe Details fragment. -->
     <TextView
         android:id="@+id/recipe_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:textColor="@color/imperialRed"
         android:layout_marginBottom="10dp"
         android:fontFamily="sans-serif-black"
     />
 
-<!--    TODO try to implement recycler list for ingredients instead of textView-->
+<!--    The title for the Ingredients list. -->
     <TextView
         android:id="@+id/recipe_ingredients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textColor="@color/cardview_dark_background"
         android:layout_marginBottom="10dp"
         android:text="@string/ingredients"
         android:fontFamily="sans-serif-black"/>
 
+<!--    The container for loading list of ingredients for the Recipe Details fragment-->
     <androidx.recyclerview.widget.RecyclerView
         android:nestedScrollingEnabled="false"
         android:id="@+id/recyclerView"
@@ -48,6 +45,8 @@
         android:overScrollMode="never"
         />
 
+<!--    the button for taking user to the website for the given recipe displayed in
+        the recipe details fragment. -->
     <Button
         android:id="@+id/recipe_url"
         android:layout_width="match_parent"

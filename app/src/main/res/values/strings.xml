@@ -54,4 +54,7 @@
     <string name="popular_activity_title">Popular Activity</string>
     <string name="popular_info_message">This page loads popular recipes , you may refresh to see more as well as click the bookmark icon on the right to both favourite and unfavourite recipes. You may click the recipe to see the details as well.</string>
 
+    <!-- RecipeDetailsPhone Strings -->
+    <string name="recipe_details_title">Recipe Details</string>
+
 </resources>

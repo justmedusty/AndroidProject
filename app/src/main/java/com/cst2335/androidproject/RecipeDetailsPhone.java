@@ -30,7 +30,7 @@ public class RecipeDetailsPhone extends BaseNavActivity {
         setContentView(R.layout.activity_base_nav);
 
         // include tool bar and nav drawer, as well as inflate this activitie's layout
-        setupNavigation("Chad Rocheleau", "Recipe Details", "1.0");
+        setupNavigation("Chad Rocheleau", getString(R.string.recipe_details_title), "1.0");
         ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.activity_recipe_details_phone);
         stub.inflate();
