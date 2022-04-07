@@ -45,7 +45,7 @@ public class FavouritesActivity extends BaseNavActivity {
     /**
      * The list of recipe data objects to be used in populating the recycler view of recipes.
      */
-    private ArrayList<RecipeData> list = new ArrayList<>();
+    private final ArrayList<RecipeData> list = new ArrayList<>();
 
 
 
