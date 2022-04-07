@@ -28,7 +28,7 @@ public class ListViewHolder
     /**
      * Stores a reference to the adapter responsible for this ListViewHolder.
      */
-    private ListAdapter adapter;
+    private final ListAdapter adapter;
 
 
     /**

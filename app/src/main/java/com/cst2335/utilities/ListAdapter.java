@@ -52,7 +52,7 @@ public class ListAdapter
 
     /**
      * Instantiates a new ListAdapter for any activity displaying an ingredient list, creating
-     * a DatabasseHelper object for the adapter to perform CRUD operations on the database as well.
+     * a DatabaseHelper object for the adapter to perform CRUD operations on the database as well.
      *
      * @param ingredientList String array used to store ingredient strings.
      * @param context Context of the caller for use with the DatabaseHelper object.

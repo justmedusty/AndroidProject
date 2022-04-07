@@ -14,9 +14,20 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+/*
+File: ApiService.java
+Author: Dustyn Gibb
+Lab Section: 012
+Date: April 7th 20222
+ */
+
+
 
 /**
  * The class for accessing the api and parsing the json data , loading the data into RecipeData Objects
+ * and passing the new list to the relevant adapter.
+ * @author Dustyn Gibb
+ *
  */
 public class ApiService {
     /**
@@ -72,7 +83,7 @@ public class ApiService {
     }
 
     /**
-     * Api call.
+     * Api call, can take a search term or can pass null, in which case it makes a call for popular recipes instead
      *
      * @param searchTerm  the search term
      * @param adapter     the adapter for updating the listview

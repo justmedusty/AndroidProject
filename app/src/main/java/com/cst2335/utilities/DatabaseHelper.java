@@ -8,9 +8,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+/*
+File: PopularActivity.java
+Author: Dustyn Gibb
+Lab Section: 012
+Date: April 7th 20222
+ */
 
 /**
- * The type Database helper.
+ * Database helper class for accessing the SQLite database as well as inserting or deleting data from the database
+ * @author Dustyn Gibb
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
