@@ -8,7 +8,6 @@ Date: March 24 2022
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -106,8 +105,9 @@ public class FavouritesActivity extends BaseNavActivity {
      * first time.
      * @param adapter The adapter for the list that will be updated when this method is called.
      */
+    @SuppressLint("NotifyDataSetChanged")
     public void refreshListDataUpdate(ListAdapter adapter) {
-        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext(), null, null, DatabaseHelper.VERSION);
+        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
         Cursor cursor = databaseHelper.selectAll();
         list.clear();
         if (cursor != null) {
@@ -152,10 +152,8 @@ public class FavouritesActivity extends BaseNavActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage((getString(R.string.favourites_info_message)))
                 .setCancelable(false)
-                .setPositiveButton(R.string.okay_dialog_button, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                .setPositiveButton(R.string.okay_dialog_button, (dialog, id) -> {
 
-                    }
                 });
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();

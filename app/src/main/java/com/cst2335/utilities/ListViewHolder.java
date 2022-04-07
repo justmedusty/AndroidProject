@@ -5,6 +5,7 @@ Author: Lucas Ross
 Lab Section: 012
 Date: April 7, 2022
  */
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -153,6 +154,7 @@ public class ListViewHolder
      *
      * @param url String recipe URL used to locate recipe in database.
      */
+    @SuppressLint("NotifyDataSetChanged")
     public void showConfirmAlertDialog(String url) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(R.string.lvh_alert_dialog_title);
@@ -193,6 +195,7 @@ public class ListViewHolder
      *
      * @param url String URL for relevant recipe, used to locate recipe in database.
      */
+    @SuppressLint("NotifyDataSetChanged")
     private void snackBarMaker(String url) {
         Snackbar.make(favouriteButtonView, context.getString(R.string.lvh_snackbar_text), Snackbar.LENGTH_SHORT)
                 .setAction(R.string.lvh_snackbar_undo, view -> {
@@ -225,7 +228,7 @@ public class ListViewHolder
                 detailsFragment.setPosition(getAdapterPosition());
                 detailsFragment.setRecipeListAdapter(adapter);
                 AppCompatActivity activity = (AppCompatActivity) context;
-                int ft = activity.getSupportFragmentManager()
+                activity.getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.recipe_details_fragment, detailsFragment)
                         .commit();
@@ -238,13 +241,14 @@ public class ListViewHolder
      * from the database and notifying the adapter to update the favourite button's image resource.
      */
     private final View.OnClickListener favouriteButtonListener = new View.OnClickListener() {
+        @SuppressLint("NotifyDataSetChanged")
         @Override
         public void onClick(View view) {
             String title = adapter.getRecipeList().get(getLayoutPosition()).getTitle();
             String ingredients = adapter.getRecipeList().get(getAdapterPosition()).getIngredients();
             String url = adapter.getRecipeList().get(getAdapterPosition()).getURL();
 
-            helper = new DatabaseHelper(context.getApplicationContext(), DatabaseHelper.DATABASE_NAME, null, DatabaseHelper.VERSION);
+            helper = new DatabaseHelper(context.getApplicationContext());
 
             if (adapter.getRecipeList().get(getLayoutPosition()).isFavourited) {
                 showConfirmAlertDialog(url);

@@ -5,33 +5,24 @@ Author: Lucas Ross
 Lab Section: 012
 Date: April 7, 2022
  */
+
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.view.View;
+import android.view.ViewStub;
 import android.widget.EditText;
-
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.view.ViewStub;
-import android.widget.ImageButton;
-import android.widget.Toast;
-
 import com.cst2335.utilities.ApiService;
 import com.cst2335.utilities.BaseNavActivity;
 import com.cst2335.utilities.ListAdapter;
 import com.cst2335.utilities.RecipeData;
-
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The search activity is responsible for allowing the user to enter keywords or recipe names in the search field,
@@ -47,7 +38,7 @@ public class SearchActivity extends BaseNavActivity {
         setContentView(R.layout.activity_base_nav);
         setupNavigation("Lucas Ross", getString(R.string.search_activity_title), "1.0");
         // get the ViewStub into which this activities layout will be loaded.
-        ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
+        ViewStub stub = findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.search_activity);
         stub.inflate();
 
@@ -59,7 +50,7 @@ public class SearchActivity extends BaseNavActivity {
         SharedPreferences.Editor editor = pref.edit();
         ApiService api = new ApiService();
         ArrayList<RecipeData> list = new ArrayList<>();
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         ListAdapter adapter = new ListAdapter(list, getApplication());
         ProgressBar progressBar = findViewById(R.id.progressBar2);
         ImageButton searchButton = findViewById(R.id.searchButton);
@@ -101,7 +92,7 @@ public class SearchActivity extends BaseNavActivity {
         sends an api call on activity startup.
          */
         editText.setText(pref.getString("searchString", null));
-        if (editText != null) {
+        if (editText.getText() != null) {
             api.apiCall(editText.getText().toString(), adapter, progressBar);
         }
     }
@@ -126,10 +117,8 @@ public class SearchActivity extends BaseNavActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage((getString(R.string.search_info_dialog)))
                 .setCancelable(false)
-                .setPositiveButton(R.string.okay_dialog_button, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                .setPositiveButton(R.string.okay_dialog_button, (dialog, id) -> {
 
-                    }
                 });
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();

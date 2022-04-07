@@ -3,8 +3,6 @@ package com.cst2335.androidproject;
 import androidx.fragment.app.FragmentManager;
 
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.ViewStub;
@@ -31,7 +29,7 @@ public class RecipeDetailsPhone extends BaseNavActivity {
 
         // include tool bar and nav drawer, as well as inflate this activitie's layout
         setupNavigation("Chad Rocheleau", getString(R.string.recipe_details_title), "1.0");
-        ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
+        ViewStub stub = findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.activity_recipe_details_phone);
         stub.inflate();
 
@@ -62,10 +60,8 @@ public class RecipeDetailsPhone extends BaseNavActivity {
                 "activities. The recipe may be favourited or unvafourited using the bookmark icon " +
                 "at the bottom of the page."))
                 .setCancelable(false)
-                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                .setPositiveButton("Okay", (dialog, id) -> {
 
-                    }
                 });
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();

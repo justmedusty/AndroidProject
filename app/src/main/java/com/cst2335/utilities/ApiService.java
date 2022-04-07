@@ -1,5 +1,6 @@
 package com.cst2335.utilities;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -91,7 +92,8 @@ public class ApiService {
      */
     public void apiCall(@Nullable String searchTerm, ListAdapter adapter, ProgressBar progressBar) {
         this.adapter = adapter;
-        class GetJSON extends AsyncTask<Void, Integer, String> {
+        @SuppressLint("StaticFieldLeak")
+        class GetJSON extends AsyncTask<Void, Void, String> {
             /**
              * This method executes before the API call is made
              */
@@ -106,6 +108,7 @@ public class ApiService {
              * This method executes once the API call is completed
              * @param s the json string that was grabbed in the API call in the doInBackground method
              */
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);

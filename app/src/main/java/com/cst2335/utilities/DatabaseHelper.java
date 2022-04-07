@@ -55,11 +55,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * Instantiates a new Database helper.
      *
      * @param context the context
-     * @param name    the name
-     * @param factory the factory
-     * @param version the version
      */
-    public DatabaseHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }
 

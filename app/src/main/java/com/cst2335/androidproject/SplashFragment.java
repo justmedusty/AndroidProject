@@ -24,14 +24,6 @@ public class SplashFragment extends Fragment {
     }
 
 
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            // no arguments passed to this fragment
-//        }
-//    }
-
     /**
      * inflates the layout to be used by this fragment.
      * @param inflater the inflater used to inflate the fragment layout

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cst2335.androidproject.R;
@@ -33,14 +34,11 @@ public class ListAdapter
      * String array used to store a list of ingredients for a single recipe.
      */
     private String[] ingredientList;
-    /**
-     * View object used to store reference to inflated row view for both recipes and ignredients.
-     */
-    private View listRowView;
+
     /**
      * DatabaseHelper object reference to allow adapter to perform CRUD operations on database.
      */
-    private DatabaseHelper helper;
+    private final DatabaseHelper helper;
 
     /**
      * Instantiates a new ListAdapter for any activity displaying a recipe list, creating
@@ -52,7 +50,7 @@ public class ListAdapter
     public ListAdapter(ArrayList<RecipeData> recipeList,
                        Context context) {
         this.recipeList = recipeList;
-        helper = new DatabaseHelper(context, DatabaseHelper.DATABASE_NAME, null, DatabaseHelper.VERSION);
+        helper = new DatabaseHelper(context);
     }
 
     /**
@@ -65,7 +63,7 @@ public class ListAdapter
     public ListAdapter(Context context,
                        String[] ingredientList) {
         this.ingredientList = ingredientList;
-        helper = new DatabaseHelper(context, DatabaseHelper.DATABASE_NAME, null, DatabaseHelper.VERSION);
+        helper = new DatabaseHelper(context);
     }
 
     /**
@@ -101,6 +99,7 @@ public class ListAdapter
     public ListViewHolder onCreateViewHolder(
             ViewGroup parent, int viewType) {
 
+        View listRowView;
         Context context
                 = parent.getContext();
         LayoutInflater inflater
@@ -131,7 +130,7 @@ public class ListAdapter
      */
     @Override
     public void
-    onBindViewHolder(final ListViewHolder viewHolder,
+    onBindViewHolder(@NonNull final ListViewHolder viewHolder,
                      final int position) {
         if (recipeList != null) { // this is a list of recipe data objects
             bindActivityLVH(viewHolder, position);
@@ -148,7 +147,7 @@ public class ListAdapter
      */
     @Override
     public void onAttachedToRecyclerView(
-            RecyclerView recyclerView) {
+            @NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
 

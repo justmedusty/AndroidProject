@@ -24,6 +24,8 @@ import com.cst2335.utilities.DatabaseHelper;
 import com.cst2335.utilities.ListAdapter;
 import com.cst2335.utilities.ListViewHolder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -130,10 +132,7 @@ public class RecipeDetailsFragment extends Fragment {
         // get the floating action button and database helper so recipes can be favourited from
         // within a fragment.
         FloatingActionButton favourite = view.findViewById(R.id.favouriteActionButton);
-        final DatabaseHelper helper = new DatabaseHelper(getContext(),
-                DatabaseHelper.DATABASE_NAME,
-                null,
-                DatabaseHelper.VERSION);
+        final DatabaseHelper helper = new DatabaseHelper(getContext());
 
         // set the image of the floating action button to reflect whether or not the recipe is favourite
         if (helper.checkForRecord(url)) {
@@ -149,7 +148,7 @@ public class RecipeDetailsFragment extends Fragment {
                 favourite.setImageResource(R.drawable.favourite);
 
                 if(!ListViewHolder.getIsPhone()) { // on tablet so need to remove fragment when unfavourited.
-                   if (this.getActivity().findViewById(R.id.favourites_activity_layout) != null) {
+                   if (this.requireActivity().findViewById(R.id.favourites_activity_layout) != null) {
                        recipeListAdapter.removeItem(position);
                    }
                     getParentFragmentManager().beginTransaction()

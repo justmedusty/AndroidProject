@@ -1,7 +1,6 @@
 package com.cst2335.androidproject;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.ViewStub;
@@ -89,10 +88,8 @@ public class PopularActivity extends BaseNavActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage(getString(R.string.popular_info_message))
                 .setCancelable(false)
-                .setPositiveButton(R.string.okay_dialog_button, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                .setPositiveButton(R.string.okay_dialog_button, (dialog, id) -> {
 
-                    }
                 });
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();
