@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- This is the layout used by the RecipeDetailsPhone activity that uses a fragment to load
+        Recipe Details for a selected recipe item.-->
 <FrameLayout android:id="@+id/recipe_details_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

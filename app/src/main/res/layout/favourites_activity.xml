@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- This is the Favourites activity specific layout that gets inserted into the ViewStub of the
+        activity_base_nav layout used by all activities containing toolbar and nav drawer .-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/favourites_activity_layout"
