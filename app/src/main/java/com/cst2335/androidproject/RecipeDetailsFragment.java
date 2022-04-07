@@ -1,33 +1,29 @@
 package com.cst2335.androidproject;
+/*
+File: RecipeDetailsFragment.java
+Author: Chad Rocheleau
+Lab Section: 012
+Date: March 24 2022
+
+ */
 
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.cst2335.utilities.DatabaseHelper;
 import com.cst2335.utilities.ListAdapter;
 import com.cst2335.utilities.ListViewHolder;
-import com.cst2335.utilities.RecipeData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -39,29 +35,54 @@ public class RecipeDetailsFragment extends Fragment {
 
 
     // the fragment initialization parameters
+    /**
+     * constant key for title value
+     */
     private static final String ARG_RECIPE_TITLE = "title";
+
+    /**
+     * constant key for ingredients value
+     */
     private static final String ARG_RECIPE_INGREDIENTS = "ingredients";
+
+    /**
+     * constant key for url value
+     */
     private static final String ARG_RECIPE_URL = "url";
 
 
     // the values of fragment parameters to be used in setting fields of fragment layout.
+    /**
+     * value for title of the selected item being displayed in the details fragment.
+     */
     private String title;
+
+    /**
+     * value for ingredients of the selected item being displayed in the details fragment.
+     */
     private String ingredients;
+
+    /**
+     * value for url of the selected item being displayed in the details fragment.
+     */
     private String url;
+
+    /**
+     * position of the item selected for which fragment details are displayed.
+     */
     private int position;
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-
-    RecyclerView recyclerView;
-    ListAdapter adapter;
+    private RecyclerView recyclerView;
+    private ListAdapter adapter;
     private ListAdapter recipeListAdapter;
-    String[]  ingredientArray;
+    private String[]  ingredientArray;
 
     public RecipeDetailsFragment() {
         // Required empty public constructor
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     public void setRecipeListAdapter(ListAdapter recipeListAdapter) {
@@ -184,7 +205,6 @@ public class RecipeDetailsFragment extends Fragment {
                     favourite.setImageResource(R.drawable.favourite);
                     if(!ListViewHolder.getIsPhone()) {
                         recipeListAdapter.removeItem(position);
-                        //todo delete the fragment details
                         getParentFragmentManager().beginTransaction()
                                 .remove(RecipeDetailsFragment.this)
                                 .commitNowAllowingStateLoss();

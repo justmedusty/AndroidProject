@@ -13,17 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.cst2335.androidproject.FavouritesActivity;
-import com.cst2335.androidproject.MainActivity;
 import com.cst2335.androidproject.PopularActivity;
 import com.cst2335.androidproject.R;
 import com.cst2335.androidproject.SearchActivity;
@@ -73,13 +69,13 @@ public class BaseNavActivity extends AppCompatActivity implements NavigationView
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
         // *********  Navigation drawer setup
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.nav_drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.nav_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, testToolBar,
                 R.string.open, R.string.close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navView =  findViewById(R.id.nav_view);
 
         ((TextView) navView.getHeaderView(0).findViewById(R.id.activity_title)).setText(activityTitle);
         ((TextView) navView.getHeaderView(0).findViewById(R.id.author)).setText(author);
@@ -105,7 +101,8 @@ public class BaseNavActivity extends AppCompatActivity implements NavigationView
     }
 
     /**
-     * tool bar options selected operations.
+     * tool bar options selected operations. Overridden in each activity to create custom
+     * functionality for tool bar items for each activity.
      *
      * @param item the item selected in the toolbar
      * @return true to execute the item selected operation
@@ -130,19 +127,16 @@ public class BaseNavActivity extends AppCompatActivity implements NavigationView
         //boolean isPhone = findViewById(R.id.recipe_details_fragment) == null;
         if (id == R.id.nav_drawer_search) {
             Intent goToSearch = new Intent(getApplicationContext(), SearchActivity.class);
-            //goToSearch.putExtra("isPhone", isPhone);
             startActivity(goToSearch);
         } else if (id == R.id.nav_drawer_popular) {
             Intent goToPopular = new Intent(getApplicationContext(), PopularActivity.class);
-            //goToPopular.putExtra("isPhone", isPhone);
             startActivity(goToPopular);
         } else if (id == R.id.nav_drawer_favourites) {
             Intent goToFavs = new Intent(getApplicationContext(), FavouritesActivity.class);
-            //goToFavs.putExtra("isPhone", isPhone);
             startActivity(goToFavs);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.nav_drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.nav_drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
