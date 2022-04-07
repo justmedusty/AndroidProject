@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Recipe Finder</string>
+    <string name="okay_dialog_button">Okay</string>
 
     <!--    Strings for toolbar -->
     <string name="menu_search">Search Recipes</string>
@@ -11,6 +12,13 @@
     <string name="search_hint">Enter Recipe Name To Search</string>
     <string name="search_button_description">Searches API</string>
     <string name="search_title">Search Recipes</string>
+    <string name="search_activity_title">Search Activity</string>
+    <string name="search_info_dialog">To use the Search activity you must enter search terms in the text field provided.
+                Submitting the search terms will produce a list of recipes that match the search terms.
+                Once a list is produced you can click on an item in the list to view details of that list item.
+                Clicking on the bookmark or favourite button will prompt whether you want to add that item to favourites or not.
+                Use the nav drawer to navigate to other activities</string>
+
 
     <!--    Strings for nav drawer-->
     <string name="open">open</string>
@@ -18,14 +26,32 @@
 
     <!--    Strings for Favourites activity-->
     <string name="favourites_title">Your Favourite Recipes</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="favourites_activity_title">Favourites Activity</string>
+    <string name="favourites_info_message">To use the favourites activity you can click on a favourited item to view the details.
+                Clicking on the bookmark button will prompt for confirmation that you want to delete an item from favourites.
+                Use the navigation drawer to navigate to other activities.</string>
 
     <!--    fragment strings -->
 
     <string name="popular_recipes">Popular Recipes</string>
     <string name="goTo_btn">Go To Website</string>
     <string name="ingredients">Ingredients</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="splash_image">this is a splash image</string>
     <string name="splash_title">Recipe Finder</string>
+
+
+    <!-- ListViewHolder Strings -->
+    <string name="lvh_alert_dialog_title">Bookmark Removal.</string>
+    <string name="lvh_alert_dialog_message">Do you want to remove this recipe from your favourites?</string>
+    <string name="lvh_alert_dialog_positive">Yes</string>
+    <string name="lvh_alert_dialog_toast_pos">Bookmark removed.</string>
+    <string name="lvh_alert_dialog_toast_neg">Bookmark not removed.</string>
+    <string name="lvh_alert_dialog_negative">No</string>
+    <string name="lvh_snackbar_text">Recipe has been added to favourites</string>
+    <string name="lvh_snackbar_undo">Undo</string>
+
+    <!-- PopularActivity Strings -->
+    <string name="popular_activity_title">Popular Activity</string>
+    <string name="popular_info_message">This page loads popular recipes , you may refresh to see more as well as click the bookmark icon on the right to both favourite and unfavourite recipes. You may click the recipe to see the details as well.</string>
+
 </resources>

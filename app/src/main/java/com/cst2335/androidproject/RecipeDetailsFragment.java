@@ -1,33 +1,31 @@
 package com.cst2335.androidproject;
+/*
+File: RecipeDetailsFragment.java
+Author: Chad Rocheleau
+Lab Section: 012
+Date: March 24 2022
+
+ */
 
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.cst2335.utilities.DatabaseHelper;
 import com.cst2335.utilities.ListAdapter;
 import com.cst2335.utilities.ListViewHolder;
-import com.cst2335.utilities.RecipeData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -37,36 +35,6 @@ import java.util.regex.Pattern;
  */
 public class RecipeDetailsFragment extends Fragment {
 
-
-    // the fragment initialization parameters
-    private static final String ARG_RECIPE_TITLE = "title";
-    private static final String ARG_RECIPE_INGREDIENTS = "ingredients";
-    private static final String ARG_RECIPE_URL = "url";
-
-
-    // the values of fragment parameters to be used in setting fields of fragment layout.
-    private String title;
-    private String ingredients;
-    private String url;
-    private int position;
-
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-
-    RecyclerView recyclerView;
-    ListAdapter adapter;
-    private ListAdapter recipeListAdapter;
-    String[]  ingredientArray;
-
-    public RecipeDetailsFragment() {
-        // Required empty public constructor
-    }
-
-    public void setRecipeListAdapter(ListAdapter recipeListAdapter) {
-        this.recipeListAdapter = recipeListAdapter;
-    }
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -114,7 +82,10 @@ public class RecipeDetailsFragment extends Fragment {
     }
 
     /**
-     * All fragment creation business is taken care of here.
+     * Essential operations to be performed when this fragment is created. The list of ingredients
+     * is formatted for use with a list view (converted to an array of ingredient items), the title
+     * of the fragment is set and the layout inflated.
+     *
      * @param inflater the inflater used to inflate this fragment layout
      * @param container the container in which this fragment will be inflated
      * @param savedInstanceState Bundle of data to be used by this fragment
@@ -127,9 +98,7 @@ public class RecipeDetailsFragment extends Fragment {
         View fragmentDetails = inflater.inflate(R.layout.layout_fragment_recipe_details, container, false);
         TextView fragTitle = fragmentDetails.findViewById(R.id.recipe_title);
 
-        //TextView fragIngredients = fragmentDetails.findViewById(R.id.recipe_ingredients);
-
-
+        // formatting the list of ingredients so we can split into an array of ingredients.
         ingredients = ingredients.replaceAll(Pattern.quote("\""), " ");
         ingredients = ingredients.replaceAll(Pattern.quote("["), "");
         ingredients = ingredients.replaceAll(Pattern.quote("]"), "");
@@ -142,18 +111,17 @@ public class RecipeDetailsFragment extends Fragment {
     }
 
     /**
-     * Any implementation of items in the fragment take place here. Button behavior and populating
-     * the ingredients list view that needs populating within this fragment with a list of the
-     * ingredients belonging to the recipe being featured in this details fragment.
+     * Implements fragment button behavior and handles populating the recyclerview used for displaying
+     * the list of ingredients for this recipe to the user in the fragment details.
+     *
      * @param view The fragment view that has been created and inflated
      * @param savedInstanceState Bundle of saved information used by this fragment.
      */
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        boolean isFavourite;
-
+        // using the url of the fragment to perform action to take user to website based on url
         Button goToWeb = view.findViewById(R.id.recipe_url);
         goToWeb.setOnClickListener( click -> {
             Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
@@ -161,7 +129,8 @@ public class RecipeDetailsFragment extends Fragment {
             startActivity(intent);
         });
 
-        // get the floating action button and database helper
+        // get the floating action button and database helper so recipes can be favourited from
+        // within a fragment.
         FloatingActionButton favourite = view.findViewById(R.id.favouriteActionButton);
         final DatabaseHelper helper = new DatabaseHelper(getContext(),
                 DatabaseHelper.DATABASE_NAME,
@@ -176,32 +145,101 @@ public class RecipeDetailsFragment extends Fragment {
         }
 
         // deal with onclick of favourite floating action button.
-        favourite.setOnClickListener( new View.OnClickListener()  {
-            @Override
-            public void onClick(View v) {
-                if (helper.checkForRecord(url)) {
-                    helper.removeFromDatabase(url);
-                    favourite.setImageResource(R.drawable.favourite);
-                    if(!ListViewHolder.getIsPhone()) {
-                        recipeListAdapter.removeItem(position);
-                        //todo delete the fragment details
-                        getParentFragmentManager().beginTransaction()
-                                .remove(RecipeDetailsFragment.this)
-                                .commitNowAllowingStateLoss();
-                    }
-                } else {
-                    helper.insertIntoDatabase(title, ingredients, url);
-                    favourite.setImageResource(R.drawable.favourited);
-
+        favourite.setOnClickListener(v -> {
+            if (helper.checkForRecord(url)) {
+                helper.removeFromDatabase(url);
+                favourite.setImageResource(R.drawable.favourite);
+                if(!ListViewHolder.getIsPhone()) {
+                    recipeListAdapter.removeItem(position);
+                    getParentFragmentManager().beginTransaction()
+                            .remove(RecipeDetailsFragment.this)
+                            .commitNowAllowingStateLoss();
                 }
+            } else {
+                helper.insertIntoDatabase(title, ingredients, url);
+                favourite.setImageResource(R.drawable.favourited);
 
             }
 
         });
         // populate the recycler view in fragment with ingredients list
-        recyclerView = view.findViewById(R.id.recyclerView);
-        adapter = new ListAdapter(getContext(), ingredientArray);
+
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+        ListAdapter adapter = new ListAdapter(getContext(), ingredientArray);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
+
+    /**
+     * required empty public constructor
+     */
+    public RecipeDetailsFragment() {
+        // Required empty public constructor
+    }
+
+    //************************** Setters ********************
+    /**
+     * sets the position value representing the position in the recipe list that was selected
+     * to show the recipe details specifically
+     * @param position the position in the list that reflects the recipe details being shown.
+     */
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    /**
+     * sets the reference to the adapter used for the recipe list
+     * @param recipeListAdapter the adapter used for the recipe list.
+     */
+    public void setRecipeListAdapter(ListAdapter recipeListAdapter) {
+        this.recipeListAdapter = recipeListAdapter;
+    }
+
+    // ***************** all class variables. *****************************
+    /**
+     * constant key for title value
+     */
+    private static final String ARG_RECIPE_TITLE = "title";
+
+    /**
+     * constant key for ingredients value
+     */
+    private static final String ARG_RECIPE_INGREDIENTS = "ingredients";
+
+    /**
+     * constant key for url value
+     */
+    private static final String ARG_RECIPE_URL = "url";
+
+
+    // the values of fragment parameters to be used in setting fields of fragment layout.
+    /**
+     * value for title of the selected item being displayed in the details fragment.
+     */
+    private String title;
+
+    /**
+     * value for ingredients of the selected item being displayed in the details fragment.
+     */
+    private String ingredients;
+
+    /**
+     * value for url of the selected item being displayed in the details fragment.
+     */
+    private String url;
+
+    /**
+     * position of the item selected for which fragment details are displayed.
+     */
+    private int position;
+
+    /**
+     * the adapter responsible for listing the recipe titles
+     */
+    private ListAdapter recipeListAdapter;
+
+    /**
+     * the array containing the list of ingredients for this details fragment.
+     */
+    private String[]  ingredientArray;
 }

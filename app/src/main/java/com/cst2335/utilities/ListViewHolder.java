@@ -1,5 +1,10 @@
 package com.cst2335.utilities;
-
+/*
+File: ListViewHolder.java
+Author: Lucas Ross
+Lab Section: 012
+Date: April 7, 2022
+ */
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -85,11 +90,15 @@ public class ListViewHolder
      *
      * @param isPhoneParam boolean representing whether device is a phone or tablet, true for phone, false for tablet
      */
-
     public static void setIsPhone(boolean isPhoneParam) {
         isPhone = isPhoneParam;
     }
 
+    /**
+     * Returns the boolean isPhone value.
+     *
+     * @return boolean value, true if device is phone, false otherwise
+     */
     public static boolean getIsPhone() {
         return isPhone;
     }
@@ -146,20 +155,20 @@ public class ListViewHolder
      */
     public void showConfirmAlertDialog(String url) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Bookmark Removal.");
-        builder.setMessage("Do you want to remove this recipe from your favourites?");
-        builder.setPositiveButton("Yes", (dialogInterface, i) -> {
+        builder.setTitle(R.string.lvh_alert_dialog_title);
+        builder.setMessage(R.string.lvh_alert_dialog_message);
+        builder.setPositiveButton(R.string.lvh_alert_dialog_positive, (dialogInterface, i) -> {
             adapter.getRecipeList().get(getLayoutPosition()).isFavourited = false;
             helper.removeFromDatabase(url);
             adapter.notifyDataSetChanged();
             if (context instanceof FavouritesActivity) {
                 adapter.removeItem(getLayoutPosition());
             }
-            toastMaker("Bookmark removed.", context);
+            toastMaker(context.getString(R.string.lvh_alert_dialog_toast_pos), context);
         });
-        builder.setNegativeButton("No", (dialogInterface, i) -> {
+        builder.setNegativeButton(R.string.lvh_alert_dialog_negative, (dialogInterface, i) -> {
             dialogInterface.cancel();
-            toastMaker("Bookmark not removed.", context);
+            toastMaker(context.getString(R.string.lvh_alert_dialog_toast_neg), context);
         });
         builder.create();
         builder.show();
@@ -185,8 +194,8 @@ public class ListViewHolder
      * @param url String URL for relevant recipe, used to locate recipe in database.
      */
     private void snackBarMaker(String url) {
-        Snackbar.make(favouriteButtonView, "Recipe has been added to favourites", Snackbar.LENGTH_SHORT)
-                .setAction("Undo", view -> {
+        Snackbar.make(favouriteButtonView, context.getString(R.string.lvh_snackbar_text), Snackbar.LENGTH_SHORT)
+                .setAction(R.string.lvh_snackbar_undo, view -> {
                     adapter.getRecipeList().get(getLayoutPosition()).isFavourited = false;
                     helper.removeFromDatabase(url);
                     adapter.notifyDataSetChanged();
