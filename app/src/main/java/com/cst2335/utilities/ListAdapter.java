@@ -1,5 +1,10 @@
 package com.cst2335.utilities;
-
+/*
+File: ListAdapter.java
+Author: Lucas Ross
+Lab Section: 012
+Date: April 7, 2022
+ */
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
