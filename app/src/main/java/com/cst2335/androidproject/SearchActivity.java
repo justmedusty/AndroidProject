@@ -66,7 +66,7 @@ public class SearchActivity extends BaseNavActivity {
         EditText editText = findViewById(R.id.searchActivityRowTitle);
 
         /*
-        Sets RecyclerView resources for this activity (ListAdaper and LayoutManager)
+        Sets RecyclerView resources for this activity (ListAdapter and LayoutManager)
          */
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
