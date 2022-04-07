@@ -8,7 +8,6 @@ Date: March 24 2022
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -22,9 +21,8 @@ import com.cst2335.utilities.ListAdapter;
 import com.cst2335.utilities.RecipeData;
 import java.util.ArrayList;
 import java.util.Objects;
-
 import com.cst2335.utilities.*;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 
 /**
  * This activity loads a list of saved recipes that have been bookmarked as favourites. It loads
@@ -34,26 +32,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class FavouritesActivity extends BaseNavActivity {
 
     /**
-     *
+     * The recyclerview used to hold the recipe list for the favourites activity
      */
     private RecyclerView recyclerView;
 
     /**
-     *
+     * the ListAdapter used for the recycler view of the favourites activity
      */
     private ListAdapter adapter = null;
 
     /**
-     *
-     */
-    RecipeDetailsFragment recipeDetails;
-    /**
-     *
-     */
-    private DatabaseHelper databaseHelper;
-
-    /**
-     *
+     * The list of recipe data objects to be used in populating the recycler view of recipes.
      */
     private ArrayList<RecipeData> list = new ArrayList<>();
 
@@ -77,11 +66,14 @@ public class FavouritesActivity extends BaseNavActivity {
         stub.setLayoutResource(R.layout.favourites_activity);
         stub.inflate();
 
+        // load the list of favourites from the database for viewing.
         initRecyclerList();
 
+        // Setting isPhone value for the application, contained in ListViewHolder class.
         ListViewHolder.setIsPhone(findViewById(R.id.recipe_details_fragment) == null);
         FragmentManager fm = getSupportFragmentManager(); // get fragment manager
 
+        // if on tablet loading splash screen fragment into fragment used for details otherwise.
         if (findViewById(R.id.recipe_details_fragment) != null ) {
             SplashFragment splash = new SplashFragment();
             fm.beginTransaction()
@@ -101,18 +93,20 @@ public class FavouritesActivity extends BaseNavActivity {
         adapter = new ListAdapter(list, getApplication());
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(FavouritesActivity.this));
-
         recyclerView.setAdapter(adapter);
+        // make call to add list items from database of recipes.
         refreshListDataUpdate(adapter);
 
     }
 
     /**
-     *
-     * @param adapter
+     * A utiltiy method used to refresh the list of favourites when changes are made to the data
+     * base or to initially load the list of favourites when the favourites activity is loaded for the
+     * first time.
+     * @param adapter The adapter for the list that will be updated when this method is called.
      */
     public void refreshListDataUpdate(ListAdapter adapter) {
-        databaseHelper = new DatabaseHelper(getApplicationContext(), null, null, DatabaseHelper.VERSION);
+        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext(), null, null, DatabaseHelper.VERSION);
         Cursor cursor = databaseHelper.selectAll();
         list.clear();
         if (cursor != null) {
@@ -136,7 +130,8 @@ public class FavouritesActivity extends BaseNavActivity {
     }
 
     /**
-     * When back button is used then the list needs to be updated
+     * When back button is used then the list needs to be updated. this operation is performed
+     * here in onResume.
      */
     @Override
     public void onResume() {
