@@ -59,7 +59,7 @@ public class FavouritesActivity extends BaseNavActivity {
         setContentView(R.layout.activity_base_nav);
 
         // initialize toolbar and navigation drawer with custom header info for nav drawer
-        setupNavigation("Chad Rocheleau", "Favourites Activity", "1.0");
+        setupNavigation("Chad Rocheleau", getString(R.string.favourites_activity_title), "1.0");
 
         // get the ViewStub into which this activities layout will be loaded.
         ViewStub stub = findViewById(R.id.layout_stub);
@@ -149,12 +149,12 @@ public class FavouritesActivity extends BaseNavActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage(("To use the favourites activity you can click on a favourited item to view the details." +
-                "Clicking on the bookmark button will prompt for confirmation that you want to delete an item from favourites. " +
-                "Use the navigation drawer to navigate to other activities." ))
+        alertDialogBuilder.setMessage((getString(R.string.favourites_info_message)))
                 .setCancelable(false)
-                .setPositiveButton("Okay", (dialog, id) -> {
+                .setPositiveButton(R.string.okay_dialog_button, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
 
+                    }
                 });
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();

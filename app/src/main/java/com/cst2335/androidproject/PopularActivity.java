@@ -51,7 +51,7 @@ public class PopularActivity extends BaseNavActivity {
         setContentView(R.layout.activity_base_nav);
         progressBar = findViewById(R.id.progressBar);
 
-        setupNavigation("Dustyn Gibb", "Popular Activity", "1.0");
+        setupNavigation("Dustyn Gibb", getString(R.string.popular_activity_title), "1.0");
         // get the ViewStub into which this activities layout will be loaded.
         ViewStub stub = findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.popular_activity);
@@ -74,9 +74,9 @@ public class PopularActivity extends BaseNavActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("This page loads popular recipes , you may refresh to see more as well as click the bookmark icon on the right to both favourite and unfavourite recipes. You may click the recipe to see the details as well.")
+        alertDialogBuilder.setMessage(getString(R.string.popular_info_message))
                 .setCancelable(false)
-                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.okay_dialog_button, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
                     }

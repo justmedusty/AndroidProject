@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    TODO change these to french-->
     <string name="app_name">Recherche de recette</string>
+    <string name="okay_dialog_button">D\'accord</string>
 
     <!--    Strings for toolbar -->
     <string name="menu_search">Rechercher des recettes</string>
@@ -13,6 +13,13 @@
     <string name="search_hint">Entrez le nom de la recette à rechercher</string>
     <string name="search_button_description">API Recherches</string>
     <string name="search_title">Cherche Recettes</string>
+    <string name="search_activity_title">Activite de recherche</string>
+    <string name="search_info_dialog">Pour utiliser l\'activite de recherche, vous devez saisir les termes de recherche dans
+        le champ de texte prevu a cet effet. En soumettant les termes de recherche, vous obtiendrez une liste de recettes
+        correspondant a ces termes. Une fois la liste produite, vous pouvez cliquer sur un element de la liste pour en
+        afficher les details. Si vous cliquez sur le bouton des signets ou des favoris, le systeme vous demandera si vous
+        souhaitez ajouter cet element aux favoris ou non. Utilisez le tiroir de navigation pour acceder a d\'autres activites.</string>
+
 
     <!--    Strings for nav drawer-->
     <string name="open">ouvrir</string>
@@ -20,6 +27,10 @@
 
     <!--    Strings for Favourites activity-->
     <string name="favourites_title">Ton Recettes Favourite</string>
+    <string name="favourites_activity_title">Activite Preferee</string>
+    <string name="favourites_info_message">Pour utiliser l\'activite des favoris, vous pouvez cliquer sur un element favori pour en afficher les details.
+                En cliquant sur le bouton des favoris, vous serez invite a confirmer que vous souhaitez supprimer un element des favoris.
+                Utilisez le tiroir de navigation pour acceder aux autres activites.</string>
 
     <string name="popular_recipes">Recettes Populaire</string>
 
@@ -28,4 +39,22 @@
 
     <string name="splash_image">c\'est une image splash</string>
     <string name="splash_title">Recettes Cherche</string>
+
+    <!-- ListViewHolder Strings -->
+    <string name="lvh_alert_dialog_title">Suppression des signets.</string>
+    <string name="lvh_alert_dialog_message">Voulez-vous supprimer cette recette de vos favoris ?</string>
+    <string name="lvh_alert_dialog_positive">Oui</string>
+    <string name="lvh_alert_dialog_toast_pos">Signet supprime.</string>
+    <string name="lvh_alert_dialog_toast_neg">Signet non supprime.</string>
+    <string name="lvh_alert_dialog_negative">Non</string>
+    <string name="lvh_snackbar_text">La recette a ete ajoutee aux favoris</string>
+    <string name="lvh_snackbar_undo">Annuler</string>
+
+    <!-- PopularActivity Strings -->
+    <string name="popular_activity_title">Activite populaire</string>
+    <string name="popular_info_message">Cette page affiche les recettes les plus populaires, vous pouvez l\'actualiser pour en voir
+        d\'autres et cliquer sur l\'icone de signet a droite pour acceder aux recettes favorites et defavorisees.
+        sur la droite pour voir vos recettes favorites et defavorisees. Vous pouvez cliquer sur la recette pour en voir les details.</string>
+
+
 </resources>
