@@ -92,10 +92,9 @@ public class ApiService {
     public void apiCall(@Nullable String searchTerm, ListAdapter adapter, ProgressBar progressBar) {
         this.adapter = adapter;
         class GetJSON extends AsyncTask<Void, Integer, String> {
-            //this method will be called before execution
-            //you can display a progress bar or something
-            //so that user can understand that he should wait
-            //as network operation may take some time
+            /**
+             * This method executes before the API call is made
+             */
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -103,8 +102,10 @@ public class ApiService {
             }
 
 
-            //this method will be called after execution
-            //so here we are displaying a toast with the json string
+            /**
+             * This method executes once the API call is completed
+             * @param s the json string that was grabbed in the API call in the doInBackground method
+             */
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
@@ -124,6 +125,10 @@ public class ApiService {
 
             }
 
+            /**
+             * For main asych task, in this case it is the call to the edamam API
+             * @return returns the json string
+             */
             @Override
             protected String doInBackground(Void... voids) {
                 try {
@@ -166,15 +171,8 @@ public class ApiService {
                 }
             }
 
-            @Override
-            protected void onProgressUpdate(Integer... values) {
-                super.onProgressUpdate(values);
-                if(progressBar != null){
-                    progressBar.setVisibility((View.VISIBLE));
-                }
 
 
-            }
         }
         //creating async task object and executing it
         recipeData.clear();

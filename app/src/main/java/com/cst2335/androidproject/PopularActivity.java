@@ -2,21 +2,16 @@ package com.cst2335.androidproject;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.ViewStub;
 import android.widget.ProgressBar;
-import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.cst2335.utilities.BaseNavActivity;
 import com.cst2335.utilities.ListAdapter;
 import com.cst2335.utilities.RecipeData;
-
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -42,6 +37,7 @@ public class PopularActivity extends BaseNavActivity {
 
     /**
      * Method called when activity is created
+     *
      * @param savedInstanceState Bundle passed to this activity.
      */
     @Override
@@ -83,6 +79,7 @@ public class PopularActivity extends BaseNavActivity {
     /**
      * Overrides onOptionsItemSelected to provide custom functionality of the info button in the
      * toolbar for this activity.
+     *
      * @param item the item selected in the toolbar
      * @return boolean value
      */
